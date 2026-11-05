@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.venv/
+independent_result.json
+negative_result.json
+dist/

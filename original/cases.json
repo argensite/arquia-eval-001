@@ -1,0 +1,508 @@
+[
+  {
+    "id": "C01-late-receipt",
+    "description": "Late verified receipt does not reactivate permission",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "external_commit",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "receipt",
+        "receipt_id": "r1",
+        "grant": "g1",
+        "effect": "e1",
+        "source": "independent_observer"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e2"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "dispatches": 1,
+      "blocks": 1,
+      "committed_effects": [
+        "e1"
+      ],
+      "incidents": [],
+      "outcomes": {
+        "e1": "confirmed_by_sandbox_observer"
+      }
+    }
+  },
+  {
+    "id": "C02-receipt-replay",
+    "description": "Receipt re-delivery does not duplicate writes",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "external_commit",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "receipt",
+        "receipt_id": "r1",
+        "grant": "g1",
+        "effect": "e1",
+        "source": "independent_observer"
+      },
+      {
+        "op": "receipt",
+        "receipt_id": "r1",
+        "grant": "g1",
+        "effect": "e1",
+        "source": "independent_observer"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "dispatches": 1,
+      "duplicate_receipts": 1,
+      "committed_effects": [
+        "e1"
+      ]
+    }
+  },
+  {
+    "id": "C03-wrong-effect",
+    "description": "Receipt is bound to one exact effect ID",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "receipt",
+        "receipt_id": "r1",
+        "grant": "g1",
+        "effect": "e2",
+        "source": "independent_observer"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "dispatches": 1,
+      "orphan_receipts": 1,
+      "pending_effects": [
+        "e1"
+      ],
+      "outcomes": {
+        "e1": "unknown"
+      }
+    }
+  },
+  {
+    "id": "C04-timeout",
+    "description": "Unknown remote outcome must not prompt blind retries",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "timeout",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "clear_client_cache"
+      },
+      {
+        "op": "recover",
+        "effect": "e1"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "dispatches": 1,
+      "pending_effects": [
+        "e1"
+      ],
+      "outcomes": {
+        "e1": "unknown"
+      }
+    }
+  },
+  {
+    "id": "C05-escaped-real-effect",
+    "description": "A genuine effect committed after revocation is an incident",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "external_commit",
+        "effect": "e1"
+      },
+      {
+        "op": "receipt",
+        "receipt_id": "r1",
+        "grant": "g1",
+        "effect": "e1",
+        "source": "independent_observer"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "dispatches": 1,
+      "committed_effects": [
+        "e1"
+      ],
+      "incidents": [
+        "escaped_effect_after_revocation"
+      ],
+      "outcomes": {
+        "e1": "confirmed_by_sandbox_observer"
+      }
+    }
+  },
+  {
+    "id": "C06-two-phase-hard-stop",
+    "description": "Completion of pending effect blocked by hard-stop revocation",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1",
+        "finish_after_revoke": false
+      },
+      {
+        "op": "start",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "complete",
+        "grant": "g1",
+        "effect": "e1"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "dispatches": 1,
+      "completions": 0,
+      "blocks": 1,
+      "pending_effects": [
+        "e1"
+      ]
+    }
+  },
+  {
+    "id": "C07-preauthorized-finish",
+    "description": "Narrow completion exception is not renewed general authorization",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1",
+        "finish_after_revoke": true
+      },
+      {
+        "op": "start",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "complete",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e2"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "dispatches": 1,
+      "completions": 1,
+      "blocks": 1,
+      "committed_effects": [
+        "e1"
+      ],
+      "incidents": []
+    }
+  },
+  {
+    "id": "C08-client-crash",
+    "description": "Late receipt after cache-loss does not restore prior grant",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "external_commit",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "clear_client_cache"
+      },
+      {
+        "op": "receipt",
+        "receipt_id": "r1",
+        "grant": "g1",
+        "effect": "e1",
+        "source": "independent_observer"
+      },
+      {
+        "op": "recover",
+        "effect": "e1"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "dispatches": 1,
+      "blocks": 1,
+      "committed_effects": [
+        "e1"
+      ]
+    }
+  },
+  {
+    "id": "C09-self-attested",
+    "description": "Executor's own receipt is not independent evidence",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "receipt",
+        "receipt_id": "r1",
+        "grant": "g1",
+        "effect": "e1",
+        "source": "executor"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "unverified_receipts": 1,
+      "pending_effects": [
+        "e1"
+      ],
+      "outcomes": {
+        "e1": "unverified_claim"
+      }
+    }
+  },
+  {
+    "id": "C10-new-grant",
+    "description": "A new grant is unaffected by a previous grant's receipt",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1",
+        "version": 1
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "grant",
+        "grant": "g2",
+        "effect": "e2",
+        "version": 2
+      },
+      {
+        "op": "dispatch",
+        "grant": "g2",
+        "effect": "e2"
+      },
+      {
+        "op": "receipt",
+        "receipt_id": "r1",
+        "grant": "g1",
+        "effect": "e1",
+        "version": 1,
+        "source": "executor"
+      }
+    ],
+    "expect": {
+      "active_grants": [
+        "g2"
+      ],
+      "dispatches": 2,
+      "unverified_receipts": 1,
+      "pending_effects": [
+        "e1",
+        "e2"
+      ]
+    }
+  },
+  {
+    "id": "C11-false-success",
+    "description": "Claimed success without an observed effect remains unknown",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "receipt",
+        "receipt_id": "r1",
+        "grant": "g1",
+        "effect": "e1",
+        "source": "independent_observer"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "dispatches": 1,
+      "incidents": [
+        "receipt_without_observed_effect"
+      ],
+      "outcomes": {
+        "e1": "unknown"
+      }
+    }
+  },
+  {
+    "id": "C12-old-version",
+    "description": "Receipt version mismatch cannot certify current action",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1",
+        "version": 5
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "receipt",
+        "receipt_id": "r1",
+        "grant": "g1",
+        "effect": "e1",
+        "version": 3,
+        "source": "executor"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "orphan_receipts": 1,
+      "unverified_receipts": 0,
+      "outcomes": {
+        "e1": "unknown"
+      }
+    }
+  }
+]

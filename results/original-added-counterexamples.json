@@ -1,0 +1,244 @@
+[
+  {
+    "case": "C14-untrusted-cannot-poison",
+    "expected": {
+      "unverified_receipts": 1,
+      "duplicate_receipts": 0,
+      "outcomes": {
+        "e1": "confirmed_by_sandbox_observer"
+      }
+    },
+    "actual": {
+      "active_grants": [
+        "g1"
+      ],
+      "dispatches": 1,
+      "completions": 0,
+      "blocks": 0,
+      "duplicate_receipts": 1,
+      "orphan_receipts": 0,
+      "unverified_receipts": 1,
+      "committed_effects": [
+        "e1"
+      ],
+      "pending_effects": [],
+      "outcomes": {
+        "e1": "unverified_claim"
+      },
+      "incidents": []
+    },
+    "mismatches": {
+      "duplicate_receipts": {
+        "expected": 0,
+        "actual": 1
+      },
+      "outcomes": {
+        "expected": {
+          "e1": "confirmed_by_sandbox_observer"
+        },
+        "actual": {
+          "e1": "unverified_claim"
+        }
+      }
+    }
+  },
+  {
+    "case": "C15-confirmed-not-downgraded",
+    "expected": {
+      "unverified_receipts": 1,
+      "outcomes": {
+        "e1": "confirmed_by_sandbox_observer"
+      }
+    },
+    "actual": {
+      "active_grants": [
+        "g1"
+      ],
+      "dispatches": 1,
+      "completions": 0,
+      "blocks": 0,
+      "duplicate_receipts": 0,
+      "orphan_receipts": 0,
+      "unverified_receipts": 1,
+      "committed_effects": [
+        "e1"
+      ],
+      "pending_effects": [],
+      "outcomes": {
+        "e1": "unverified_claim"
+      },
+      "incidents": []
+    },
+    "mismatches": {
+      "outcomes": {
+        "expected": {
+          "e1": "confirmed_by_sandbox_observer"
+        },
+        "actual": {
+          "e1": "unverified_claim"
+        }
+      }
+    }
+  },
+  {
+    "case": "C16-replay-renamed",
+    "expected": {
+      "duplicate_receipts": 1,
+      "dispatches": 1,
+      "active_grants": [],
+      "committed_effects": [
+        "e1"
+      ]
+    },
+    "actual": {
+      "active_grants": [],
+      "dispatches": 1,
+      "completions": 0,
+      "blocks": 0,
+      "duplicate_receipts": 0,
+      "orphan_receipts": 0,
+      "unverified_receipts": 0,
+      "committed_effects": [
+        "e1"
+      ],
+      "pending_effects": [],
+      "outcomes": {
+        "e1": "confirmed_by_sandbox_observer"
+      },
+      "incidents": []
+    },
+    "mismatches": {
+      "duplicate_receipts": {
+        "expected": 1,
+        "actual": 0
+      }
+    }
+  },
+  {
+    "case": "C23-completion-contract",
+    "expected": {
+      "active_grants": [],
+      "incidents": [],
+      "committed_effects": [
+        "e1"
+      ]
+    },
+    "actual": {
+      "active_grants": [],
+      "dispatches": 1,
+      "completions": 0,
+      "blocks": 0,
+      "duplicate_receipts": 0,
+      "orphan_receipts": 0,
+      "unverified_receipts": 0,
+      "committed_effects": [
+        "e1"
+      ],
+      "pending_effects": [],
+      "outcomes": {
+        "e1": "confirmed_by_sandbox_observer"
+      },
+      "incidents": [
+        "escaped_effect_after_revocation"
+      ]
+    },
+    "mismatches": {
+      "incidents": {
+        "expected": [],
+        "actual": [
+          "escaped_effect_after_revocation"
+        ]
+      }
+    }
+  },
+  {
+    "case": "C25-false-then-valid-evidence",
+    "expected": {
+      "incidents": [
+        "receipt_without_observed_effect"
+      ],
+      "duplicate_receipts": 0,
+      "outcomes": {
+        "e1": "confirmed_by_sandbox_observer"
+      }
+    },
+    "actual": {
+      "active_grants": [
+        "g1"
+      ],
+      "dispatches": 1,
+      "completions": 0,
+      "blocks": 0,
+      "duplicate_receipts": 1,
+      "orphan_receipts": 0,
+      "unverified_receipts": 0,
+      "committed_effects": [
+        "e1"
+      ],
+      "pending_effects": [],
+      "outcomes": {
+        "e1": "unknown"
+      },
+      "incidents": [
+        "receipt_without_observed_effect"
+      ]
+    },
+    "mismatches": {
+      "duplicate_receipts": {
+        "expected": 0,
+        "actual": 1
+      },
+      "outcomes": {
+        "expected": {
+          "e1": "confirmed_by_sandbox_observer"
+        },
+        "actual": {
+          "e1": "unknown"
+        }
+      }
+    }
+  },
+  {
+    "case": "C28-wrong-binding-first",
+    "expected": {
+      "orphan_receipts": 1,
+      "duplicate_receipts": 0,
+      "outcomes": {
+        "e1": "confirmed_by_sandbox_observer"
+      }
+    },
+    "actual": {
+      "active_grants": [
+        "g1"
+      ],
+      "dispatches": 1,
+      "completions": 0,
+      "blocks": 0,
+      "duplicate_receipts": 1,
+      "orphan_receipts": 1,
+      "unverified_receipts": 0,
+      "committed_effects": [
+        "e1"
+      ],
+      "pending_effects": [],
+      "outcomes": {
+        "e1": "unknown"
+      },
+      "incidents": []
+    },
+    "mismatches": {
+      "duplicate_receipts": {
+        "expected": 0,
+        "actual": 1
+      },
+      "outcomes": {
+        "expected": {
+          "e1": "confirmed_by_sandbox_observer"
+        },
+        "actual": {
+          "e1": "unknown"
+        }
+      }
+    }
+  }
+]
