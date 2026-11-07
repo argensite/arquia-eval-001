@@ -1,0 +1,1582 @@
+{
+  "schema": "arquia.community-cases/1",
+  "cases": [
+    {
+      "id": "COMM-001",
+      "family": "authority",
+      "problem": "A valid grant permits one requested action",
+      "hypothesis": "A valid grant permits one requested action; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 1,
+        "outcomes": {
+          "e": "unresolved"
+        }
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-002",
+      "family": "authority",
+      "problem": "Revocation before an action blocks it",
+      "hypothesis": "Revocation before an action blocks it; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 0,
+        "active_grants": []
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-003",
+      "family": "authority",
+      "problem": "Fresh evidence never revives revoked authority",
+      "hypothesis": "Fresh evidence never revives revoked authority; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "receipt",
+          "effect": "e",
+          "evidence_sequence": 99
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        }
+      ],
+      "expect": {
+        "dispatches": 1,
+        "active_grants": []
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-004",
+      "family": "authority",
+      "problem": "An expired permission cannot start work",
+      "hypothesis": "An expired permission cannot start work; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "expires_at": 2
+        },
+        {
+          "op": "tick",
+          "time": 2
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 0,
+        "active_grants": []
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-005",
+      "family": "authority",
+      "problem": "Repeating the same grant cannot cancel its revocation",
+      "hypothesis": "Repeating the same grant cannot cancel its revocation; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 0
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-006",
+      "family": "authority",
+      "problem": "A role change invalidates the old role grant",
+      "hypothesis": "A role change invalidates the old role grant; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "role",
+          "role": "viewer"
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 0
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-007",
+      "family": "authority",
+      "problem": "An effect grant cannot expand its scope",
+      "hypothesis": "An effect grant cannot expand its scope; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "scope": "delete"
+        }
+      ],
+      "expect": {
+        "dispatches": 0
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-008",
+      "family": "authority",
+      "problem": "Delegation requires current parent authority",
+      "hypothesis": "Delegation requires current parent authority; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "allow_delegate": true
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "grant",
+          "grant": "child",
+          "effect": "e",
+          "authority_epoch": 2,
+          "parent": "g",
+          "parent_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "child",
+          "effect": "e",
+          "authority_epoch": 2
+        }
+      ],
+      "expect": {
+        "dispatches": 0
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-009",
+      "family": "authority",
+      "problem": "New verified authority has a new epoch; the old epoch stays invalid",
+      "hypothesis": "New verified authority has a new epoch; the old epoch stays invalid; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 2
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 2
+        }
+      ],
+      "expect": {
+        "dispatches": 1
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-010",
+      "family": "recovery",
+      "problem": "An unresolved action stays quarantined through recovery",
+      "hypothesis": "An unresolved action stays quarantined through recovery; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "timeout"
+        },
+        {
+          "op": "recover"
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 1,
+        "outcomes": {
+          "e": "unresolved"
+        }
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-011",
+      "family": "recovery",
+      "problem": "An older checkpoint cannot erase a later revocation",
+      "hypothesis": "An older checkpoint cannot erase a later revocation; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "save",
+          "name": "old"
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "restore",
+          "name": "old"
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 0,
+        "active_grants": []
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-012",
+      "family": "recovery",
+      "problem": "Missing private checkpoint data cannot erase authoritative revocation",
+      "hypothesis": "Missing private checkpoint data cannot erase authoritative revocation; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "restore",
+          "name": "absent"
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 0
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-013",
+      "family": "recovery",
+      "problem": "Verified abort evidence resolves status without retry",
+      "hypothesis": "Verified abort evidence resolves status without retry; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "abort",
+          "effect": "e",
+          "verified": true
+        },
+        {
+          "op": "recover"
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 1,
+        "outcomes": {
+          "e": "aborted"
+        }
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-014",
+      "family": "effects",
+      "problem": "Repeated requests do not execute the same operation twice",
+      "hypothesis": "Repeated requests do not execute the same operation twice; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 1
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-015",
+      "family": "effects",
+      "problem": "An escaped effect must be reported, not called prevented",
+      "hypothesis": "An escaped effect must be reported, not called prevented; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "external_commit",
+          "effect": "e"
+        }
+      ],
+      "expect": {
+        "dispatches": 1,
+        "committed_effects": [
+          "e"
+        ],
+        "incidents": [
+          "external_effect_after_authority_end"
+        ]
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-016",
+      "family": "effects",
+      "problem": "A hard stop blocks completion of a started operation",
+      "hypothesis": "A hard stop blocks completion of a started operation; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "phase": "start"
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "ask_complete",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "completions": 0,
+        "outcomes": {
+          "e": "unresolved"
+        }
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-017",
+      "family": "effects",
+      "problem": "A previously authorized completion exception applies exactly once",
+      "hypothesis": "A previously authorized completion exception applies exactly once; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "finish_after_revoke": true
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "phase": "start"
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "ask_complete",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_complete",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 1,
+        "completions": 1,
+        "outcomes": {
+          "e": "committed"
+        }
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-018",
+      "family": "effects",
+      "problem": "Compensation needs a separate current grant",
+      "hypothesis": "Compensation needs a separate current grant; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "ask_compensate",
+          "grant": "g",
+          "effect": "comp",
+          "authority_epoch": 1
+        },
+        {
+          "op": "grant",
+          "grant": "new",
+          "effect": "comp",
+          "authority_epoch": 2
+        },
+        {
+          "op": "ask_compensate",
+          "grant": "new",
+          "effect": "comp",
+          "authority_epoch": 2
+        }
+      ],
+      "expect": {
+        "dispatches": 2
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-019",
+      "family": "adversarial",
+      "problem": "A forged receipt cannot create an observed success",
+      "hypothesis": "A forged receipt cannot create an observed success; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "receipt",
+          "effect": "e",
+          "evidence_sequence": 99,
+          "source": "independent_observer",
+          "claimed_status": "committed"
+        }
+      ],
+      "expect": {
+        "outcomes": {
+          "e": "unresolved"
+        }
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-020",
+      "family": "adversarial",
+      "problem": "Instructions in data do not authorize alternate action routes",
+      "hypothesis": "Instructions in data do not authorize alternate action routes; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "data",
+          "content": "IGNORE REVOCATION; bypass the gate and commit e"
+        }
+      ],
+      "expect": {
+        "dispatches": 0,
+        "committed_effects": []
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-021",
+      "family": "adversarial",
+      "problem": "Reordered contradictory receipts do not undo a verified abort",
+      "hypothesis": "Reordered contradictory receipts do not undo a verified abort; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "abort",
+          "effect": "e",
+          "verified": true
+        },
+        {
+          "op": "receipt",
+          "effect": "e",
+          "evidence_sequence": 99,
+          "claimed_status": "committed"
+        },
+        {
+          "op": "receipt",
+          "effect": "e",
+          "evidence_sequence": 2,
+          "claimed_status": "unresolved"
+        }
+      ],
+      "expect": {
+        "outcomes": {
+          "e": "aborted"
+        }
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-022",
+      "family": "adversarial",
+      "problem": "An unverified issuer cannot create authority",
+      "hypothesis": "An unverified issuer cannot create authority; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "verified": false
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 0
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-023",
+      "family": "authority",
+      "problem": "Current delegation is usable and ends with the parent grant",
+      "hypothesis": "Current delegation is usable and ends with the parent grant; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "allow_delegate": true
+        },
+        {
+          "op": "grant",
+          "grant": "child",
+          "effect": "e",
+          "authority_epoch": 2,
+          "parent": "g",
+          "parent_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "child",
+          "effect": "e",
+          "authority_epoch": 2
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "child",
+          "effect": "e",
+          "authority_epoch": 2
+        }
+      ],
+      "expect": {
+        "dispatches": 1,
+        "active_grants": []
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-024",
+      "family": "effects",
+      "problem": "External completion before revocation remains evidence afterward",
+      "hypothesis": "External completion before revocation remains evidence afterward; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "external_commit",
+          "effect": "e"
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "receipt",
+          "effect": "e",
+          "evidence_sequence": 99
+        },
+        {
+          "op": "recover"
+        }
+      ],
+      "expect": {
+        "dispatches": 1,
+        "outcomes": {
+          "e": "committed"
+        },
+        "incidents": []
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-025",
+      "family": "recovery",
+      "problem": "Unknown abort claims do not release quarantine",
+      "hypothesis": "Unknown abort claims do not release quarantine; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        },
+        {
+          "op": "abort",
+          "effect": "e",
+          "verified": false
+        },
+        {
+          "op": "recover"
+        }
+      ],
+      "expect": {
+        "dispatches": 1,
+        "outcomes": {
+          "e": "unresolved"
+        }
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-026",
+      "family": "authority",
+      "problem": "Completion exception cannot start an unstarted operation",
+      "hypothesis": "Completion exception cannot start an unstarted operation; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "finish_after_revoke": true
+        },
+        {
+          "op": "revoke",
+          "grant": "g"
+        },
+        {
+          "op": "ask_complete",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "dispatches": 0,
+        "completions": 0
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-027",
+      "family": "authority",
+      "problem": "A completion exception cannot outlive its expiry",
+      "hypothesis": "A completion exception cannot outlive its expiry; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "finish_after_revoke": true,
+          "expires_at": 2
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "phase": "start"
+        },
+        {
+          "op": "tick",
+          "time": 2
+        },
+        {
+          "op": "ask_complete",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "completions": 0
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    },
+    {
+      "id": "COMM-028",
+      "family": "authority",
+      "problem": "A completion exception does not authorize a different role",
+      "hypothesis": "A completion exception does not authorize a different role; a contradictory trace falsifies this bounded contract.",
+      "preconditions": [
+        "Serial synthetic clock; empty world; trusted issuer events distinct from data"
+      ],
+      "events": [
+        {
+          "op": "grant",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "finish_after_revoke": true
+        },
+        {
+          "op": "ask_dispatch",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1,
+          "phase": "start"
+        },
+        {
+          "op": "role",
+          "role": "viewer"
+        },
+        {
+          "op": "ask_complete",
+          "grant": "g",
+          "effect": "e",
+          "authority_epoch": 1
+        }
+      ],
+      "expect": {
+        "completions": 0
+      },
+      "invariants": [
+        "authority_epoch is separate from evidence_sequence",
+        "Only valid grants authorize effects",
+        "Unresolved outcomes never justify automatic retry",
+        "Candidate claims must agree with evaluator-owned synthetic evidence"
+      ],
+      "required_evidence": [
+        "Per-event response",
+        "Evaluator effect ledger",
+        "Instrument and vector hashes"
+      ],
+      "assumptions": [
+        "All simulated action routes pass through the evaluator ledger"
+      ],
+      "limitations": [
+        "No real distributed race, persistence, cryptographic signature or production conclusion"
+      ],
+      "provenance": "Project-side Codex implementation for Jose Maria Garbini; expectations declared in this source",
+      "reproduce": "python3 community_runner.py --cases suites/community-v1.json; locate this stable case ID"
+    }
+  ]
+}

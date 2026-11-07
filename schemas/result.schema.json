@@ -1,0 +1,123 @@
+{
+  "type": "object",
+  "required": [
+    "report_schema",
+    "report_sha256",
+    "measurement",
+    "passed",
+    "total",
+    "results",
+    "exit_code"
+  ],
+  "properties": {
+    "report_schema": {
+      "const": "arquia.result/1"
+    },
+    "report_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "measurement": {
+      "type": "object",
+      "required": [
+        "schema",
+        "started_utc",
+        "finished_utc",
+        "repository",
+        "files",
+        "configuration",
+        "configuration_sha256",
+        "environment",
+        "command",
+        "evaluator",
+        "exit_code",
+        "duration_seconds"
+      ],
+      "properties": {
+        "schema": {
+          "const": "arquia.measurement/1"
+        },
+        "files": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "configuration_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "exit_code": {
+          "enum": [
+            0,
+            1,
+            2
+          ]
+        },
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duration_seconds": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "passed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "total": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "exit_code": {
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "passed",
+          "error",
+          "violations",
+          "mismatches"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "violations": {
+            "type": "array"
+          },
+          "mismatches": {
+            "type": "object"
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

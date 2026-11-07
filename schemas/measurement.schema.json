@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "required": [
+    "schema",
+    "started_utc",
+    "finished_utc",
+    "repository",
+    "files",
+    "configuration",
+    "configuration_sha256",
+    "environment",
+    "command",
+    "evaluator",
+    "exit_code",
+    "duration_seconds"
+  ],
+  "properties": {
+    "schema": {
+      "const": "arquia.measurement/1"
+    },
+    "files": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "configuration_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "exit_code": {
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "command": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "duration_seconds": {
+      "type": "number",
+      "minimum": 0
+    }
+  }
+}

@@ -32,6 +32,16 @@ def load_cases(path):
     return cases
 
 
+def temporal_violations(event, index, before, after):
+    violations = []
+    if event["op"] in ("receipt", "recover", "clear_client_cache", "timeout"):
+        for field in ("active_grants", "dispatches", "completions", "committed_effects"):
+            if before[field] != after[field]:
+                violations.append(dict(step=index, property="P1/P2-passive-event", field=field,
+                                       before=before[field], after=after[field]))
+    return violations
+
+
 def evaluate(cls, cases):
     results = []
     for case in cases:
@@ -45,11 +55,7 @@ def evaluate(cls, cases):
                     checkpoint = json.loads(json.dumps(obj.export_state(), sort_keys=True))
                     obj = cls.from_state(checkpoint)
                 after = copy.deepcopy(obj.snapshot())
-                if event["op"] in ("receipt", "recover", "clear_client_cache", "timeout"):
-                    for field in ("active_grants", "dispatches", "completions", "committed_effects"):
-                        if before[field] != after[field]:
-                            violations.append(dict(step=index, property="P1/P2-passive-event", field=field,
-                                                   before=before[field], after=after[field]))
+                violations.extend(temporal_violations(event, index, before, after))
                 trace.append(dict(event=event, state=after))
             got = obj.snapshot()
             mismatches = {k: dict(expected=v, actual=got.get(k)) for k, v in case["expect"].items()
