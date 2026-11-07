@@ -54,6 +54,7 @@
   "evidence/adverse-review/complete-isolation.receipt.json",
   "evidence/adverse-review/complete-isolation.stderr",
   "evidence/adverse-review/complete-isolation.stdout",
+  "evidence/adverse-review/native-evidence-rejection.json",
   "evidence/adverse-review/native-resource-rejection.json",
   "evidence/adverse-review/native-review-rejection.json",
   "evidence/adverse-review/parent-tests-after.receipt.json",

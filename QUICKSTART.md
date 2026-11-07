@@ -34,7 +34,7 @@ Report readers accept UTF-8 with or without BOM. Avoid UTF-16 redirection in old
 PowerShell. `check_all.py` captures child bytes directly and creates complete
 stdout/stderr/exit receipts, independent of shell redirection.
 
-Reference commands return 0. Historical reference: 29/29; community: 28/28.
+Reference commands return 0. Historical reference: 29/29; community: 34/34.
 A failing candidate returns 1. Invalid invocation/isolation unavailable returns
 nonzero; no run is inferred. To see a deliberate fault:
 

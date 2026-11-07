@@ -77,3 +77,9 @@ The prior passing snapshot remains in evidence/community-review/. It was insuffi
 ## Second adverse review: aggregate resource boundary
 
 The native review of b118f02 rejected per-process-only quotas. The new boundary uses an existing systemd user manager and cgroup v2; it reads kernel quotas before releasing the candidate, then checks complete group cleanup. Bounded probes that created 24 children and requested 320 MiB in two children failed the intended limits before the change. Afterward, the measured task ceiling is 16, memory exhaustion produces a failed execution with kernel OOM counters, and detached descendants are removed. The second rejection and before/after outputs are retained in evidence/adverse-review/. A first test exposed a sampling race that lost terminal OOM counters; a short trusted stop phase preserves the final observation. That failed test is retained too. No daemon or host quota is changed by the launcher. Basic portable runs do not require these Linux facilities.
+
+## Native evidence review
+
+A third closed project-side review returned wait because native Qwen receipts were not yet available. This is an evidence gap, not an additional demonstrated code defect. The response is preserved in evidence/adverse-review/native-evidence-rejection.json. The revised native workflow separates authorization of local validation from final publication approval. The final review must receive native before/after, historical-oracle, full community and final-archive receipts, bind the exact tree and ZIP, and close authentically before a separate Qwen publication dispatch. Missing evidence or a wait decision cannot authorize a push. Installation of this workflow alone is not evidence of its successful execution.
+
+The Quickstart community count was corrected from 28 to 34 after the six parent-authority regression cases. Historical case counts remain unchanged.
