@@ -7,7 +7,7 @@ from pathlib import Path
 import platform
 import sys
 
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 ROOT = Path(__file__).resolve().parent
 MUTANTS = {
     "receipt-renewal": "ReceiptRenewal", "blind-recovery": "BlindRecovery",

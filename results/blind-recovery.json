@@ -1,16 +1,16 @@
 {
   "protocol": "ARQUIA-EVAL-001",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "evidence_type": "local_execution",
   "independence": "not_established_by_runner",
-  "evaluator": "project-side-Codex",
+  "evaluator": "project-side-native-Qwen-ChatGPT",
   "candidate": "engine:BlindRecovery",
   "python": "3.14.4",
   "platform": "Linux",
-  "cases_sha256": "f7ca1d8bf8f6ca289184a8d2ba6337022fe72af771a984d9fbff56c1720820d4",
+  "cases_sha256": "4640126623e0b1fc553b426fa3aecf4947c1979f8f8fa3c9f0b0a9919f5110f0",
   "adapter_file_sha256": "e64bb293ea06ad72b7086971f0ec0c13a22247d8c96f001003a456f0707dae86",
-  "passed": 27,
-  "total": 28,
+  "passed": 28,
+  "total": 29,
   "results": [
     {
       "id": "C01-late-receipt",
@@ -5187,6 +5187,206 @@
             "blocks": 0,
             "duplicate_receipts": 0,
             "orphan_receipts": 1,
+            "unverified_receipts": 0,
+            "conflicting_receipts": 0,
+            "committed_effects": [
+              "e1"
+            ],
+            "pending_effects": [],
+            "outcomes": {
+              "e1": "confirmed_by_sandbox_observer"
+            },
+            "execution_order": {
+              "e1": "before_revocation"
+            },
+            "incidents": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "C29-transient-receipt-renewal",
+      "passed": true,
+      "mismatches": {},
+      "violations": [],
+      "error": null,
+      "actual": {
+        "active_grants": [],
+        "dispatches": 1,
+        "completions": 0,
+        "blocks": 0,
+        "duplicate_receipts": 0,
+        "orphan_receipts": 0,
+        "unverified_receipts": 0,
+        "conflicting_receipts": 0,
+        "committed_effects": [
+          "e1"
+        ],
+        "pending_effects": [],
+        "outcomes": {
+          "e1": "confirmed_by_sandbox_observer"
+        },
+        "execution_order": {
+          "e1": "before_revocation"
+        },
+        "incidents": []
+      },
+      "trace": [
+        {
+          "event": {
+            "op": "grant",
+            "grant": "g1",
+            "effect": "e1",
+            "finish_after_revoke": false,
+            "request": "synthetic-request"
+          },
+          "state": {
+            "active_grants": [
+              "g1"
+            ],
+            "dispatches": 0,
+            "completions": 0,
+            "blocks": 0,
+            "duplicate_receipts": 0,
+            "orphan_receipts": 0,
+            "unverified_receipts": 0,
+            "conflicting_receipts": 0,
+            "committed_effects": [],
+            "pending_effects": [],
+            "outcomes": {},
+            "execution_order": {},
+            "incidents": []
+          }
+        },
+        {
+          "event": {
+            "op": "dispatch",
+            "grant": "g1",
+            "effect": "e1"
+          },
+          "state": {
+            "active_grants": [
+              "g1"
+            ],
+            "dispatches": 1,
+            "completions": 0,
+            "blocks": 0,
+            "duplicate_receipts": 0,
+            "orphan_receipts": 0,
+            "unverified_receipts": 0,
+            "conflicting_receipts": 0,
+            "committed_effects": [],
+            "pending_effects": [
+              "e1"
+            ],
+            "outcomes": {
+              "e1": "unknown"
+            },
+            "execution_order": {
+              "e1": "undetermined"
+            },
+            "incidents": []
+          }
+        },
+        {
+          "event": {
+            "op": "external_commit",
+            "effect": "e1"
+          },
+          "state": {
+            "active_grants": [
+              "g1"
+            ],
+            "dispatches": 1,
+            "completions": 0,
+            "blocks": 0,
+            "duplicate_receipts": 0,
+            "orphan_receipts": 0,
+            "unverified_receipts": 0,
+            "conflicting_receipts": 0,
+            "committed_effects": [
+              "e1"
+            ],
+            "pending_effects": [],
+            "outcomes": {
+              "e1": "unknown"
+            },
+            "execution_order": {
+              "e1": "before_revocation"
+            },
+            "incidents": []
+          }
+        },
+        {
+          "event": {
+            "op": "revoke",
+            "grant": "g1"
+          },
+          "state": {
+            "active_grants": [],
+            "dispatches": 1,
+            "completions": 0,
+            "blocks": 0,
+            "duplicate_receipts": 0,
+            "orphan_receipts": 0,
+            "unverified_receipts": 0,
+            "conflicting_receipts": 0,
+            "committed_effects": [
+              "e1"
+            ],
+            "pending_effects": [],
+            "outcomes": {
+              "e1": "unknown"
+            },
+            "execution_order": {
+              "e1": "before_revocation"
+            },
+            "incidents": []
+          }
+        },
+        {
+          "event": {
+            "op": "receipt",
+            "receipt_id": "r1",
+            "grant": "g1",
+            "effect": "e1",
+            "source": "independent_observer",
+            "request_hash": "f14c8850173798b0856af0e778ac06a11cdabb69033244c945ee8a49d2de0b29"
+          },
+          "state": {
+            "active_grants": [],
+            "dispatches": 1,
+            "completions": 0,
+            "blocks": 0,
+            "duplicate_receipts": 0,
+            "orphan_receipts": 0,
+            "unverified_receipts": 0,
+            "conflicting_receipts": 0,
+            "committed_effects": [
+              "e1"
+            ],
+            "pending_effects": [],
+            "outcomes": {
+              "e1": "confirmed_by_sandbox_observer"
+            },
+            "execution_order": {
+              "e1": "before_revocation"
+            },
+            "incidents": []
+          }
+        },
+        {
+          "event": {
+            "op": "revoke",
+            "grant": "g1"
+          },
+          "state": {
+            "active_grants": [],
+            "dispatches": 1,
+            "completions": 0,
+            "blocks": 0,
+            "duplicate_receipts": 0,
+            "orphan_receipts": 0,
             "unverified_receipts": 0,
             "conflicting_receipts": 0,
             "committed_effects": [

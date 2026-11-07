@@ -89,6 +89,12 @@ def build():
         case("C28-wrong-binding-first", "A mismatched receipt cannot reserve the identifier of the valid one",
              baseline() + [e("external_commit", effect="e1"), receipt(effect="e2"), receipt()],
              orphan_receipts=1, duplicate_receipts=0, outcomes={"e1":"confirmed_by_sandbox_observer"}),
+        case("C29-transient-receipt-renewal",
+             "A receipt cannot transiently renew revoked authority even when a later revoke restores the final state",
+             baseline() + [e("external_commit", effect="e1"), e("revoke", grant="g1"), receipt(),
+             e("revoke", grant="g1")],
+             active_grants=[], dispatches=1, committed_effects=["e1"], incidents=[],
+             outcomes={"e1":"confirmed_by_sandbox_observer"}),
     ]
     # Explicit request binding in v0.1.0; original vectors are kept untouched in original/.
     for c in cases:

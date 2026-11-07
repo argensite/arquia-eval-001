@@ -1240,5 +1240,54 @@
         "e1": "confirmed_by_sandbox_observer"
       }
     }
+  },
+  {
+    "id": "C29-transient-receipt-renewal",
+    "description": "A receipt cannot transiently renew revoked authority even when a later revoke restores the final state",
+    "events": [
+      {
+        "op": "grant",
+        "grant": "g1",
+        "effect": "e1",
+        "finish_after_revoke": false,
+        "request": "synthetic-request"
+      },
+      {
+        "op": "dispatch",
+        "grant": "g1",
+        "effect": "e1"
+      },
+      {
+        "op": "external_commit",
+        "effect": "e1"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      },
+      {
+        "op": "receipt",
+        "receipt_id": "r1",
+        "grant": "g1",
+        "effect": "e1",
+        "source": "independent_observer",
+        "request_hash": "f14c8850173798b0856af0e778ac06a11cdabb69033244c945ee8a49d2de0b29"
+      },
+      {
+        "op": "revoke",
+        "grant": "g1"
+      }
+    ],
+    "expect": {
+      "active_grants": [],
+      "dispatches": 1,
+      "committed_effects": [
+        "e1"
+      ],
+      "incidents": [],
+      "outcomes": {
+        "e1": "confirmed_by_sandbox_observer"
+      }
+    }
   }
 ]

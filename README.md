@@ -1,3 +1,7 @@
+<!-- native-release -->
+Current version: **v0.1.1**. See [release notes](RELEASE_NOTES.md) and [RSI evidence](RSI_RELEASE.json). Historical v0.1.0 remains available at its immutable commit/tag. Counts and results below that explicitly refer to v0.1.0 are historical. Current verified counts are in RSI_RELEASE.json. Project-side tests do not establish independent validation.
+<!-- /native-release -->
+
 # ARQUÍA-EVAL-001
 
 **Late receipts, revoked authority, and escaped effects — v0.1.0**
