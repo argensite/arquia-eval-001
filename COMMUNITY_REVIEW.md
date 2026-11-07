@@ -15,9 +15,9 @@ sets are retained under history/ and at their tags.
 - 34/34 separate community cases and 32/32 generated cases with seed 42.
 - All five historical controls return the required exit 1. Their passes/29 are
   14, 28, 28, 27 and 25 in the documented order.
-- Ten additional controls each have a non-error witness. Deny-all also has two
-  inconclusive scenarios; neither is counted as a successful fault detection.
-- 31 root unit tests, 2 original tests and 7 Linux isolation/resource tests pass. The
+- Ten additional controls each have a non-error witness. Deny-all also has three
+  inconclusive scenarios; none is counted as a successful fault detection.
+- 32 root unit tests, 2 original tests and 7 Linux isolation/resource tests pass. The
   standalone JSONL example passes all 34 cases, including actual isolated launch.
 - Source identity, measurement/result schemas, tamper detection, input copying,
   strict errors, readable reports and the eight interpretation questions work.
@@ -83,3 +83,7 @@ The native review of b118f02 rejected per-process-only quotas. The new boundary 
 A third closed project-side review returned wait because native Qwen receipts were not yet available. This is an evidence gap, not an additional demonstrated code defect. The response is preserved in evidence/adverse-review/native-evidence-rejection.json. The revised native workflow separates authorization of local validation from final publication approval. The final review must receive native before/after, historical-oracle, full community and final-archive receipts, bind the exact tree and ZIP, and close authentically before a separate Qwen publication dispatch. Missing evidence or a wait decision cannot authorize a push. Installation of this workflow alone is not evidence of its successful execution.
 
 The Quickstart community count was corrected from 28 to 34 after the six parent-authority regression cases. Historical case counts remain unchanged.
+
+## Operational review and strict CI
+
+The first native local validation passed, but the final review returned wait based on a legacy Qwen model requirement. That response and the later protected owner configuration are preserved in evidence/adverse-review/native-executor-context-rejection.json. No model, permissions or quotas were changed. Review now receives that read-only context and still must explicitly approve publication. Separately, selected skipped isolation tests were shown to produce an inappropriate successful command in the earlier selector. The strict selector now loads the requested modules and rejects skips; the native instrument independently probes this behavior. Before/after evidence remains under evidence/adverse-review/selected-skip-before-after.json.

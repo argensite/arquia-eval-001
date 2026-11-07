@@ -62,7 +62,7 @@ Optional external execution on Linux needs existing `bwrap`, `findmnt`, a system
 
 ```sh
 python3 community_runner.py --candidate-dir examples --accept-external-code > isolated.json
-python3 -m unittest -v isolation_checks resource_checks
+python3 strict_unittest.py isolation_checks resource_checks
 ```
 
 For this host's isolation checks, TMPDIR must point to persistent disk, not tmpfs.

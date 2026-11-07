@@ -1,0 +1,37 @@
+{
+  "schema": "arquia.adverse-review/1",
+  "classification": "PROJECT_OPERATIONAL_REVIEW_DISPUTE",
+  "request_id": "1551b820032ed7b512ed0e3dd8fd182f",
+  "closed_at": "2026-11-07T18:06:33.441Z",
+  "candidate_commit": "86a305d52d79fe69051f4288d3d00ea1fae8ff66",
+  "advice_sha256": "dcb3f1ca216e5219fb6ff1cb7591bcce2b0177b19d4ad49ab9a9d7d0a1de3567",
+  "advice": {
+    "decision": "wait",
+    "hypothesis": "La evidencia de validación del árbol y del ZIP está vinculada a los hashes exactos y declara pruebas satisfactorias, pero el recibo nativo Qwen no satisface la precondición operativa vigente: identifica qwen3.8-flash-next y declara gpu_only=false con memory_mode=gpu_cache_ram_ssd, por lo que no acredita la ejecución de Qwen 3.5 9B con residencia completa en GPU requerida para este ciclo.",
+    "expected_improvement": "Obtener un nuevo recibo nativo Qwen del mismo árbol y ZIP, mediante la operación instalada y con Qwen 3.5 9B y residencia completa en GPU comprobada, cerraría la carencia material sin modificar los bytes candidatos; después podría repetirse la revisión final auténtica sobre ese expediente conforme.",
+    "release_notes": "ARQUÍA-EVAL-001 v0.2.0 — community protocol candidate\n\nThis release introduces a versioned measurement envelope with instrument and input hashes, a separately versioned suite of 34 synthetic boundary cases, an evaluator-owned effect ledger, ten additional deliberately faulty controls, deterministic generated sequences and reproducible counterexamples. The portable JSONL contract includes a standalone candidate that does not inherit the historical engine. Readable reports separate contract violations, observed effects, incomplete evidence and execution cost; there is no global safety score.\n\nHistorical v0.1.0, v0.1.1 and v0.1.2, their tags, cases and published results are preserved. The original 29 cases and five faulty controls remain part of acceptance. C29 retains its temporal-only regression. Source packages use a fixed inventory and can reproduce their own bytes. English and Spanish guides, contribution templates and a read-only GitHub Actions matrix are included.\n\nDevelopment and initial local audit: Codex assisting José María Garbini. The native publication process requires an authentic closed ChatGPT review, Qwen execution, isolated before/after regression, full offline acceptance and verification of the final archive. Its separate execution JSON asset binds these project-side receipts to the released commit and ZIP. RSI_RELEASE.json and results/ at the repository root are retained historical v0.1.2 evidence, not receipts for this release.\n\nLocal Linux checks cover 29 historical cases, 34 community cases, 32 generated cases with seed 42, all five historical controls and ten community controls. The deny-all control has three inconclusive scenarios, preserved as such, and separate non-error counterexamples. Linux isolation restrictions were exercised; Windows/macOS and other Python versions require their actual CI receipts. A configured workflow is not evidence that it passed.\n\nLimits: synthetic, serial, explicitly declared effect boundary only. The ordinary ACL comparator can pass; no incremental advantage of ARQUÍA has been established. The example is independently implemented from the reference engine but authored within this project. Gepetto-tipiak's linked execution remains an external claim; local reproduction of its critique is not authentication of that execution or proof of independence. Checksums identify bytes, not authorship or signatures. No production-safety certification, universal coverage, distributed-system validation or validation of the 0-1-2-3 theory is asserted.\n\nThe authorized native RSI cycle becomes eligible hourly, subject to the existing FIFO, permissions, available evidence and genuine ChatGPT/Qwen receipts. It may wait or reject a proposal. It does not promise an hourly release and never repeats an uncertain external write blindly. No model weights are trained.\n\nAn initial candidate was rejected by the native project-side review for a shared candidate/evaluator omission: delegated completion could outlive its parent authority. The rejection and failing execution are preserved under evidence/adverse-review/. Six added scenarios cover parent revocation, expiry, ancestor revocation, epoch replacement, a valid own-grant exception and detection of an externally forced effect. Three new tests fail before the correction and pass afterward. This is evidence against the initial candidate, not independent validation of its replacement.\n\nA second native review rejected the per-process-only resource limits for external code. The revised launcher verifies cgroup v2 aggregate memory/tasks/CPU limits before releasing a waiting payload, records resource events and checks whole-group cleanup. Missing delegated controls fail closed. Bounded process-growth and aggregate-memory probes fail against the prior launcher and pass after the change; detached descendants are also tested. The original rejection and failures remain under evidence/adverse-review/. This demonstrates specific resource containment on the tested Linux host, not immunity to kernel exploits or all resource attacks.\n\nA third project-side review withheld publication pending native execution receipts. Its response is retained. The native workflow now separates initial authorization for local validation from final ChatGPT approval after the Qwen, regression and final-ZIP receipts exist; a separate Qwen dispatch is required for publication. This prevents treating a request to run tests as approval of results not yet obtained. QUICKSTART now reports the current 34 community cases.",
+    "edits": [],
+    "candidate_tree_sha256": "21bd727744c7c389e4ee8178914dcd66755c2677e254835ecc31c8c1f458b4ad",
+    "archive_sha256": "22e7792cbf239c10a3a2e7d31c3f2fcb16cd4c83e36c938936bf646f6f05fee7"
+  },
+  "current_executor_configuration": {
+    "scope": "Read-only evidence of the existing owner-selected executor; no model or permission change.",
+    "configuration": {
+      "version": "qwen38-flash-next-strata-20261017.1",
+      "owner_instruction": "2026-10-17: instalar Qwen3.8 Flash Next en lugar del actual y probar su desempeño",
+      "enabled": true,
+      "model": "qwen3.8-flash-next",
+      "purpose": "connection_admin",
+      "backend": "strata-moe",
+      "gpu_only": false,
+      "fallback": false
+    },
+    "configuration_sha256": "1575e7fdd63ac27c87321ee7eec588846926a0ac7009e2bf74ae9d3c6547fcac",
+    "sources": {
+      "swarm_connection_admin.py": "171f70d3301804414336e06b62e84f8344018d834a302ac97124245d580dd71c",
+      "swarm_strata_backend.py": "0ea1bad071dddb5c442a8246920d3c3c0c9db1eb7081c9c9c06643e3862e10df"
+    },
+    "chronology": "The owner replacement of 2026-10-17 is later than the legacy Qwen 3.5/GPU-only wording of 2026-10-02. Preserve the current validated configuration; do not infer a new model authorization from a receipt."
+  },
+  "interpretation": "The wait decision is preserved. Protected owner configuration dated 2026-10-17 selects Qwen3.8 Flash Next with GPU/RAM/SSD. No model/configuration is changed here. A fresh review must decide using this omitted context; this record is not publication approval."
+}

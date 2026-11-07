@@ -1,0 +1,37 @@
+{
+  "scope": "Project-side CI guard counterexample; not a safety score",
+  "receipts": [
+    {
+      "label": "before",
+      "utc": "2026-11-07T18:10:31.960803+00:00",
+      "command": [
+        "/usr/bin/python3",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate/strict_unittest.py",
+        "selected_skip_fixture"
+      ],
+      "actual_exit_code": 0,
+      "required_exit_code": 1,
+      "selector_sha256": "eb72b1cb87adca531036a4bc1bf951f5c5697f872929d2c2237d9c80d6acd607",
+      "stdout": "",
+      "stderr": "test_failed_transport_evidence_remains_in_result (test_boundary_contract.BoundaryContractTests.test_failed_transport_evidence_remains_in_result) ... ok\ntest_unavailable_aggregate_boundary_fails_before_foreign_source_loading (test_boundary_contract.BoundaryContractTests.test_unavailable_aggregate_boundary_fails_before_foreign_source_loading) ... ok\ntest_unlimited_or_missing_kernel_limits_are_rejected (test_boundary_contract.BoundaryContractTests.test_unlimited_or_missing_kernel_limits_are_rejected) ... ok\ntest_all_reference_cases_and_distinct_fault_controls (test_community.CommunityTests.test_all_reference_cases_and_distinct_fault_controls) ... ok\ntest_c29_metatest_fails_when_temporal_detector_is_disabled (test_community.CommunityTests.test_c29_metatest_fails_when_temporal_detector_is_disabled) ... ok\ntest_detecting_an_effect_does_not_mean_preventing_it (test_community.CommunityTests.test_detecting_an_effect_does_not_mean_preventing_it) ... ok\ntest_no_actions_is_not_a_trustworthy_pass (test_community.CommunityTests.test_no_actions_is_not_a_trustworthy_pass) ... ok\ntest_schema_rejects_ambiguous_data_unknown_events_and_empty_expectation (test_community.CommunityTests.test_schema_rejects_ambiguous_data_unknown_events_and_empty_expectation) ... ok\ntest_seed_reproducibility_and_violation_minimization (test_community.CommunityTests.test_seed_reproducibility_and_violation_minimization) ... ok\ntest_snapshot_lies_do_not_remove_effects_from_world (test_community.CommunityTests.test_snapshot_lies_do_not_remove_effects_from_world) ... ok\ntest_cli_reports_failure_and_exact_source_identity (test_contract.ContractTests.test_cli_reports_failure_and_exact_source_identity) ... ok\ntest_external_module_execution_is_disabled_before_import (test_contract.ContractTests.test_external_module_execution_is_disabled_before_import) ... ok\ntest_independent_case_file_can_fail_and_exceptions_are_failures (test_contract.ContractTests.test_independent_case_file_can_fail_and_exceptions_are_failures) ... ok\ntest_reference_and_each_negative_control (test_contract.ContractTests.test_reference_and_each_negative_control) ... ok\ntest_restart_is_a_new_instance_with_identical_observable_state (test_contract.ContractTests.test_restart_is_a_new_instance_with_identical_observable_state) ... ok\ntest_example_passes_without_reference_inheritance (test_jsonl.JsonlTests.test_example_passes_without_reference_inheritance) ... ok\ntest_external_code_requires_explicit_acceptance_before_manifest_or_execution (test_jsonl.JsonlTests.test_external_code_requires_explicit_acceptance_before_manifest_or_execution) ... ok\ntest_manifest_binds_files_and_identity (test_jsonl.JsonlTests.test_manifest_binds_files_and_identity) ... ok\ntest_wire_schema_and_runtime_reject_unknown_command_phase (test_jsonl.JsonlTests.test_wire_schema_and_runtime_reject_unknown_command_phase) ... ok\ntest_constructor_failure_is_a_case_failure (test_measurement.MeasurementTests.test_constructor_failure_is_a_case_failure) ... ok\ntest_duplicate_manifest_entry_fails (test_measurement.MeasurementTests.test_duplicate_manifest_entry_fails) ... ok\ntest_empty_traversal_and_malformed_manifests_fail (test_measurement.MeasurementTests.test_empty_traversal_and_malformed_manifests_fail) ... ok\ntest_producer_and_dependency_identity_and_tampering (test_measurement.MeasurementTests.test_producer_and_dependency_identity_and_tampering) ... ok\ntest_symlink_path_rejected_before_reading_target (test_measurement.MeasurementTests.test_symlink_path_rejected_before_reading_target) ... ok\ntest_changed_instrument_is_detected_even_with_unchanged_report (test_measurement.TamperTests.test_changed_instrument_is_detected_even_with_unchanged_report) ... ok\ntest_candidate_respects_parent_end_and_preserves_valid_own_exception (test_parent_authority.ParentCompletionTests.test_candidate_respects_parent_end_and_preserves_valid_own_exception) ... ok\ntest_evaluator_detects_forced_completion_even_if_candidate_claims_authority (test_parent_authority.ParentCompletionTests.test_evaluator_detects_forced_completion_even_if_candidate_claims_authority) ... ok\ntest_forced_external_effect_is_detected_not_called_prevented (test_parent_authority.ParentCompletionTests.test_forced_external_effect_is_detected_not_called_prevented) ... ok\ntest_transient_receipt_renewal_is_detected_only_temporally (test_rsi_000001.RSI000001Tests.test_transient_receipt_renewal_is_detected_only_temporally) ... ok\ntest_cli_reports_exact_runner_and_verifier_hashes (test_rsi_000002.ProducerIdentityTests.test_cli_reports_exact_runner_and_verifier_hashes) ... ok\ntest_complete_measurement_envelope_and_configuration_binding (test_rsi_000003.CommunityMeasurementRegression.test_complete_measurement_envelope_and_configuration_binding) ... ok\n\n----------------------------------------------------------------------\nRan 31 tests in 3.259s\n\nOK\n",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "250c9432868dd5fc474ab11b10899fd52af04e23c26dadf7490d25249f3cd401"
+    },
+    {
+      "label": "after",
+      "utc": "2026-11-07T18:10:31.992376+00:00",
+      "command": [
+        "/usr/bin/python3",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-strict-ci/strict_unittest.py",
+        "selected_skip_fixture"
+      ],
+      "actual_exit_code": 1,
+      "required_exit_code": 1,
+      "selector_sha256": "1aae2c82741758590a89cd1dff1b4841296a30f3f094394901722cb732b3d247",
+      "stdout": "",
+      "stderr": "test_boundary (selected_skip_fixture.Probe.test_boundary) ... skipped 'deliberate CI probe'\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK (skipped=1)\n",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d0e1c44d28686fd4179a99cab595ff18ced0c91f34c33753caed61abac9d4026"
+    }
+  ]
+}

@@ -57,4 +57,4 @@ jobs:
       - name: Demonstrate isolation restrictions
         env:
           TMPDIR: ${{ runner.temp }}
-        run: python3 -m unittest -v isolation_checks resource_checks
+        run: python3 strict_unittest.py isolation_checks resource_checks
