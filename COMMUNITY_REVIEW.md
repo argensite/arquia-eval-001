@@ -17,7 +17,7 @@ sets are retained under history/ and at their tags.
   14, 28, 28, 27 and 25 in the documented order.
 - Ten additional controls each have a non-error witness. Deny-all also has two
   inconclusive scenarios; neither is counted as a successful fault detection.
-- 28 root unit tests, 2 original tests and 3 Linux isolation tests pass. The
+- 31 root unit tests, 2 original tests and 7 Linux isolation/resource tests pass. The
   standalone JSONL example passes all 34 cases, including actual isolated launch.
 - Source identity, measurement/result schemas, tamper detection, input copying,
   strict errors, readable reports and the eight interpretation questions work.
@@ -72,4 +72,8 @@ The community versions remain publication candidates, not safety certifications.
 
 The initial candidate `a72b0e7` passed its 28-case suite but was rejected by the native ChatGPT review for a shared omission in the candidate, example and evaluator: a delegated finish exception could outlive its parent. The same omission was reproduced in five of six newly declared scenarios (four invalid completions and an undetected forced external effect). Three tests produced six assertion failures before correction and pass after it. The first 28 case objects remain identical; COMM-029 through COMM-034 extend the unpublished community suite to 34. The historical C29 is unchanged.
 
-The prior passing snapshot remains in evidence/community-review/. It was insufficient evidence for this property. The [rejection](evidence/adverse-review/native-review-rejection.json), [failing result](evidence/adverse-review/rejected-parent-authority.stdout) and [before-test failures](evidence/adverse-review/parent-tests-before.stderr) are retained. Current acceptance is in evidence/adverse-review/acceptance.json. This is project-side criticism and reproduction; it is not an external independent review.
+The prior passing snapshot remains in evidence/community-review/. It was insufficient evidence for this property. The [rejection](evidence/adverse-review/native-review-rejection.json), [failing result](evidence/adverse-review/rejected-parent-authority.stdout) and [before-test failures](evidence/adverse-review/parent-tests-before.stderr) are retained. Delegation-correction acceptance is in evidence/adverse-review/acceptance.json; subsequent resource acceptance is in evidence/adverse-review/resource-acceptance.json. This is project-side criticism and reproduction; it is not an external independent review.
+
+## Second adverse review: aggregate resource boundary
+
+The native review of b118f02 rejected per-process-only quotas. The new boundary uses an existing systemd user manager and cgroup v2; it reads kernel quotas before releasing the candidate, then checks complete group cleanup. Bounded probes that created 24 children and requested 320 MiB in two children failed the intended limits before the change. Afterward, the measured task ceiling is 16, memory exhaustion produces a failed execution with kernel OOM counters, and detached descendants are removed. The second rejection and before/after outputs are retained in evidence/adverse-review/. A first test exposed a sampling race that lost terminal OOM counters; a short trusted stop phase preserves the final observation. That failed test is retained too. No daemon or host quota is changed by the launcher. Basic portable runs do not require these Linux facilities.

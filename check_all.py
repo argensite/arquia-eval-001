@@ -100,7 +100,7 @@ def main():
         if rebuilt['sha256']!=one['sha256']:raise AssertionError('archive cannot reproduce its own bytes')
         summary['source_archive_sha256']=one['sha256']
         if a.isolation:
-            run('isolation',['-m','unittest','-v','isolation_checks'])
+            run('isolation',['-m','unittest','-v','isolation_checks','resource_checks'])
             report('isolated-example',['community_runner.py','--candidate-dir','examples','--accept-external-code'],0,ROOT/'suites/community-v1.json')
             summary['external_isolation']='executed Linux checks'
         else:summary['external_isolation']='not requested; no foreign code executed'

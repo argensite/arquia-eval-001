@@ -1,0 +1,8 @@
+test_detached_descendants_are_removed_after_timeout (resource_checks.AggregateResourceTests.test_detached_descendants_are_removed_after_timeout) ... ok
+test_memory_growth_is_aggregate_and_oom_is_not_approval (resource_checks.AggregateResourceTests.test_memory_growth_is_aggregate_and_oom_is_not_approval) ... ok
+test_process_growth_hits_aggregate_limit_and_group_is_removed (resource_checks.AggregateResourceTests.test_process_growth_hits_aggregate_limit_and_group_is_removed) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 2.997s
+
+OK

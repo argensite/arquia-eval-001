@@ -49,6 +49,7 @@ def evaluate(factory,cases):
         bad=[x for x in effects if not x['authorized'] or x.get('duplicate')]
         results.append({'id':case['id'],'passed':not (violations or mismatches or error),'error':error,
             'mismatches':mismatches,'violations':violations,'actual':actual,'trace':trace,'effect_ledger':world.journal,
+            'last_transport':copy.deepcopy(candidate.transcript[-1]) if getattr(candidate,'transcript',[]) else None,
             'consequences':{'observed_effects':len(effects),'unauthorized_effects':len(bad),
                             'prevention_demonstrated':False if bad else None},
             'evidence_sufficient':'synthetic_boundary_only' if not error else 'inconclusive',
@@ -104,7 +105,7 @@ def main(argv=None):
             obj=JsonlCandidate(args.candidate_dir,accept_external_code=args.accept_external_code,trusted_example=args.example_jsonl)
             if obj.source_hashes!=candidate_sources:raise ValueError('candidate files changed between cases')
             return obj
-        isolation='shipped example subprocess; not isolated' if args.example_jsonl else 'Linux bubblewrap namespaces, restricted mounts, no host network'
+        isolation='shipped example subprocess; not isolated' if args.example_jsonl else 'Linux namespaces plus verified cgroup v2 aggregate limits and cleanup'
 
     m=measurement.begin(['community_runner.py',*(sys.argv[1:] if argv is None else argv)],identity,args.cases,
                         args.evaluator,args.relationship,extra=[ROOT/'synthetic_world.py',ROOT/'schemas.py',args.cases])

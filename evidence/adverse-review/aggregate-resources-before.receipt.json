@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "resource_checks.AggregateResourceTests.test_process_growth_hits_aggregate_limit_and_group_is_removed",
+    "resource_checks.AggregateResourceTests.test_memory_growth_is_aggregate_and_oom_is_not_approval"
+  ],
+  "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/resource-before",
+  "utc": "2026-11-07T17:31:48.366807+00:00",
+  "exit_code": 1,
+  "seconds": 1.2509945250021701,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "b03749f31deecbe68e553af1721ce0669c86a2a20405e9a6aa1947b5925a5899"
+}

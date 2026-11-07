@@ -48,8 +48,11 @@ class JsonlCandidate:
         self.trusted=trusted_example
         if not trusted_example and not accept_external_code:
             raise ValueError('external execution disabled; explicit --accept-external-code required')
-        if not trusted_example and (sys.platform!='linux' or not shutil.which('bwrap')):
+        if not trusted_example and (sys.platform!='linux' or not shutil.which('bwrap',path=os.defpath)):
             raise ValueError('isolation unavailable; use an authorized isolated Linux environment')
+        if not trusted_example:
+            from process_boundary import environment
+            environment()  # Fail before executing any foreign code if aggregate containment is unavailable.
         self.manifest,self.files=load_candidate(self.directory)
         self.source_hashes={n:file_hash(p) for n,p in self.files.items()}
         self.source_hashes['CANDIDATE.json']=file_hash(self.directory/'CANDIDATE.json')
@@ -70,7 +73,7 @@ class JsonlCandidate:
         with tempfile.TemporaryDirectory(prefix='arquia-jsonl-') as d:
             scratch=Path(d);work=scratch/'work';work.mkdir();src=scratch/'source';src.mkdir()
             if not self.trusted:
-                fs=subprocess.run(['findmnt','-n','-T',str(scratch),'-o','FSTYPE'],capture_output=True,text=True,timeout=5)
+                fs=subprocess.run([shutil.which('findmnt',path=os.defpath) or '/usr/bin/findmnt','-n','-T',str(scratch),'-o','FSTYPE'],capture_output=True,text=True,timeout=5)
                 if fs.returncode or fs.stdout.strip() in ('','tmpfs','ramfs','devtmpfs'):
                     raise ValueError('external execution scratch requires persistent storage; set TMPDIR')
             for n,p in self.files.items():
@@ -81,24 +84,37 @@ class JsonlCandidate:
                 command=['bwrap','--unshare-all','--die-with-parent','--new-session','--cap-drop','ALL',
                     '--ro-bind','/usr','/usr','--symlink','usr/bin','/bin','--symlink','usr/lib','/lib',
                     '--symlink','usr/lib64','/lib64','--proc','/proc','--dev','/dev',
-                    '--ro-bind',str(src),'/candidate','--bind',str(work),'/work','--chdir','/work',
+                    '--ro-bind',str(src),'/candidate','--ro-bind',str(work),'/work','--chdir','/work',
+                    '--remount-ro','/dev','--remount-ro','/',
                     '--clearenv','--setenv','PATH','/usr/bin:/bin','--setenv','HOME','/work',
                     '--setenv','TMPDIR','/work','--setenv','LANG','C.UTF-8','--',*self.manifest['command']]
             outpath=scratch/'stdout';errpath=scratch/'stderr'
+            boundary={};execution_error=None;code=None
             with outpath.open('wb') as out,errpath.open('wb') as err:
-                kwargs={'start_new_session':True} if os.name=='posix' else {}
-                if sys.platform=='linux':kwargs['preexec_fn']=limits
-                proc=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=out,stderr=err,env={'PATH':os.defpath},**kwargs)
-                try:proc.communicate(raw,timeout=TIMEOUT)
-                except subprocess.TimeoutExpired:
-                    if os.name=='posix':os.killpg(proc.pid,signal.SIGKILL)
-                    else:proc.kill()
-                    proc.wait(timeout=2);raise ValueError('candidate timeout; no retry')
-            output=outpath.read_bytes()[:MAX_MESSAGE+1];error=errpath.read_bytes()[:MAX_STDERR+1]
-            self.transcript.append({'request':request,'stdout_sha256':__import__('hashlib').sha256(output).hexdigest(),
-                'stderr_sha256':__import__('hashlib').sha256(error).hexdigest(),'exit_code':proc.returncode,
-                'stdout':output.decode('utf-8',errors='replace'),'stderr':error.decode('utf-8',errors='replace')})
-            if proc.returncode!=0:raise ValueError('candidate process failure: '+str(proc.returncode))
+                if not self.trusted:
+                    from process_boundary import run
+                    try:code=run(command,raw,out,err,TIMEOUT,boundary)
+                    except (OSError,ValueError,subprocess.SubprocessError) as exc:
+                        execution_error=exc;code=boundary.get('process_exit_code')
+                else:
+                    kwargs={'start_new_session':True} if os.name=='posix' else {}
+                    if sys.platform=='linux':kwargs['preexec_fn']=limits
+                    proc=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=out,stderr=err,env={'PATH':os.defpath},**kwargs)
+                    try:proc.communicate(raw,timeout=TIMEOUT)
+                    except subprocess.TimeoutExpired:
+                        if os.name=='posix':os.killpg(proc.pid,signal.SIGKILL)
+                        else:proc.kill()
+                        proc.wait(timeout=2);execution_error=ValueError('candidate timeout; no retry')
+                    code=proc.returncode
+            with outpath.open('rb') as stream:output=stream.read(MAX_MESSAGE+1)
+            with errpath.open('rb') as stream:error=stream.read(MAX_STDERR+1)
+            self.transcript.append({'request':request,'stdout_prefix_sha256':__import__('hashlib').sha256(output).hexdigest(),
+                'stderr_prefix_sha256':__import__('hashlib').sha256(error).hexdigest(),'exit_code':code,
+                'stdout_truncated':outpath.stat().st_size>len(output),'stderr_truncated':errpath.stat().st_size>len(error),
+                'stdout':output.decode('utf-8',errors='replace'),'stderr':error.decode('utf-8',errors='replace'),
+                'resource_boundary':boundary,'execution_error':str(execution_error) if execution_error else None})
+            if execution_error:raise execution_error
+            if code!=0:raise ValueError('candidate process failure: '+str(code))
             if len(output)>MAX_MESSAGE or len(error)>MAX_STDERR:raise ValueError('candidate output capacity exceeded')
             if not output.endswith(b'\n') or output.count(b'\n')!=1:raise ValueError('expected exactly one JSONL response')
             response=strict_json(output)

@@ -58,11 +58,11 @@ inventory and never sweeps untracked files or regenerates historical reports.
 Two builds from the same source identity must have identical ZIP bytes. Runtime
 measurements contain timestamps and duration and are compared semantically.
 
-Optional external execution on Linux needs existing `bwrap` and `findmnt`:
+Optional external execution on Linux needs existing `bwrap`, `findmnt`, a systemd user manager and delegated cgroup v2:
 
 ```sh
 python3 community_runner.py --candidate-dir examples --accept-external-code > isolated.json
-python3 -m unittest -v isolation_checks
+python3 -m unittest -v isolation_checks resource_checks
 ```
 
 For this host's isolation checks, TMPDIR must point to persistent disk, not tmpfs.

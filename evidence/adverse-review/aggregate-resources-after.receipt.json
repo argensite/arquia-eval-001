@@ -1,0 +1,15 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "resource_checks"
+  ],
+  "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-resources",
+  "utc": "2026-11-07T17:30:32.384003+00:00",
+  "exit_code": 1,
+  "seconds": 2.7617210970020096,
+  "stdout_sha256": "2dfece9c8c1393153afcec4654241e40d2fcb31201cca984d856e7efd26f7ff9",
+  "stderr_sha256": "29a0b37651bff56e6792e3887b2a47e1d1b5fffd2c7c058ef074a4e160aeeeed"
+}

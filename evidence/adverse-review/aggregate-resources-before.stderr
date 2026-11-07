@@ -1,0 +1,25 @@
+test_process_growth_hits_aggregate_limit_and_group_is_removed (resource_checks.AggregateResourceTests.test_process_growth_hits_aggregate_limit_and_group_is_removed) ... FAIL
+test_memory_growth_is_aggregate_and_oom_is_not_approval (resource_checks.AggregateResourceTests.test_memory_growth_is_aggregate_and_oom_is_not_approval) ... FAIL
+
+======================================================================
+FAIL: test_process_growth_hits_aggregate_limit_and_group_is_removed (resource_checks.AggregateResourceTests.test_process_growth_hits_aggregate_limit_and_group_is_removed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/resource-before/resource_checks.py", line 33, in test_process_growth_hits_aggregate_limit_and_group_is_removed
+    self.assertLess(candidate.state['children'],16)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 24 not less than 16
+
+======================================================================
+FAIL: test_memory_growth_is_aggregate_and_oom_is_not_approval (resource_checks.AggregateResourceTests.test_memory_growth_is_aggregate_and_oom_is_not_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/resource-before/resource_checks.py", line 51, in test_memory_growth_is_aggregate_and_oom_is_not_approval
+    with self.assertRaises(ValueError):candidate.respond({'op':'timeout'},VIEW)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.199s
+
+FAILED (failures=2)

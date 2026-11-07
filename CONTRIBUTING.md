@@ -16,7 +16,7 @@ invitation; focused issue templates help preserve specific evidence.
    Results supply actual observations; don't edit expectations to manufacture a pass.
 5. Run `python3 check_all.py --output checks` and retain complete receipts,
    including failures and inconclusive outcomes. Linux external execution also
-   requires `python3 -m unittest -v isolation_checks`.
+   requires `python3 -m unittest -v isolation_checks resource_checks`.
 6. Submit small reversible changes with before/after evidence and compatibility
    notes. Keep implementation and evaluation independence distinct.
 

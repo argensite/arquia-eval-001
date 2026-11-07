@@ -25,6 +25,11 @@ try:
  open('/usr/arquia-isolation-probe','w').write('x')
  raise AssertionError('system mount writable')
 except OSError: pass
+for path in ('/work/unaccounted-file','/unaccounted-file','/dev/unaccounted-file'):
+ try:
+  open(path,'w').write('x')
+  raise AssertionError('unexpected writable filesystem: '+path)
+ except OSError: pass
 # An isolated network namespace has no default route. No outbound connection is attempted.
 lines=open('/proc/net/route').read().splitlines()
 assert len(lines)==1,lines
@@ -33,6 +38,15 @@ print(json.dumps({'protocol':'arquia.io/1','id':r['id'],'candidate':{'name':'pro
         with patch.dict(os.environ,{'ARQUIA_TEST_PRIVATE':'synthetic marker'}):
             result=c.respond({'op':'timeout'},{})
         self.assertEqual(result['commands'],[])
+
+    def test_unverified_cgroup_never_releases_payload(self):
+        c=self.candidate('print("payload must stay blocked")')
+        with patch('process_boundary.controls',side_effect=ValueError('invalid kernel quota')):
+            with self.assertRaisesRegex(ValueError,'invalid kernel quota'):c.respond({'op':'timeout'},{})
+        receipt=c.transcript[-1]
+        self.assertFalse(receipt['resource_boundary']['payload_released'])
+        self.assertTrue(receipt['resource_boundary']['cleanup_verified'])
+        self.assertEqual(receipt['stdout'],'')
 
     def test_timeout_fails_and_is_not_retried(self):
         c=self.candidate('import time\ntime.sleep(20)\n')

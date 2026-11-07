@@ -1,0 +1,17 @@
+test_detached_descendants_are_removed_after_timeout (resource_checks.AggregateResourceTests.test_detached_descendants_are_removed_after_timeout) ... ok
+test_memory_growth_is_aggregate_and_oom_is_not_approval (resource_checks.AggregateResourceTests.test_memory_growth_is_aggregate_and_oom_is_not_approval) ... FAIL
+test_process_growth_hits_aggregate_limit_and_group_is_removed (resource_checks.AggregateResourceTests.test_process_growth_hits_aggregate_limit_and_group_is_removed) ... ok
+
+======================================================================
+FAIL: test_memory_growth_is_aggregate_and_oom_is_not_approval (resource_checks.AggregateResourceTests.test_memory_growth_is_aggregate_and_oom_is_not_approval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-resources/resource_checks.py", line 54, in test_memory_growth_is_aggregate_and_oom_is_not_approval
+    self.assertGreater(boundary['observed_counters']['memory.events']['oom_kill'],0)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 not greater than 0
+
+----------------------------------------------------------------------
+Ran 3 tests in 2.717s
+
+FAILED (failures=1)

@@ -13,6 +13,8 @@
   Linux isolation for external code; legacy arbitrary imports disabled.
 - Readable reports, bilingual entry documentation, contribution/evidence templates,
   read-only CI, explicit package inventory and deterministic source ZIP.
+- Preserved two adverse native reviews and their failing reproductions; corrected
+  delegated completion and added verified aggregate resource containment.
 - No production evaluation, independent certification or theoretical validation.
 
 ## 0.1.2 — published by the existing native cycle during this work

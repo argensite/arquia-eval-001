@@ -44,8 +44,8 @@ python3 community_runner.py --example-jsonl > example.json
 python3 community_runner.py --candidate-dir examples --accept-external-code > isolated.json
 ```
 
-The second command requires Linux, existing bubblewrap/findmnt and a persistent
-TMPDIR. External execution is off by default and refuses unavailable isolation.
+The second command requires Linux, existing bubblewrap/findmnt, a systemd user manager with delegated cgroup v2,
+and a persistent TMPDIR. External execution is off by default and refuses unavailable isolation.
 The first executes only the project-shipped example, not an isolation claim.
 For other languages put your standalone executable or script/runtime command in
 the manifest. Runtime binaries must exist inside `/usr`; no downloads occur.
@@ -59,3 +59,13 @@ authorized Linux environment for foreign code; no insecure fallback is provided.
 The old Python `--adapter module:Class` CLI is disabled before import. Trusted
 in-process `evaluate` remains a library API with the caller's own isolation
 responsibility. Read MIGRATION before adapting a v0.1.x plugin.
+
+External runs additionally verify aggregate resource limits before releasing the
+payload, and record cleanup even after failure; see SECURITY. No systemd daemon
+is started or configured implicitly by the launcher. Output hashes identify the
+retained bounded prefix, with explicit truncation flags. The last transport record
+is preserved even when malformed output, timeout or resource termination fails a case.
+
+The external payload has no writable regular filesystem. Use the JSON checkpoint
+for state; runtimes that require a disk cache need a separately authorized Level 3
+environment. The host stores bounded transport receipts on persistent storage.

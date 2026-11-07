@@ -50,7 +50,11 @@ jobs:
           fi
           command -v bwrap
           command -v findmnt
+      - name: Start user manager on this disposable CI runner
+        run: |
+          sudo systemctl start user@$(id -u).service
+          test -S /run/user/$(id -u)/bus
       - name: Demonstrate isolation restrictions
         env:
           TMPDIR: ${{ runner.temp }}
-        run: python3 -m unittest -v isolation_checks
+        run: python3 -m unittest -v isolation_checks resource_checks
