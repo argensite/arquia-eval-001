@@ -1,0 +1,35 @@
+{
+  "version": "0.1.2",
+  "parent_commit": "0ee97e2df0eeff03956782cbf2ce2ef8bc7a7af3",
+  "baseline_commit": "b540e71ff2f615197dd886d6e0dbcae3baa62589",
+  "hypothesis": "Si cada informe de ejecución registra el SHA-256 del runner que realmente se está ejecutando y del verify_package.py co-localizado, entonces la procedencia del productor deja de depender de una identificación implícita: una regresión puede comparar esos campos con los bytes exactos y detectar cualquier runner o verificador distinto. La hipótesis es falsable porque test_rsi_000002.py debe fallar con AssertionError sobre la versión anterior, que carece de esos campos, y pasar sólo cuando ambos hashes coinciden byte a byte.",
+  "expected_improvement": "Cerrar la segunda crítica reproducida sin repetir C29: añadir runner_sha256 y verifier_sha256 al reporte, manteniendo intactos los 29 casos actuales y los contratos de decisión. Esto mejora la trazabilidad de qué runner produjo el resultado y qué verificador estaba junto a él para la verificación del paquete. No establece que verify_package.py haya sido ejecutado, no verifica la ejecución externa y no convierte pruebas del proyecto en evaluación independiente.",
+  "decision_provider": "authentic_ChatGPT_web",
+  "executor": "native_Qwen_Strata",
+  "advice_sha256": "802f36f7ece088890e9b4ee6647debc4abfb8d0bbcd8910164d29042f6d02009",
+  "execution_packet_sha256": "d572ce4173f4f785a6d36bb8fe16b8a6dba05125ccb4a45e4004e6f27346611a",
+  "validation": {
+    "passed": true,
+    "network": false,
+    "independent_evaluation": false,
+    "previous_cases": 29,
+    "cases": 29,
+    "reference_passed": 29,
+    "negative_controls_detected": 5,
+    "temporal_only_witnesses": [
+      "C29-transient-receipt-renewal"
+    ],
+    "previous_temporal_only_witnesses": [
+      "C29-transient-receipt-renewal"
+    ],
+    "producer_hashes_verified": true,
+    "before_regression_failed": true,
+    "after_regression_passed": true,
+    "new_regression_tests": [
+      "test_rsi_000002.py"
+    ]
+  },
+  "evidence": "project-side execution; not independent evaluation",
+  "policy": "owner-continuous-eval-version-rsi-20261107.1",
+  "weight_training": false
+}

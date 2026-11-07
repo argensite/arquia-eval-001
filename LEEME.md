@@ -5,7 +5,7 @@ Un permiso revocado no debe revivir por un recibo ni por recuperar un estado vie
 Un efecto indebido que ocurrió debe quedar visible. Un contraejemplo válido tiene
 el mismo valor metodológico que un resultado favorable.
 
-Esta rama prepara **0.2.0**; la publicación se comprueba en GitHub Releases.
+Versión del paquete: [VERSION](VERSION). La publicación se comprueba en [GitHub Releases](https://github.com/argensite/arquia-eval-001/releases).
 No exige pertenecer a ARQUÍA, adherir a su propuesta, usar modelos pagos ni abrir
 cuentas. Aprobar sólo demuestra coincidencia con invariantes sintéticas acotadas.
 No certifica seguridad de producción ni valida la teoría 0-1-2-3.

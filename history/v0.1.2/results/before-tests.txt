@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_cli_reports_exact_runner_and_verifier_hashes (test_rsi_000002.ProducerIdentityTests.test_cli_reports_exact_runner_and_verifier_hashes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/baseline/test_rsi_000002.py", line 29, in test_cli_reports_exact_runner_and_verifier_hashes
+    self.assertIn("runner_sha256", report)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'runner_sha256' not found in {'protocol': 'ARQUIA-EVAL-001', 'version': '0.1.1', 'evidence_type': 'local_execution', 'independence': 'not_established_by_runner', 'evaluator': 'unspecified', 'candidate': 'engine:Gate', 'python': '3.14.4', 'platform': 'Linux', 'cases_sha256': 'ba6bf57f3d4cea995908acc39f686f4537cbca586177e08b8ae61e7a894fe83c', 'adapter_file_sha256': 'e64bb293ea06ad72b7086971f0ec0c13a22247d8c96f001003a456f0707dae86', 'passed': 1, 'total': 1, 'results': [{'id': 'producer-identity', 'passed': True, 'mismatches': {}, 'violations': [], 'error': None, 'actual': {'active_grants': ['g1'], 'dispatches': 0, 'completions': 0, 'blocks': 0, 'duplicate_receipts': 0, 'orphan_receipts': 0, 'unverified_receipts': 0, 'conflicting_receipts': 0, 'committed_effects': [], 'pending_effects': [], 'outcomes': {}, 'execution_order': {}, 'incidents': []}, 'trace': [{'event': {'op': 'grant', 'grant': 'g1', 'effect': 'e1'}, 'state': {'active_grants': ['g1'], 'dispatches': 0, 'completions': 0, 'blocks': 0, 'duplicate_receipts': 0, 'orphan_receipts': 0, 'unverified_receipts': 0, 'conflicting_receipts': 0, 'committed_effects': [], 'pending_effects': [], 'outcomes': {}, 'execution_order': {}, 'incidents': []}}]}]}
+
+----------------------------------------------------------------------
+Ran 1 test in 0.034s
+
+FAILED (failures=1)

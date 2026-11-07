@@ -4,7 +4,7 @@ An offline, falsifiable experiment about an agent's authority to act. Can revoke
 permission reappear after a receipt or recovery? Can an implementation conceal an
 unauthorized effect? A valid counterexample matters as much as a passing result.
 
-This branch prepares **0.2.0**. Check the GitHub release record for publication.
+Package version: [VERSION](VERSION). Check [GitHub Releases](https://github.com/argensite/arquia-eval-001/releases) for publication status.
 No ARQUÍA affiliation, endorsement, paid model, API key or account is needed to
 run or criticize it. **Passing means matching a bounded synthetic contract. It is
 not a safety certification, production validation or approval of the 0-1-2-3 theory.**

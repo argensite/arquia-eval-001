@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_transient_receipt_renewal_is_detected_only_temporally (test_rsi_000001.RSI000001Tests.test_transient_receipt_renewal_is_detected_only_temporally)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/baseline/test_rsi_000001.py", line 16, in test_transient_receipt_renewal_is_detected_only_temporally
+    self.assertEqual(len(witness), 1, "transient-renewal witness is missing")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1 : transient-renewal witness is missing
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)

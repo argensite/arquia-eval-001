@@ -1,1 +1,3 @@
 * text eol=lf
+evidence/baseline/** linguist-generated=true
+history/** linguist-generated=true

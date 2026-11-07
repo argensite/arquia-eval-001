@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "network": false,
+  "independent_evaluation": false,
+  "previous_cases": 28,
+  "cases": 29,
+  "reference_passed": 29,
+  "negative_controls_detected": 5,
+  "temporal_only_witnesses": [
+    "C29-transient-receipt-renewal"
+  ],
+  "previous_temporal_only_witnesses": [],
+  "producer_hashes_verified": false,
+  "before_regression_failed": true,
+  "after_regression_passed": true,
+  "new_regression_tests": [
+    "test_rsi_000001.py"
+  ]
+}
