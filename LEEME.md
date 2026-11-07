@@ -9,7 +9,7 @@ tardío puede aportar evidencia de una acción anterior, pero no debe restablece
 permisos revocados ni iniciar otras acciones. También debe conservar el registro
 de un efecto que ocurrió después de la revocación.
 
-Hay 28 casos reproducibles, cinco variantes deliberadamente defectuosas y una
+Hay 29 casos reproducibles, cinco variantes deliberadamente defectuosas y una
 interfaz para implementaciones o casos propios. Funciona sin conexión ni
 dependencias con Python 3.10 o posterior:
 
@@ -19,7 +19,7 @@ python3 runner.py --evaluator NOMBRE > independent_result.json
 python3 -m unittest -v test_contract
 ```
 
-La referencia debe coincidir con los 28 casos. Una variante defectuosa debe fallar:
+La referencia debe coincidir con los 29 casos. Una variante defectuosa debe fallar:
 
 ```sh
 python3 runner.py --negative-control receipt-renewal > negative_result.json

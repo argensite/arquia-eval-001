@@ -17,7 +17,7 @@ cases, or reviewed only the contract. Do not describe reading code as execution.
 
 ## Results, including failures
 
-Original 28-case outcome; negative controls tested; attach complete per-case JSON.
+Historical 29-case outcome (v0.1.1); report v0.1.0 separately; negative controls tested; attach complete per-case JSON.
 Separate matching assertions from safety: an escaped-effect case may correctly
 report an unsafe outcome. Explain any mismatch or exception.
 

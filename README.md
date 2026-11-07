@@ -30,7 +30,7 @@ python3 -m unittest -v test_contract
 python3 runner.py --negative-control receipt-renewal > negative_result.json
 ```
 
-The reference command should exit **0** and match **28/28** cases. The negative
+The reference command should exit **0** and match **29/29** cases. The negative
 control should exit **1** because its intentionally introduced bug is detected.
 Four more negative controls are listed by `python3 runner.py --help`. A report
 contains each event, observed state, mismatched fields, invariant violations,
@@ -43,7 +43,7 @@ with the separate publication record. See [the protocol](PROTOCOL.md).
 
 ## What is being evaluated
 
-The 28 fixed cases cover receipt/revocation ordering, renamed and duplicate
+The 29 historical cases cover receipt/revocation ordering, renamed and duplicate
 deliveries, wrong effect/version/request binding, self-reported success, unknown
 outcomes, escaped effects, two-phase completion contracts, separate compensation
 authority, and restoration into a new object through a serialized checkpoint.
@@ -88,7 +88,7 @@ we do not claim our reconstructed directory is a byte-identical copy of that ZIP
 
 Six additional cases exposed weaknesses in that original example. The amended
 model and additional assertions are separate. See [AUDIT.md](AUDIT.md),
-[PROVENANCE.md](PROVENANCE.md), and [author-side results](results/summary.json).
+[PROVENANCE.md](PROVENANCE.md), and [historical author-side results](results/validation.json).
 All preparation, revisions and runs in this release were performed on behalf of
 the project owner with AI assistance (ChatGPT/Codex). They are not independent
 review. The baseline is frozen for subsequent external testing; internal results

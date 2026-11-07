@@ -1,5 +1,7 @@
 """Offline contract runner; third parties may supply their own cases and adapter."""
 import argparse
+import copy
+import measurement
 import hashlib
 import importlib
 import json
@@ -7,7 +9,7 @@ from pathlib import Path
 import platform
 import sys
 
-VERSION = "0.1.1"
+VERSION = "0.2.0"
 ROOT = Path(__file__).resolve().parent
 MUTANTS = {
     "receipt-renewal": "ReceiptRenewal", "blind-recovery": "BlindRecovery",
@@ -33,16 +35,16 @@ def load_cases(path):
 def evaluate(cls, cases):
     results = []
     for case in cases:
-        obj = cls()
         trace, violations, error = [], [], None
         try:
+            obj = cls()
             for index, event in enumerate(case["events"]):
-                before = obj.snapshot()
-                obj.step(event)
+                before = copy.deepcopy(obj.snapshot())
+                obj.step(copy.deepcopy(event))
                 if event["op"] in ("clear_client_cache", "recover"):
                     checkpoint = json.loads(json.dumps(obj.export_state(), sort_keys=True))
                     obj = cls.from_state(checkpoint)
-                after = obj.snapshot()
+                after = copy.deepcopy(obj.snapshot())
                 if event["op"] in ("receipt", "recover", "clear_client_cache", "timeout"):
                     for field in ("active_grants", "dispatches", "completions", "committed_effects"):
                         if before[field] != after[field]:
@@ -66,6 +68,7 @@ def main(argv=None):
     p.add_argument("--adapter", default="engine:Gate", help="Importable module:Class; executes its code")
     p.add_argument("--negative-control", choices=sorted(MUTANTS))
     p.add_argument("--evaluator", default="unspecified", help="Self-declared identity; not proof of independence")
+    p.add_argument("--relationship", default="unspecified", help="Declared relationship to ARQUIA")
     args = p.parse_args(argv)
     if args.negative_control and args.adapter != "engine:Gate":
         p.error("Choose an adapter OR a negative control")
@@ -73,6 +76,8 @@ def main(argv=None):
     module_name, class_name = candidate.split(":", 1)
     module = importlib.import_module(module_name)
     cases = load_cases(args.cases)
+    receipt = measurement.begin([str(Path(__file__).name), *(sys.argv[1:] if argv is None else argv)],
+        candidate, args.cases, args.evaluator, args.relationship)
     results = evaluate(getattr(module, class_name), cases)
     path = Path(module.__file__)
     report = dict(protocol="ARQUIA-EVAL-001", version=VERSION, evidence_type="local_execution",
@@ -81,8 +86,16 @@ def main(argv=None):
         cases_sha256=hashlib.sha256(args.cases.read_bytes()).hexdigest(),
         adapter_file_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
         passed=sum(r["passed"] for r in results), total=len(results), results=results)
+    code = 0 if all(r["passed"] for r in results) else 1
+    report.update(exit_code=code, candidate_version="historical-gate-0.1.1" if module_name == "engine" else "unspecified",
+        runner_sha256=measurement.file_hash(ROOT / "runner.py"),
+        verifier_sha256=measurement.file_hash(ROOT / "verify_package.py"),
+        observability="candidate_self_report_only", evidence_missing=["independent effect boundary", "verified evaluator independence"],
+        evidence_available=["per-event synthetic snapshots", "local source hashes"],
+        limitations=["No production safety or theory validation", "No cryptographic witness"])
+    measurement.finish(report, receipt, code)
     print(json.dumps(report, indent=2, ensure_ascii=False))
-    return 0 if all(r["passed"] for r in results) else 1
+    return code
 
 
 if __name__ == "__main__":
