@@ -24,15 +24,15 @@ def main():
     out = ROOT / "results"
     out.mkdir(exist_ok=True)
     summary = dict(evidence="project-side execution, not independent evaluation",
-                   operator="Native Qwen executing authentic ChatGPT advice for Jose Maria Garbini", version=(ROOT / "VERSION").read_text().strip())
+                   operator="unspecified local operator; not authenticated by this script", version=(ROOT / "VERSION").read_text().strip())
     summary["original_reference"] = run_report(["original/runner.py"], out / "original-reference.json", 0)
     summary["original_negative_control"] = run_report(["original/runner.py", "--negative-control"], out / "original-negative.json", 1)
-    summary["reference"] = run_report(["runner.py", "--evaluator", "project-side-native-Qwen-ChatGPT"], out / "reference.json", 0)
+    summary["reference"] = run_report(["runner.py", "--evaluator", "unspecified-local-operator"], out / "reference.json", 0)
     from runner import MUTANTS
     summary["negative_controls"] = {}
     for name in MUTANTS:
         summary["negative_controls"][name] = run_report(["runner.py", "--negative-control", name,
-            "--evaluator", "project-side-native-Qwen-ChatGPT"], out / (name + ".json"), 1)
+            "--evaluator", "unspecified-local-operator"], out / (name + ".json"), 1)
     spec = importlib.util.spec_from_file_location("original_gate_for_audit", ROOT / "original/engine.py")
     original = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = original

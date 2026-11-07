@@ -1,6 +1,6 @@
 {
   "protocol": "ARQUIA-EVAL-001",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "evidence_type": "local_execution",
   "independence": "not_established_by_runner",
   "evaluator": "project-side-native-Qwen-ChatGPT",
@@ -9,6 +9,8 @@
   "platform": "Linux",
   "cases_sha256": "4640126623e0b1fc553b426fa3aecf4947c1979f8f8fa3c9f0b0a9919f5110f0",
   "adapter_file_sha256": "e64bb293ea06ad72b7086971f0ec0c13a22247d8c96f001003a456f0707dae86",
+  "runner_sha256": "0a03abbe76bce6032596a1356f23932cf5241a7877b93a0be3e055fafb543b6f",
+  "verifier_sha256": "5168b854ed071f1b44250b197e485041c0136dade07c41aa87f8e5c3f76fac51",
   "passed": 27,
   "total": 29,
   "results": [

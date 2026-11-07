@@ -7,7 +7,7 @@ from pathlib import Path
 import platform
 import sys
 
-VERSION = "0.1.1"
+VERSION = "0.1.2"
 ROOT = Path(__file__).resolve().parent
 MUTANTS = {
     "receipt-renewal": "ReceiptRenewal", "blind-recovery": "BlindRecovery",
@@ -80,6 +80,9 @@ def main(argv=None):
         python=platform.python_version(), platform=platform.system(),
         cases_sha256=hashlib.sha256(args.cases.read_bytes()).hexdigest(),
         adapter_file_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+        runner_sha256=hashlib.sha256(Path(__file__).resolve().read_bytes()).hexdigest(),
+        verifier_sha256=(hashlib.sha256((ROOT / "verify_package.py").read_bytes()).hexdigest()
+                         if (ROOT / "verify_package.py").is_file() else None),
         passed=sum(r["passed"] for r in results), total=len(results), results=results)
     print(json.dumps(report, indent=2, ensure_ascii=False))
     return 0 if all(r["passed"] for r in results) else 1

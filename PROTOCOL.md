@@ -73,10 +73,13 @@ a reviewer-owned JSON file with the same schema. Use a different file for added
 cases; retain the original vectors and report their results separately.
 
 Record the exact commit/archive hash before execution. Keep stdout, stderr,
-commands, exit status, runtime and all changed source files. Runner records only
-the adapter entry file hash; reviewers must also record dependent source and
-environment hashes. Adapter code is executed as normal Python and is not sandboxed
-by this runner. Running the supplied default needs no extra packages or network.
+commands, exit status, runtime and all changed source files. Runner records hashes
+for the cases, adapter entry file, its own executed file, and the co-located
+`verify_package.py` when present. `verifier_sha256` identifies the verifier bytes
+available beside the runner; it does not by itself prove that the verifier executed.
+Reviewers must still record dependent source and environment hashes. Adapter code is
+executed as normal Python and is not sandboxed by this runner. Running the supplied
+default needs no extra packages or network.
 
 Five deliberate faults test different detection paths: receipt renewal, blind
 retry, unauthorized completion, hidden escaped effect, and lost revocation during
