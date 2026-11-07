@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "required": [
+    "protocol",
+    "id",
+    "candidate",
+    "response",
+    "checkpoint"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "protocol": {
+      "const": "arquia.io/1"
+    },
+    "id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "candidate": {
+      "type": "object",
+      "required": [
+        "name",
+        "version"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "required": [
+        "commands",
+        "observed"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "commands": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "object"
+          }
+        },
+        "observed": {
+          "type": "object",
+          "required": [
+            "active_grants",
+            "outcomes",
+            "incidents"
+          ]
+        }
+      }
+    },
+    "checkpoint": true
+  }
+}

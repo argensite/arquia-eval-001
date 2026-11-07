@@ -79,6 +79,8 @@ def main(argv=None):
     if args.negative_control and args.adapter != "engine:Gate":
         p.error("Choose an adapter OR a negative control")
     candidate = "engine:" + MUTANTS[args.negative_control] if args.negative_control else args.adapter
+    if args.adapter != "engine:Gate":
+        p.error("External Python imports are disabled. Use community_runner.py --candidate-dir with explicit acceptance and isolation; see MIGRATION.md")
     module_name, class_name = candidate.split(":", 1)
     module = importlib.import_module(module_name)
     cases = load_cases(args.cases)

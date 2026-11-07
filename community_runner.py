@@ -37,7 +37,8 @@ def evaluate(factory,cases):
                 for name in world.execute(response['commands']):
                     violations.append({'step':index,'property':name})
                 trace.append({'step':index,'event':copy.deepcopy(event),'response':copy.deepcopy(response),
-                              'world':world.snapshot(),'evidence_sequence':world.evidence_sequence})
+                              'world':world.snapshot(),'evidence_sequence':world.evidence_sequence,
+                              'transport':copy.deepcopy(candidate.transcript[-1]) if getattr(candidate,'transcript',[]) else None})
             actual=world.snapshot()
             mismatches={k:{'expected':v,'actual':actual.get(k)} for k,v in case['expect'].items() if actual.get(k)!=v}
         except Exception as exc:
@@ -80,6 +81,9 @@ def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--cases',type=Path,default=ROOT/'suites/community-v1.json')
     p.add_argument('--fault',choices=FAULTS)
+    p.add_argument('--example-jsonl',action='store_true',help='Run the shipped independent example')
+    p.add_argument('--candidate-dir',type=Path,help='External candidate manifest directory')
+    p.add_argument('--accept-external-code',action='store_true',help='Explicitly accept execution with required Linux bubblewrap isolation')
     p.add_argument('--evaluator',default='unspecified');p.add_argument('--relationship',default='unspecified')
     p.add_argument('--markdown',type=Path)
     args=p.parse_args(argv)
@@ -87,11 +91,23 @@ def main(argv=None):
     suite=load_suite(args.cases)
     factory=(lambda:Fault(args.fault)) if args.fault else Candidate
     identity='conventional-acl/1' if not args.fault else 'deliberate-fault:'+args.fault
+    candidate_sources={};isolation='same process; trusted project source only'
+    if sum(bool(x) for x in (args.fault,args.example_jsonl,args.candidate_dir))>1:p.error('choose one candidate')
+    if args.example_jsonl or args.candidate_dir:
+        from jsonl_adapter import JsonlCandidate
+        factory=lambda:JsonlCandidate(args.candidate_dir,accept_external_code=args.accept_external_code,trusted_example=args.example_jsonl)
+        check=factory();candidate_sources=check.source_hashes;identity=check.manifest['name']+'/'+check.manifest['version'];check.close()
+        def factory():
+            obj=JsonlCandidate(args.candidate_dir,accept_external_code=args.accept_external_code,trusted_example=args.example_jsonl)
+            if obj.source_hashes!=candidate_sources:raise ValueError('candidate files changed between cases')
+            return obj
+        isolation='shipped example subprocess; not isolated' if args.example_jsonl else 'Linux bubblewrap namespaces, restricted mounts, no host network'
+
     m=measurement.begin(['community_runner.py',*(sys.argv[1:] if argv is None else argv)],identity,args.cases,
                         args.evaluator,args.relationship,extra=[ROOT/'synthetic_world.py',ROOT/'schemas.py',args.cases])
     results=evaluate(factory,suite['cases']);code=0 if all(r['passed'] for r in results) else 1
     report={'protocol':'ARQUIA-EVAL-001','version':(ROOT/'VERSION').read_text().strip(),
-        'suite':suite['schema'],'candidate':identity,'candidate_version':Candidate.version,
+        'suite':suite['schema'],'candidate':identity,'candidate_version':identity,'candidate_sources':candidate_sources,'isolation':isolation,
         'passed':sum(r['passed'] for r in results),'total':len(results),'results':results,'exit_code':code,
         'evidence_type':'project_side_synthetic_execution','observability':'evaluator_owned_synthetic_ledger',
         'evidence_available':['commands and simulated effects at declared boundary'],

@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "required": [
+    "protocol",
+    "id",
+    "event",
+    "context",
+    "checkpoint"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "protocol": {
+      "const": "arquia.io/1"
+    },
+    "id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "event": {
+      "type": "object"
+    },
+    "context": {
+      "type": "object"
+    },
+    "checkpoint": true
+  }
+}

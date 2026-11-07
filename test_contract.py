@@ -47,7 +47,7 @@ class ContractTests(unittest.TestCase):
         self.assertEqual(len(d["cases_sha256"]), 64)
         self.assertEqual(d["independence"], "not_established_by_runner")
 
-    def test_external_module_and_reviewer_cases_are_actually_loaded(self):
+    def test_external_module_execution_is_disabled_before_import(self):
         with tempfile.TemporaryDirectory() as directory:
             p = Path(directory)
             (p / "reviewer_candidate.py").write_text(
@@ -59,10 +59,9 @@ class ContractTests(unittest.TestCase):
             r = subprocess.run([sys.executable, str(ROOT / "runner.py"),
                 "--adapter", "reviewer_candidate:Candidate", "--cases", str(p / "reviewer_cases.json")],
                 env={**os.environ, "PYTHONPATH": directory}, capture_output=True, text=True)
-            self.assertEqual(r.returncode, 1, r.stderr)
-            d = json.loads(r.stdout)
-            self.assertEqual(d["candidate"], "reviewer_candidate:Candidate")
-            self.assertEqual(d["results"][0]["mismatches"]["dispatches"], {"expected":1, "actual":0})
+            self.assertEqual(r.returncode, 2, r.stderr)
+            self.assertIn("External Python imports are disabled", r.stderr)
+            self.assertEqual(r.stdout, "")
 
 
 if __name__ == "__main__":

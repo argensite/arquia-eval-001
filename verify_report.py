@@ -8,6 +8,8 @@ from verify_package import safe_file
 
 
 def verify(report, root, cases=None):
+    from schemas import validate, read_json
+    validate(report, read_json(Path(__file__).resolve().parent/'schemas/result.schema.json'))
     body = dict(report)
     expected = body.pop('report_sha256')
     if sha(canonical(body)) != expected:
@@ -27,6 +29,8 @@ def verify(report, root, cases=None):
         raise ValueError('case digest mismatch')
     if report['total'] != len(report['results']) or report['passed'] != sum(r['passed'] for r in report['results']):
         raise ValueError('inconsistent result counts')
+    if report['exit_code'] != (0 if report['passed']==report['total'] and report['total']>0 else 1):
+        raise ValueError('exit code does not match cases')
     if m['exit_code'] != report['exit_code']:
         raise ValueError('inconsistent exit code')
     return {'verified': 'payload and supplied local bytes', 'authenticity': 'not_established',

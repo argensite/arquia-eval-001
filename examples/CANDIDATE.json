@@ -1,0 +1,7 @@
+{
+  "schema": "arquia.candidate/1",
+  "name": "independent-conventional",
+  "version": "1",
+  "files": ["independent_candidate.py"],
+  "command": ["/usr/bin/python3", "-I", "/candidate/independent_candidate.py"]
+}
