@@ -1,0 +1,8 @@
+test_candidate_respects_parent_end_and_preserves_valid_own_exception (test_parent_authority.ParentCompletionTests.test_candidate_respects_parent_end_and_preserves_valid_own_exception) ... ok
+test_evaluator_detects_forced_completion_even_if_candidate_claims_authority (test_parent_authority.ParentCompletionTests.test_evaluator_detects_forced_completion_even_if_candidate_claims_authority) ... ok
+test_forced_external_effect_is_detected_not_called_prevented (test_parent_authority.ParentCompletionTests.test_forced_external_effect_is_detected_not_called_prevented) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.014s
+
+OK

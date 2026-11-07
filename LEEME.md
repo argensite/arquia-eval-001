@@ -25,7 +25,7 @@ python3 check_all.py --output checks
 
 En Windows reemplazá `python3` por `py -3`. [QUICKSTART](QUICKSTART.md) detalla
 comandos y códigos de salida. Se conservan los **29 casos históricos** de v0.1.1
-(v0.1.0 contiene 28); la batería comunitaria separada tiene **28 casos**.
+(v0.1.0 contiene 28); la batería comunitaria separada tiene **34 casos**.
 Los cinco controles históricos y diez defectos nuevos deben ser detectados.
 El fallo esperado de un control tiene salida 1; una excepción no demuestra que
 se detectó el defecto previsto.

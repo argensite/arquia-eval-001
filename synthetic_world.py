@@ -42,8 +42,15 @@ class World:
 
     def finish_allowed(self, effect):
         g = self.grants.get(effect['grant'])
-        return bool(effect['finish_exception'] and g and g['authority_epoch']==effect['authority_epoch']
-                    and g['role']==self.role and g['expires_at']>self.clock)
+        if not (effect['finish_exception'] and g and g['authority_epoch']==effect['authority_epoch']
+                and g['role']==self.role and g['expires_at']>self.clock):
+            return False
+        if g.get('parent'):
+            parent=self.grants.get(g['parent'])
+            return bool(parent and parent['allow_delegate'] and parent['scope']==g['scope']
+                        and parent['effect']==g['effect']
+                        and self.valid(g['parent'],g['parent_epoch'],seen={effect['grant']}))
+        return True
 
     def event(self, event):
         self.position += 1

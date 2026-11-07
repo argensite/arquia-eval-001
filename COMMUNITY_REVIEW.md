@@ -12,13 +12,13 @@ sets are retained under history/ and at their tags.
 
 - 29/29 historical cases, with C29 still the sole temporal-only witness for the
   receipt-renewal mutant; disabling the temporal detector breaks its regression.
-- 28/28 separate community cases and 32/32 generated cases with seed 42.
+- 34/34 separate community cases and 32/32 generated cases with seed 42.
 - All five historical controls return the required exit 1. Their passes/29 are
   14, 28, 28, 27 and 25 in the documented order.
 - Ten additional controls each have a non-error witness. Deny-all also has two
   inconclusive scenarios; neither is counted as a successful fault detection.
-- 25 root unit tests, 2 original tests and 3 Linux isolation tests pass. The
-  standalone JSONL example passes all 28 cases, including actual isolated launch.
+- 28 root unit tests, 2 original tests and 3 Linux isolation tests pass. The
+  standalone JSONL example passes all 34 cases, including actual isolated launch.
 - Source identity, measurement/result schemas, tamper detection, input copying,
   strict errors, readable reports and the eight interpretation questions work.
 - Repeated semantic results match. Two source builds are byte-identical; rebuilding
@@ -67,3 +67,9 @@ autonomous successor proposals become eligible hourly, subject to the existing
 FIFO and controls. Rejection, incomplete evidence and uncertain remote writes are
 retained. An hourly eligibility check is not a promise of an hourly release.
 The community versions remain publication candidates, not safety certifications.
+
+## Adverse review and correction before publication
+
+The initial candidate `a72b0e7` passed its 28-case suite but was rejected by the native ChatGPT review for a shared omission in the candidate, example and evaluator: a delegated finish exception could outlive its parent. The same omission was reproduced in five of six newly declared scenarios (four invalid completions and an undetected forced external effect). Three tests produced six assertion failures before correction and pass after it. The first 28 case objects remain identical; COMM-029 through COMM-034 extend the unpublished community suite to 34. The historical C29 is unchanged.
+
+The prior passing snapshot remains in evidence/community-review/. It was insufficient evidence for this property. The [rejection](evidence/adverse-review/native-review-rejection.json), [failing result](evidence/adverse-review/rejected-parent-authority.stdout) and [before-test failures](evidence/adverse-review/parent-tests-before.stderr) are retained. Current acceptance is in evidence/adverse-review/acceptance.json. This is project-side criticism and reproduction; it is not an external independent review.

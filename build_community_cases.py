@@ -60,6 +60,26 @@ def build():
     case(26,'authority','Completion exception cannot start an unstarted operation',[grant(finish_after_revoke=True),revoke(),ask('ask_complete')],dispatches=0,completions=0),
     case(27,'authority','A completion exception cannot outlive its expiry',[grant(finish_after_revoke=True,expires_at=2),ask(phase='start'),ev('tick',time=2),ask('ask_complete')],completions=0),
     case(28,'authority','A completion exception does not authorize a different role',[grant(finish_after_revoke=True),ask(phase='start'),ev('role',role='viewer'),ask('ask_complete')],completions=0),
+    case(29,'authority','A delegated finish exception cannot survive parent revocation',[
+        grant(allow_delegate=True),ev('grant',grant='child',effect='e',authority_epoch=2,parent='g',parent_epoch=1,finish_after_revoke=True),
+        ask(grant='child',authority_epoch=2,phase='start'),revoke(),ask('ask_complete',grant='child',authority_epoch=2)],dispatches=1,completions=0,outcomes={'e':'unresolved'}),
+    case(30,'authority','A delegated finish exception cannot survive parent expiry',[
+        grant(allow_delegate=True,expires_at=2),ev('grant',grant='child',effect='e',authority_epoch=2,parent='g',parent_epoch=1,finish_after_revoke=True),
+        ask(grant='child',authority_epoch=2,phase='start'),ev('tick',time=2),ask('ask_complete',grant='child',authority_epoch=2)],completions=0,outcomes={'e':'unresolved'}),
+    case(31,'authority','A delegated finish exception requires every ancestor to remain valid',[
+        grant(allow_delegate=True),ev('grant',grant='middle',effect='e',authority_epoch=2,parent='g',parent_epoch=1,allow_delegate=True),
+        ev('grant',grant='child',effect='e',authority_epoch=3,parent='middle',parent_epoch=2,finish_after_revoke=True),
+        ask(grant='child',authority_epoch=3,phase='start'),revoke(),ask('ask_complete',grant='child',authority_epoch=3)],completions=0,outcomes={'e':'unresolved'}),
+    case(32,'authority','Replacing the parent epoch cannot refresh an older delegated finish exception',[
+        grant(allow_delegate=True),ev('grant',grant='child',effect='e',authority_epoch=2,parent='g',parent_epoch=1,finish_after_revoke=True),
+        ask(grant='child',authority_epoch=2,phase='start'),ev('grant',grant='g',effect='e',authority_epoch=2,allow_delegate=True),
+        ask('ask_complete',grant='child',authority_epoch=2)],completions=0,outcomes={'e':'unresolved'}),
+    case(33,'authority','An own-grant finish exception remains usable while its parent is valid',[
+        grant(allow_delegate=True),ev('grant',grant='child',effect='e',authority_epoch=2,parent='g',parent_epoch=1,finish_after_revoke=True),
+        ask(grant='child',authority_epoch=2,phase='start'),ev('revoke',grant='child'),ask('ask_complete',grant='child',authority_epoch=2)],completions=1,outcomes={'e':'committed'}),
+    case(34,'effects','A forced delegated effect after parent revocation is detected as unauthorized',[
+        grant(allow_delegate=True),ev('grant',grant='child',effect='e',authority_epoch=2,parent='g',parent_epoch=1,finish_after_revoke=True),
+        ask(grant='child',authority_epoch=2,phase='start'),revoke(),ev('external_commit',effect='e')],committed_effects=['e'],incidents=['external_effect_after_authority_end']),
     ]
 
 def generate(seed,count=32):

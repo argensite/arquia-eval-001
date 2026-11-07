@@ -1,0 +1,15 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "-v",
+    "test_parent_authority"
+  ],
+  "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+  "utc": "2026-11-07T17:15:29.362329+00:00",
+  "exit_code": 1,
+  "seconds": 0.057791487997747026,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "54c8abeeb5d03f38060e5ca864edc0527bd1a7143e15918d422ed4e4e02fb280"
+}

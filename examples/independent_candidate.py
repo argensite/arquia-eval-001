@@ -27,8 +27,11 @@ def answer(message):
         token=grants.get(ident,{});prior=world.get(effect)
         allowed=(ident in active and token['authority_epoch']==epoch and token['effect']==effect and token['scope']==scope)
         if event['op']=='ask_complete':
+            parent=token.get('parent');issuer=grants.get(parent,{})
+            parent_current=not parent or (eligible(parent) and issuer.get('authority_epoch')==token['parent_epoch']
+                and issuer.get('allow_delegate') and issuer.get('scope')==token['scope'] and issuer.get('effect')==token['effect'])
             exception=(prior and prior['finish_exception'] and token.get('authority_epoch')==epoch
-                       and token['role']==facts['role'] and token['expires_at']>facts['clock'])
+                       and token['role']==facts['role'] and token['expires_at']>facts['clock'] and parent_current)
             allowed=bool(prior and prior['grant']==ident and prior['authority_epoch']==epoch and prior['scope']==scope
                          and prior['phase']=='start' and prior['status']=='unresolved' and (allowed or exception))
         else:allowed=allowed and prior is None

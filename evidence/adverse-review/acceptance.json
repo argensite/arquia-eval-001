@@ -1,0 +1,728 @@
+{
+  "schema": "arquia.acceptance/1",
+  "passed": true,
+  "evaluator_declared": "project-side-Codex",
+  "relationship_declared": "project",
+  "independence_verified": false,
+  "historical_files_preserved": 32,
+  "historical_cases": 29,
+  "historical_controls": {
+    "receipt-renewal": {
+      "passed": 14,
+      "total": 29,
+      "exit": 1
+    },
+    "blind-recovery": {
+      "passed": 28,
+      "total": 29,
+      "exit": 1
+    },
+    "completion-bypass": {
+      "passed": 28,
+      "total": 29,
+      "exit": 1
+    },
+    "hide-escape": {
+      "passed": 27,
+      "total": 29,
+      "exit": 1
+    },
+    "recovery-loses-revocation": {
+      "passed": 25,
+      "total": 29,
+      "exit": 1
+    }
+  },
+  "community_cases": 34,
+  "community_controls": {
+    "stale-epoch": {
+      "witnesses": [
+        "COMM-009"
+      ],
+      "inconclusive": 0
+    },
+    "rollback-authority": {
+      "witnesses": [
+        "COMM-011"
+      ],
+      "inconclusive": 0
+    },
+    "receipt-authority": {
+      "witnesses": [
+        "COMM-003",
+        "COMM-024"
+      ],
+      "inconclusive": 0
+    },
+    "forged-success": {
+      "witnesses": [
+        "COMM-003",
+        "COMM-019",
+        "COMM-021"
+      ],
+      "inconclusive": 0
+    },
+    "hide-effect": {
+      "witnesses": [
+        "COMM-003",
+        "COMM-010",
+        "COMM-013",
+        "COMM-014",
+        "COMM-015",
+        "COMM-016",
+        "COMM-017",
+        "COMM-018",
+        "COMM-019",
+        "COMM-021",
+        "COMM-023",
+        "COMM-024",
+        "COMM-025",
+        "COMM-027",
+        "COMM-028",
+        "COMM-029",
+        "COMM-030",
+        "COMM-031",
+        "COMM-032",
+        "COMM-033",
+        "COMM-034"
+      ],
+      "inconclusive": 0
+    },
+    "deny-all": {
+      "witnesses": [
+        "COMM-001",
+        "COMM-003",
+        "COMM-009",
+        "COMM-010",
+        "COMM-013",
+        "COMM-014",
+        "COMM-016",
+        "COMM-017",
+        "COMM-018",
+        "COMM-019",
+        "COMM-021",
+        "COMM-023",
+        "COMM-025",
+        "COMM-029",
+        "COMM-030",
+        "COMM-031",
+        "COMM-032",
+        "COMM-033"
+      ],
+      "inconclusive": 3
+    },
+    "duplicate-dispatch": {
+      "witnesses": [
+        "COMM-010",
+        "COMM-013",
+        "COMM-014",
+        "COMM-023"
+      ],
+      "inconclusive": 0
+    },
+    "blind-retry": {
+      "witnesses": [
+        "COMM-010",
+        "COMM-025"
+      ],
+      "inconclusive": 0
+    },
+    "completion-bypass": {
+      "witnesses": [
+        "COMM-016",
+        "COMM-017",
+        "COMM-026",
+        "COMM-027",
+        "COMM-028",
+        "COMM-029",
+        "COMM-030",
+        "COMM-031",
+        "COMM-032"
+      ],
+      "inconclusive": 0
+    },
+    "data-instruction": {
+      "witnesses": [
+        "COMM-020"
+      ],
+      "inconclusive": 0
+    }
+  },
+  "generated_cases": 32,
+  "seed": 42,
+  "source_archive_sha256": "4683db1869f2c10b98a07194741d5ed61fe6ed52117d99a11dac21a59d02db17",
+  "external_isolation": "executed Linux checks",
+  "receipts": [
+    {
+      "name": "package-integrity",
+      "command": [
+        "/usr/bin/python3",
+        "verify_package.py"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:15:59.146529+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.02900877399952151,
+      "stdout_sha256": "a0157dfdb771e8af9c4b8b68d76ac2078925cfea8f10fd8e38e892beda30c83d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "unit",
+      "command": [
+        "/usr/bin/python3",
+        "strict_unittest.py"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:02.553650+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 3.407008112000767,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c461e94f4bf22446561151fb39ddcc44828ce7b20634b4eadb47e195c0af8c2a"
+    },
+    {
+      "name": "original-unit",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-v"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation/original",
+      "utc": "2026-11-07T17:16:02.594088+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.04027656499965815,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "709617b5aab39cef134c40566f32de5bc906591bf18ff385a6290cffac17dce4"
+    },
+    {
+      "name": "historical",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:02.662459+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.06789552699774504,
+      "stdout_sha256": "b8c7559fa90020f20465b48bb7fc0f2f59ac279a33ac73b515222a4cc87d8dc6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-receipt-renewal",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "receipt-renewal",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:02.738284+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.06891644099960104,
+      "stdout_sha256": "4a966b30365d1a6b514e32c64895123559239e63cb87ec5b9ef6d73efb9c2453",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-blind-recovery",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "blind-recovery",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:02.812353+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.06954279500132543,
+      "stdout_sha256": "3216582c79937e41ca4f9cff7f3a6030f8406df3eb8ff77912af8f07324932c0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-completion-bypass",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "completion-bypass",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:02.883223+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.06475319799938006,
+      "stdout_sha256": "2761373331fb24cd1b39b45c86675df4186167439ce1a1c0beed84c837468208",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-hide-escape",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "hide-escape",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:02.954202+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.06692484599989257,
+      "stdout_sha256": "2e58a5fce1cd37bf97361e54cdf90f7b0c46d65bd240294d316f45b7157f2e74",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-recovery-loses-revocation",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "recovery-loses-revocation",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.025604+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.06825247899905662,
+      "stdout_sha256": "cb8b97256f22eaeac23dfd441c046fea954447193746e3219b5fc4a584d812eb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.106900+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.07685125599891762,
+      "stdout_sha256": "db390744fd879b92125914ac794cd975a972c73fa9b10754746bc676c744db6f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-stale-epoch",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "stale-epoch",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.195003+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07832960599989747,
+      "stdout_sha256": "cce59111539d2b3ccfe80d1b8cbc5bb3dc3eb87025f53cb655f200e7496f7937",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-rollback-authority",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "rollback-authority",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.276878+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07622381300097913,
+      "stdout_sha256": "0ce9d0f7adb4c146e051fcbac5a0a854c80257bb00b1f50f9880658fd25a5e7f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-receipt-authority",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "receipt-authority",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.353935+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07190543400065508,
+      "stdout_sha256": "58110cb1002bc6c069b2d11a85baa875655ff2bf0368be199d603fa94bc50e7a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-forged-success",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "forged-success",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.433432+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.0750055809985497,
+      "stdout_sha256": "72a24f2f7deab82aa31c7d367c341f719b3b14ff1dd7e205b2f1daa86079d4e0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-hide-effect",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "hide-effect",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.514220+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07584738199875574,
+      "stdout_sha256": "fc596e75997c64beadadb47e62370feb6cc7993c1b6576c3da37497170d8060b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-deny-all",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "deny-all",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.596810+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07701873400219483,
+      "stdout_sha256": "538c8da62311cf5f25c9486f58d1e87e9d06e9a00866aba3f8ae0ad09892d109",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-duplicate-dispatch",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "duplicate-dispatch",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.676873+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07536212100239936,
+      "stdout_sha256": "7c8b862b4c73fe5883796939be0bdc48847e4a19c51069812df3bc219b174d4c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-blind-retry",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "blind-retry",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.757665+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07492761299727135,
+      "stdout_sha256": "f14aab6c40dcbfdcb09331b985b7ae0c0fe49fd4cfc25d14e67771d3bf13c699",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-completion-bypass",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "completion-bypass",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.830751+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07064863000050536,
+      "stdout_sha256": "6a5da074f924f12a13dbd6ef3d7ae54172a574ae01073b8deea084731fe3faaa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-data-instruction",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "data-instruction",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:03.912292+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07755599799929769,
+      "stdout_sha256": "7ff0294f81909d9dce6d3c3ac9f836fe9ff1305fb8b061ee2216ba7f9157d98a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "independent-example",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--example-jsonl",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:07.447846+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 3.530202330002794,
+      "stdout_sha256": "bf6e3a6253b55c7611f9b5c208d9ca27aa2ac224f75eaf96cc9b00004b1edbcd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-repeat",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:07.534858+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.07306711400087806,
+      "stdout_sha256": "8f74e9c4f3fb12cbb58cd2b45f4b43b09ef5e87c884bc29eb2019e30cf2a7c2f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "human-report",
+      "command": [
+        "/usr/bin/python3",
+        "render_report.py",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/parent-acceptance/community.stdout",
+        "--output",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/parent-acceptance/community.md"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:07.573531+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.03306287399755092,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "build-one",
+      "command": [
+        "/usr/bin/python3",
+        "build_release.py",
+        "--output",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/parent-acceptance/build-one"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:07.646436+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.07270209400303429,
+      "stdout_sha256": "2ee85e64a274c3782f271f63882aeb935a4d0877b5a818d2b1fcd94558404451",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "build-two",
+      "command": [
+        "/usr/bin/python3",
+        "build_release.py",
+        "--output",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/parent-acceptance/build-two"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:07.712219+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.06561421299920767,
+      "stdout_sha256": "922e010000d9f1d1317c15e020d26e9a53fa255d59661aab059a9e7db2034497",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-verify",
+      "command": [
+        "/usr/bin/python3",
+        "verify_package.py"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/parent-acceptance/extracted/ARQUIA-EVAL-001-v0.2.0",
+      "utc": "2026-11-07T17:16:07.760258+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.03650502399977995,
+      "stdout_sha256": "6a2c7307d11ba6e1caff43f6f8d852801ec1486f18568afd8003a2df9b7c4bf4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-reference",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/parent-acceptance/extracted/ARQUIA-EVAL-001-v0.2.0",
+      "utc": "2026-11-07T17:16:07.818737+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.05835124499935773,
+      "stdout_sha256": "decab50f04a180329d99eda75067454eb3e883223fb1630b0781b3003f115585",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-community",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/parent-acceptance/extracted/ARQUIA-EVAL-001-v0.2.0",
+      "utc": "2026-11-07T17:16:07.891255+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.0724239579976711,
+      "stdout_sha256": "58d99f58d70a1c3bb7339f5fff93e26a6dbdd32c6ac34c133e1f5171eda269c0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-rebuild",
+      "command": [
+        "/usr/bin/python3",
+        "build_release.py",
+        "--output",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/parent-acceptance/rebuilt"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/parent-acceptance/extracted/ARQUIA-EVAL-001-v0.2.0",
+      "utc": "2026-11-07T17:16:07.963283+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.07192419999773847,
+      "stdout_sha256": "2ea53cb970cc96e18e61a66693a50d33512d41684c66dd37bcd8a0083eadb9ad",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "isolation",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "-v",
+        "isolation_checks"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:10.204874+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 2.2414583369973116,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "908ed40f0d97d246be3781e9e04350c8b625997c0e50bb9ea27d44d642778ce9"
+    },
+    {
+      "name": "isolated-example",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--candidate-dir",
+        "examples",
+        "--accept-external-code",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+      "utc": "2026-11-07T17:16:16.020408+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 5.815373902001738,
+      "stdout_sha256": "7733ba37cdf96b435b3e0f60092737e088597b35be417ab153b107060f44500e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

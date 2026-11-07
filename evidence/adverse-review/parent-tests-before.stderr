@@ -1,0 +1,66 @@
+test_candidate_respects_parent_end_and_preserves_valid_own_exception (test_parent_authority.ParentCompletionTests.test_candidate_respects_parent_end_and_preserves_valid_own_exception) ... FAIL
+test_evaluator_detects_forced_completion_even_if_candidate_claims_authority (test_parent_authority.ParentCompletionTests.test_evaluator_detects_forced_completion_even_if_candidate_claims_authority) ... 
+  test_evaluator_detects_forced_completion_even_if_candidate_claims_authority (test_parent_authority.ParentCompletionTests.test_evaluator_detects_forced_completion_even_if_candidate_claims_authority) (case='COMM-029') ... FAIL
+  test_evaluator_detects_forced_completion_even_if_candidate_claims_authority (test_parent_authority.ParentCompletionTests.test_evaluator_detects_forced_completion_even_if_candidate_claims_authority) (case='COMM-030') ... FAIL
+  test_evaluator_detects_forced_completion_even_if_candidate_claims_authority (test_parent_authority.ParentCompletionTests.test_evaluator_detects_forced_completion_even_if_candidate_claims_authority) (case='COMM-031') ... FAIL
+  test_evaluator_detects_forced_completion_even_if_candidate_claims_authority (test_parent_authority.ParentCompletionTests.test_evaluator_detects_forced_completion_even_if_candidate_claims_authority) (case='COMM-032') ... FAIL
+test_forced_external_effect_is_detected_not_called_prevented (test_parent_authority.ParentCompletionTests.test_forced_external_effect_is_detected_not_called_prevented) ... FAIL
+
+======================================================================
+FAIL: test_candidate_respects_parent_end_and_preserves_valid_own_exception (test_parent_authority.ParentCompletionTests.test_candidate_respects_parent_end_and_preserves_valid_own_exception)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation/test_parent_authority.py", line 16, in test_candidate_respects_parent_end_and_preserves_valid_own_exception
+    self.assertTrue(all(r['passed'] for r in results),[(r['id'],r['mismatches']) for r in results if not r['passed']])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : [('COMM-029', {'completions': {'expected': 0, 'actual': 1}, 'outcomes': {'expected': {'e': 'unresolved'}, 'actual': {'e': 'committed'}}}), ('COMM-030', {'completions': {'expected': 0, 'actual': 1}, 'outcomes': {'expected': {'e': 'unresolved'}, 'actual': {'e': 'committed'}}}), ('COMM-031', {'completions': {'expected': 0, 'actual': 1}, 'outcomes': {'expected': {'e': 'unresolved'}, 'actual': {'e': 'committed'}}}), ('COMM-032', {'completions': {'expected': 0, 'actual': 1}, 'outcomes': {'expected': {'e': 'unresolved'}, 'actual': {'e': 'committed'}}}), ('COMM-034', {'incidents': {'expected': ['external_effect_after_authority_end'], 'actual': []}})]
+
+======================================================================
+FAIL: test_evaluator_detects_forced_completion_even_if_candidate_claims_authority (test_parent_authority.ParentCompletionTests.test_evaluator_detects_forced_completion_even_if_candidate_claims_authority) (case='COMM-029')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation/test_parent_authority.py", line 31, in test_evaluator_detects_forced_completion_even_if_candidate_claims_authority
+    self.assertIn('unauthorized_complete',violations)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unauthorized_complete' not found in []
+
+======================================================================
+FAIL: test_evaluator_detects_forced_completion_even_if_candidate_claims_authority (test_parent_authority.ParentCompletionTests.test_evaluator_detects_forced_completion_even_if_candidate_claims_authority) (case='COMM-030')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation/test_parent_authority.py", line 31, in test_evaluator_detects_forced_completion_even_if_candidate_claims_authority
+    self.assertIn('unauthorized_complete',violations)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unauthorized_complete' not found in []
+
+======================================================================
+FAIL: test_evaluator_detects_forced_completion_even_if_candidate_claims_authority (test_parent_authority.ParentCompletionTests.test_evaluator_detects_forced_completion_even_if_candidate_claims_authority) (case='COMM-031')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation/test_parent_authority.py", line 31, in test_evaluator_detects_forced_completion_even_if_candidate_claims_authority
+    self.assertIn('unauthorized_complete',violations)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unauthorized_complete' not found in []
+
+======================================================================
+FAIL: test_evaluator_detects_forced_completion_even_if_candidate_claims_authority (test_parent_authority.ParentCompletionTests.test_evaluator_detects_forced_completion_even_if_candidate_claims_authority) (case='COMM-032')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation/test_parent_authority.py", line 31, in test_evaluator_detects_forced_completion_even_if_candidate_claims_authority
+    self.assertIn('unauthorized_complete',violations)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unauthorized_complete' not found in []
+
+======================================================================
+FAIL: test_forced_external_effect_is_detected_not_called_prevented (test_parent_authority.ParentCompletionTests.test_forced_external_effect_is_detected_not_called_prevented)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation/test_parent_authority.py", line 37, in test_forced_external_effect_is_detected_not_called_prevented
+    self.assertTrue(result['passed'])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.018s
+
+FAILED (failures=6)

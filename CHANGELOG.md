@@ -6,7 +6,7 @@
 - Instrument/configuration/runtime identity, versioned measurement schema and
   report verifier; empty/incomplete manifests fail.
 - Historical 29 cases and C29 preserved; temporal-detector mutation metatest.
-- Separate 28-case community suite, evaluator-owned synthetic effect journal,
+- Separate 34-case community suite, evaluator-owned synthetic effect journal,
   authority epochs, quarantine, recovery, effects and adversarial-data cases.
 - Ten additional distinct deliberate faults; seeded generation and 1-minimization.
 - Portable JSONL, independently written conventional example, consent plus actual

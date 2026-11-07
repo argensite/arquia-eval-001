@@ -24,7 +24,7 @@ python3 check_all.py --output checks
 ```
 
 The historical runner retains **29 cases** from v0.1.1 (v0.1.0 has 28).
-The separately versioned community battery has **28 cases**. `check_all.py` checks
+The separately versioned community battery has **34 cases**. `check_all.py` checks
 five historical and ten additional deliberate faults, temporal sensitivity,
 source preservation, schemas, reports, deterministic generation and packaging.
 An expected negative-control exit **1** is success of that sensitivity check;

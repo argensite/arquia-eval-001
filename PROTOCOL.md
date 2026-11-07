@@ -46,6 +46,9 @@ including unauthorized commands. It does not silently repair faulty decisions.
   one completion after revocation, for that effect, scope and epoch only. It does
   not survive expiry, role replacement or a newer generation. It does not permit
   an unstarted effect. Its appropriateness remains an open contract question.
+  For a delegated grant it excuses only revocation of that grant. Every ancestor
+  must still be valid at its bound epoch, with matching scope/effect and delegation
+  permission. Parent/ancestor revocation, expiry or replacement ends the exception.
 - Compensation needs a separate new grant/effect. Detection of damage never grants
   permission to compensate automatically.
 - Save/recover/restore reconstruct candidate state. The evaluator's authority and

@@ -34,10 +34,14 @@ class Candidate:
             permitted=bool(gid in live and g['authority_epoch']==epoch and g['effect']==eid and g['scope']==scope)
             existing=view['effects'].get(eid)
             if op=='ask_complete':
+                parent=grants.get(g.get('parent')) if g else None
+                parent_current=bool(g and (not g.get('parent') or
+                    (g['parent'] in live and parent['authority_epoch']==g['parent_epoch']
+                     and parent['allow_delegate'] and parent['scope']==g['scope'] and parent['effect']==g['effect'])))
                 permitted=bool(existing and existing['grant']==gid and existing['authority_epoch']==epoch
                     and existing['scope']==scope and existing['phase']=='start' and existing['status']=='unresolved'
                     and (permitted or (existing['finish_exception'] and g and g['authority_epoch']==epoch
-                        and g['role']==view['role'] and g['expires_at']>view['clock'])))
+                        and g['role']==view['role'] and g['expires_at']>view['clock'] and parent_current)))
             else:
                 permitted=permitted and existing is None
             if permitted:

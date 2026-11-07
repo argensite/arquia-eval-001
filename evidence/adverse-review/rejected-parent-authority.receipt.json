@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "community_runner.py",
+    "--evaluator",
+    "project-side-Codex",
+    "--relationship",
+    "project"
+  ],
+  "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/repair-delegation",
+  "utc": "2026-11-07T17:14:37.731644+00:00",
+  "exit_code": 1,
+  "seconds": 0.09481591299845604,
+  "stdout_sha256": "168302e5fc81c637b90ccba9ba214c03ebd639ab4f9de3e463a4ae8499c6d868",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
