@@ -32,6 +32,10 @@ def build(output,root=ROOT):
     files={n:safe_file(root,n).read_bytes() for n in inventory(root)}
     # Archive identity is explicitly a declaration carried by the source package.
     source=git_state() if root==ROOT else {'commit':None,'dirty':None,'status':[]}
+    if (root/'SOURCE_IDENTITY.json').is_file() and (root!=ROOT or source.get('origin')):
+        # A re-export preserves the original declaration; it does not turn it
+        # into independently verified Git history or silently change the bytes.
+        source=json.loads((root/'SOURCE_IDENTITY.json').read_text(encoding='utf-8'))
     files['SOURCE_IDENTITY.json']=canonical(source)+b'\n'
     files['PACKAGE_FILES.json']=(json.dumps(sorted(set(files)|{'PACKAGE_FILES.json'}),indent=2)+'\n').encode()
     files['CHECKSUMS.sha256']=manifest(files)

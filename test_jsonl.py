@@ -7,6 +7,15 @@ from schemas import load_suite
 
 ROOT=Path(__file__).resolve().parent
 class JsonlTests(unittest.TestCase):
+    def test_wire_schema_and_runtime_reject_unknown_command_phase(self):
+        from community_runner import validate_response
+        from schemas import validate,read_json
+        response={'commands':[{'op':'dispatch','authority_epoch':1,'grant':'g','effect':'e','scope':'write','phase':'unknown'}],
+                  'observed':{'active_grants':[],'outcomes':{},'incidents':[]}}
+        with self.assertRaisesRegex(ValueError,'command phase'):validate_response(response)
+        schema=read_json(ROOT/'schemas/response.schema.json')
+        with self.assertRaises(ValueError):validate({'protocol':'arquia.io/1','id':1,'candidate':{'name':'x','version':'1'},'response':response,'checkpoint':{}},schema)
+
     def test_example_passes_without_reference_inheritance(self):
         tree=ast.parse((ROOT/'examples/independent_candidate.py').read_text())
         imports={x.name for n in ast.walk(tree) if isinstance(n,ast.Import) for x in n.names}

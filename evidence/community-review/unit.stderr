@@ -1,0 +1,30 @@
+test_all_reference_cases_and_distinct_fault_controls (test_community.CommunityTests.test_all_reference_cases_and_distinct_fault_controls) ... ok
+test_c29_metatest_fails_when_temporal_detector_is_disabled (test_community.CommunityTests.test_c29_metatest_fails_when_temporal_detector_is_disabled) ... ok
+test_detecting_an_effect_does_not_mean_preventing_it (test_community.CommunityTests.test_detecting_an_effect_does_not_mean_preventing_it) ... ok
+test_no_actions_is_not_a_trustworthy_pass (test_community.CommunityTests.test_no_actions_is_not_a_trustworthy_pass) ... ok
+test_schema_rejects_ambiguous_data_unknown_events_and_empty_expectation (test_community.CommunityTests.test_schema_rejects_ambiguous_data_unknown_events_and_empty_expectation) ... ok
+test_seed_reproducibility_and_violation_minimization (test_community.CommunityTests.test_seed_reproducibility_and_violation_minimization) ... ok
+test_snapshot_lies_do_not_remove_effects_from_world (test_community.CommunityTests.test_snapshot_lies_do_not_remove_effects_from_world) ... ok
+test_cli_reports_failure_and_exact_source_identity (test_contract.ContractTests.test_cli_reports_failure_and_exact_source_identity) ... ok
+test_external_module_execution_is_disabled_before_import (test_contract.ContractTests.test_external_module_execution_is_disabled_before_import) ... ok
+test_independent_case_file_can_fail_and_exceptions_are_failures (test_contract.ContractTests.test_independent_case_file_can_fail_and_exceptions_are_failures) ... ok
+test_reference_and_each_negative_control (test_contract.ContractTests.test_reference_and_each_negative_control) ... ok
+test_restart_is_a_new_instance_with_identical_observable_state (test_contract.ContractTests.test_restart_is_a_new_instance_with_identical_observable_state) ... ok
+test_example_passes_without_reference_inheritance (test_jsonl.JsonlTests.test_example_passes_without_reference_inheritance) ... ok
+test_external_code_requires_explicit_acceptance_before_manifest_or_execution (test_jsonl.JsonlTests.test_external_code_requires_explicit_acceptance_before_manifest_or_execution) ... ok
+test_manifest_binds_files_and_identity (test_jsonl.JsonlTests.test_manifest_binds_files_and_identity) ... ok
+test_wire_schema_and_runtime_reject_unknown_command_phase (test_jsonl.JsonlTests.test_wire_schema_and_runtime_reject_unknown_command_phase) ... ok
+test_constructor_failure_is_a_case_failure (test_measurement.MeasurementTests.test_constructor_failure_is_a_case_failure) ... ok
+test_duplicate_manifest_entry_fails (test_measurement.MeasurementTests.test_duplicate_manifest_entry_fails) ... ok
+test_empty_traversal_and_malformed_manifests_fail (test_measurement.MeasurementTests.test_empty_traversal_and_malformed_manifests_fail) ... ok
+test_producer_and_dependency_identity_and_tampering (test_measurement.MeasurementTests.test_producer_and_dependency_identity_and_tampering) ... ok
+test_symlink_path_rejected_before_reading_target (test_measurement.MeasurementTests.test_symlink_path_rejected_before_reading_target) ... ok
+test_changed_instrument_is_detected_even_with_unchanged_report (test_measurement.TamperTests.test_changed_instrument_is_detected_even_with_unchanged_report) ... ok
+test_transient_receipt_renewal_is_detected_only_temporally (test_rsi_000001.RSI000001Tests.test_transient_receipt_renewal_is_detected_only_temporally) ... ok
+test_cli_reports_exact_runner_and_verifier_hashes (test_rsi_000002.ProducerIdentityTests.test_cli_reports_exact_runner_and_verifier_hashes) ... ok
+test_complete_measurement_envelope_and_configuration_binding (test_rsi_000003.CommunityMeasurementRegression.test_complete_measurement_envelope_and_configuration_binding) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 2.808s
+
+OK

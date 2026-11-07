@@ -69,3 +69,5 @@ José María Garbini es el titular del proyecto. [ARQUÍA](https://arquia.live) 
 la propuesta de gobernanza que motivó el experimento; no actúa como certificador.
 Los archivos históricos se conservan. Un hash identifica bytes, no autentica al
 autor. Se mantiene la [licencia MIT](LICENSE) y los derechos de fuentes externas.
+
+[Community implementation review / Revisión de implementación](COMMUNITY_REVIEW.md).

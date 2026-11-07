@@ -22,7 +22,7 @@ def verify(report, root, cases=None):
     required = {'runner.py', 'verify_package.py', 'verify_report.py', 'engine.py', 'measurement.py', 'VERSION'}
     if not required <= m['files'].keys() or m['changed_during_run']:
         raise ValueError('missing or changed measurement instruments')
-    for name, digest in m['files'].items():
+    for name, digest in {**m['files_after'], **m['files']}.items():
         if file_hash(safe_file(root, name)) != digest:
             raise ValueError('measurement file mismatch: ' + name)
     if cases is not None and file_hash(cases) != m['configuration']['cases_sha256']:

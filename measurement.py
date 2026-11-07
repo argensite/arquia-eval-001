@@ -45,7 +45,7 @@ def git_state():
 
 def source_files(extra=()):
     paths = {ROOT / n for n in ('runner.py', 'verify_package.py', 'verify_report.py', 'engine.py',
-                                'measurement.py', 'VERSION', 'CHECKSUMS.sha256')}
+                                'measurement.py', 'VERSION', 'CHECKSUMS.sha256', 'SOURCE_IDENTITY.json')}
     paths.update(Path(p).resolve() for p in extra)
     for module in list(sys.modules.values()):
         name = getattr(module, '__file__', None)

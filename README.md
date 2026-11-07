@@ -75,3 +75,5 @@ not authenticate an author. Software and original package documentation use the
 Project owner: José María Garbini. [ARQUÍA](https://arquia.live) is the originating
 governance research project. Evidence, proposed mechanisms and broader theory
 are distinguished in [SCOPE](SCOPE.md). [Guía en español](LEEME.md).
+
+[Community implementation review / Revisión de implementación](COMMUNITY_REVIEW.md).

@@ -1,0 +1,11 @@
+{
+  "operator": "Codex assisting Jose Maria Garbini",
+  "relationship": "project",
+  "independence_established": false,
+  "status": "pre-publication local acceptance snapshot; native final-archive receipts are separate",
+  "evidence": "summary.json carries the actual command/exit/output hashes; complete output retained by operator",
+  "parent_commit": "1636e5f",
+  "test_count": 25,
+  "original_test_count": 2,
+  "isolation_test_count": 3
+}

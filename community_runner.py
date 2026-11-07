@@ -73,6 +73,8 @@ def validate_response(response):
             raise ValueError('unknown command fields')
         if c.get('op') not in ('dispatch','complete','alternate_commit') or type(c.get('authority_epoch')) is not int:
             raise ValueError('command operation/epoch')
+        if 'phase' in c and c['phase'] not in ('dispatch','start'):
+            raise ValueError('command phase')
         if any(not isinstance(c.get(k),str) or not c[k] or len(c[k])>200 for k in ('grant','effect','scope')):
             raise ValueError('command identity')
 
@@ -110,7 +112,7 @@ def main(argv=None):
     report={'protocol':'ARQUIA-EVAL-001','version':(ROOT/'VERSION').read_text().strip(),
         'suite':suite['schema'],'candidate':identity,'candidate_version':identity,'candidate_sources':candidate_sources,'isolation':isolation,
         'passed':sum(r['passed'] for r in results),'total':len(results),'results':results,'exit_code':code,
-        'evidence_type':'project_side_synthetic_execution','observability':'evaluator_owned_synthetic_ledger',
+        'evidence_type':'local_synthetic_execution','observability':'evaluator_owned_synthetic_ledger',
         'evidence_available':['commands and simulated effects at declared boundary'],
         'evidence_missing':['real effects','cryptographic witnesses','independent evaluator identity'],
         'metrics':{'contract_passed':sum(r['passed'] for r in results),

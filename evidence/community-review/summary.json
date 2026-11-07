@@ -1,0 +1,713 @@
+{
+  "schema": "arquia.acceptance/1",
+  "passed": true,
+  "evaluator_declared": "project-side-Codex",
+  "relationship_declared": "project",
+  "independence_verified": false,
+  "historical_files_preserved": 32,
+  "historical_cases": 29,
+  "historical_controls": {
+    "receipt-renewal": {
+      "passed": 14,
+      "total": 29,
+      "exit": 1
+    },
+    "blind-recovery": {
+      "passed": 28,
+      "total": 29,
+      "exit": 1
+    },
+    "completion-bypass": {
+      "passed": 28,
+      "total": 29,
+      "exit": 1
+    },
+    "hide-escape": {
+      "passed": 27,
+      "total": 29,
+      "exit": 1
+    },
+    "recovery-loses-revocation": {
+      "passed": 25,
+      "total": 29,
+      "exit": 1
+    }
+  },
+  "community_cases": 28,
+  "community_controls": {
+    "stale-epoch": {
+      "witnesses": [
+        "COMM-009"
+      ],
+      "inconclusive": 0
+    },
+    "rollback-authority": {
+      "witnesses": [
+        "COMM-011"
+      ],
+      "inconclusive": 0
+    },
+    "receipt-authority": {
+      "witnesses": [
+        "COMM-003",
+        "COMM-024"
+      ],
+      "inconclusive": 0
+    },
+    "forged-success": {
+      "witnesses": [
+        "COMM-003",
+        "COMM-019",
+        "COMM-021"
+      ],
+      "inconclusive": 0
+    },
+    "hide-effect": {
+      "witnesses": [
+        "COMM-003",
+        "COMM-010",
+        "COMM-013",
+        "COMM-014",
+        "COMM-015",
+        "COMM-016",
+        "COMM-017",
+        "COMM-018",
+        "COMM-019",
+        "COMM-021",
+        "COMM-023",
+        "COMM-024",
+        "COMM-025",
+        "COMM-027",
+        "COMM-028"
+      ],
+      "inconclusive": 0
+    },
+    "deny-all": {
+      "witnesses": [
+        "COMM-001",
+        "COMM-003",
+        "COMM-009",
+        "COMM-010",
+        "COMM-013",
+        "COMM-014",
+        "COMM-016",
+        "COMM-017",
+        "COMM-018",
+        "COMM-019",
+        "COMM-021",
+        "COMM-023",
+        "COMM-025"
+      ],
+      "inconclusive": 2
+    },
+    "duplicate-dispatch": {
+      "witnesses": [
+        "COMM-010",
+        "COMM-013",
+        "COMM-014",
+        "COMM-023"
+      ],
+      "inconclusive": 0
+    },
+    "blind-retry": {
+      "witnesses": [
+        "COMM-010",
+        "COMM-025"
+      ],
+      "inconclusive": 0
+    },
+    "completion-bypass": {
+      "witnesses": [
+        "COMM-016",
+        "COMM-017",
+        "COMM-026",
+        "COMM-027",
+        "COMM-028"
+      ],
+      "inconclusive": 0
+    },
+    "data-instruction": {
+      "witnesses": [
+        "COMM-020"
+      ],
+      "inconclusive": 0
+    }
+  },
+  "generated_cases": 32,
+  "seed": 42,
+  "source_archive_sha256": "254e32a035e66c644b604d4c944cc47d49cdb946f4d2cf8c95d60399618f09e9",
+  "external_isolation": "executed Linux checks",
+  "receipts": [
+    {
+      "name": "package-integrity",
+      "command": [
+        "/usr/bin/python3",
+        "verify_package.py"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:28.442086+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.03142935200230568,
+      "stdout_sha256": "3b700274c890f47bcb47d217d86780f1db191b20a3cc0e48f40012eecab507b6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "unit",
+      "command": [
+        "/usr/bin/python3",
+        "strict_unittest.py"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:31.317960+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 2.8757235089979076,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2cd2a8bd4ddc4ccecbc379e4d61d1b62c88d13c216a9b5be1ab03fcc65828d80"
+    },
+    {
+      "name": "original-unit",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-v"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate/original",
+      "utc": "2026-11-07T17:00:31.358435+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.040361075996770523,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "709617b5aab39cef134c40566f32de5bc906591bf18ff385a6290cffac17dce4"
+    },
+    {
+      "name": "historical",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:31.421078+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.06210725399796502,
+      "stdout_sha256": "54d4d89b847948078bfed18342c8253b14f9152eb4b769759d3e14b32854ec53",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-receipt-renewal",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "receipt-renewal",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:31.492619+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.06719441500172252,
+      "stdout_sha256": "403f0d682cd587e5ca28e3bda10107310232b08dfb9a397dab2c56c0402916d4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-blind-recovery",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "blind-recovery",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:31.562911+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.06530444300005911,
+      "stdout_sha256": "35fa8efcfc30a07aecc5cd5ae60dda1abe4e5802f5e47688fa842c66b60b07f5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-completion-bypass",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "completion-bypass",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:31.635765+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.0670177979991422,
+      "stdout_sha256": "8e8adf27c50057c076faee4fefed65b5c59c2124344d35d5ae6db48c7feda0e6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-hide-escape",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "hide-escape",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:31.706710+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.0664744640016579,
+      "stdout_sha256": "2898a7f83ca3771c61f83ddd30408f6c1d3a97c05918676cc5b531520fa24c3f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-recovery-loses-revocation",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "recovery-loses-revocation",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:31.773828+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.062216958998760674,
+      "stdout_sha256": "f8881e88308c929b5b48ff8d03b8074db69b86ba892ddf209e6d7106f5123a94",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:31.855717+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.0771155260008527,
+      "stdout_sha256": "f55398a7e8b0ec98ea1f4165b1a4fe444a609f1da7a1ec0c1099d13c1268baa7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-stale-epoch",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "stale-epoch",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:31.938891+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07374381900081062,
+      "stdout_sha256": "ce39ab8869caa3581f89b2b904b031c4d5c0ad695b35d8d14404f525249ce864",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-rollback-authority",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "rollback-authority",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:32.013545+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.06912820300203748,
+      "stdout_sha256": "69e6f459dd60ba062d9958fd4fe4c67edc5f19b27c4d07d13cc53f96b6ed0574",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-receipt-authority",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "receipt-authority",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:32.088544+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07056988200201886,
+      "stdout_sha256": "1c592bf8bf1bc8a1409615e91534fa92f911547d0263dba33336d2701cd83520",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-forged-success",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "forged-success",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:32.168147+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07457507299841382,
+      "stdout_sha256": "81067fb2506e397c5275824dd66abe3e6f00f77bd8de05b139964fc4b233d8af",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-hide-effect",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "hide-effect",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:32.246741+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07364606000191998,
+      "stdout_sha256": "7b7a5466c9eca90aac7827fed77d96a7168bd1ee6c8e1e99846098fe85e2b3c7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-deny-all",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "deny-all",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:32.323082+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07088902299801703,
+      "stdout_sha256": "37ecfb411672b9f8df8febe59561749293a6e1f6bc70e198bd0379053b02cf09",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-duplicate-dispatch",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "duplicate-dispatch",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:32.392867+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.06576803400093922,
+      "stdout_sha256": "cbd42a85a2912ec8c9591641a7df41ba09e7fcfbdcbf9bbe82f7e7ce8c43961f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-blind-retry",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "blind-retry",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:32.471270+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.073616753998067,
+      "stdout_sha256": "fd92aecafe5f654d4bc8d1dd873b30468bd85551ab79d8a5c6906affab81a102",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-completion-bypass",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "completion-bypass",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:32.547205+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.07110284000009415,
+      "stdout_sha256": "a38e62179836c35e644bad1e93839b406e65163baf454a8a8f352cd7ed088b80",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-data-instruction",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "data-instruction",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:32.626886+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.0752878060011426,
+      "stdout_sha256": "dcd6a10530da448c83937d3c3a2efddc1a34ef7b8e5e5ebe0e8a5e4522a71ab4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "independent-example",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--example-jsonl",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:34.859835+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 2.228544170000532,
+      "stdout_sha256": "75f7daf85e4748dd6255cc1bf2c507bb28951b9ab0acac6b760f669f797e61c0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-repeat",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:34.947268+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.07283741799983545,
+      "stdout_sha256": "5db0e7456be4ca2e78837dce1e40bec73076deaa09a5d4b9eb8b7093c82f0a50",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "human-report",
+      "command": [
+        "/usr/bin/python3",
+        "render_report.py",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/phase5-approved/community.stdout",
+        "--output",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/phase5-approved/community.md"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:34.985761+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.03344383299918263,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "build-one",
+      "command": [
+        "/usr/bin/python3",
+        "build_release.py",
+        "--output",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/phase5-approved/build-one"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:35.051300+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.06532656899798894,
+      "stdout_sha256": "09fcb6b334e396a488eaa0e10c473cb13ec4052a4e7dc0f73b8977c54f41b96f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "build-two",
+      "command": [
+        "/usr/bin/python3",
+        "build_release.py",
+        "--output",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/phase5-approved/build-two"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:35.126335+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.07487435500297579,
+      "stdout_sha256": "0dfc79a08040990cd323ab43d19c5af3f1ccf6969abbb357ee9521391ef0e865",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-verify",
+      "command": [
+        "/usr/bin/python3",
+        "verify_package.py"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/phase5-approved/extracted/ARQUIA-EVAL-001-v0.2.0",
+      "utc": "2026-11-07T17:00:35.169660+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.03274732800127822,
+      "stdout_sha256": "be7998ad5aa9946b709d298173679606f2843b603b10a52a997f8e8ea4ea5e42",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-reference",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/phase5-approved/extracted/ARQUIA-EVAL-001-v0.2.0",
+      "utc": "2026-11-07T17:00:35.227294+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.05749935399944661,
+      "stdout_sha256": "aa058342becc10a7d56b3ddd88fd98d924767f2a914caf632b0b3c979f17d604",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-community",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/phase5-approved/extracted/ARQUIA-EVAL-001-v0.2.0",
+      "utc": "2026-11-07T17:00:35.290552+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.06303615100114257,
+      "stdout_sha256": "b9e27abde59aad5d3e5b499371a654dcc9c931c157f811dee64945b29a5f8832",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-rebuild",
+      "command": [
+        "/usr/bin/python3",
+        "build_release.py",
+        "--output",
+        "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/phase5-approved/rebuilt"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/evidence/phase5-approved/extracted/ARQUIA-EVAL-001-v0.2.0",
+      "utc": "2026-11-07T17:00:35.354850+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.0640709319995949,
+      "stdout_sha256": "5c0d8b65412e15e888b944f0a3ebd16bc64ed50c0abc534096a6747a0eb14f3d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "isolation",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "-v",
+        "isolation_checks"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:37.587458+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 2.232477129000472,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "0a4760340e6fbafdce498a20a5387f82340c3ecd7f81459654d042dbc7d50460"
+    },
+    {
+      "name": "isolated-example",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--candidate-dir",
+        "examples",
+        "--accept-external-code",
+        "--evaluator",
+        "project-side-Codex",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/home/jose-maria-garbini/AgentePersonal/ARQUIA-EVAL-COMMUNITY-20261107/candidate",
+      "utc": "2026-11-07T17:00:41.938876+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 4.351288933998148,
+      "stdout_sha256": "3e1c4452f51363c4e89c49b4ac1bc7b54fa55c16faa513ccdb60d7440eef20ac",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

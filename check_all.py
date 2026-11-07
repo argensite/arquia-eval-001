@@ -19,9 +19,12 @@ ROOT=Path(__file__).resolve().parent
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,default=ROOT/'.checks')
+    p.add_argument('--evaluator',default='unspecified');p.add_argument('--relationship',default='unspecified')
     p.add_argument('--isolation',action='store_true');a=p.parse_args();out=a.output.resolve();out.mkdir(parents=True,exist_ok=True)
-    receipts=[];summary={'schema':'arquia.acceptance/1','passed':False,'project_side':True,'independence_verified':False}
+    receipts=[];summary={'schema':'arquia.acceptance/1','passed':False,'evaluator_declared':a.evaluator,'relationship_declared':a.relationship,'independence_verified':False}
     def run(name,args,expected=0,cwd=ROOT):
+        if args and Path(args[0]).name in ('runner.py','community_runner.py'):
+            args=[*args,'--evaluator',a.evaluator,'--relationship',a.relationship]
         start=time.perf_counter();command=[sys.executable,*args]
         try:
             r=subprocess.run(command,cwd=cwd,capture_output=True,timeout=60,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
@@ -49,7 +52,7 @@ def main():
             data=json.loads(run(name,args,expected));validate(data,schema);verify(data,ROOT,cases)
             if any(r['error'] for r in data['results']):raise AssertionError(name+': execution error is not fault sensitivity')
             return data
-        reference=report('historical',['runner.py','--evaluator','project-side-acceptance'],0,ROOT/'cases.json')
+        reference=report('historical',['runner.py'],0,ROOT/'cases.json')
         summary['historical_cases']=reference['total']
         from runner import MUTANTS
         summary['historical_controls']={}
@@ -93,6 +96,8 @@ def main():
         run('extracted-verify',['verify_package.py'],cwd=packaged)
         run('extracted-reference',['runner.py'],cwd=packaged)
         run('extracted-community',['community_runner.py'],cwd=packaged)
+        rebuilt=json.loads(run('extracted-rebuild',['build_release.py','--output',str(out/'rebuilt')],cwd=packaged))
+        if rebuilt['sha256']!=one['sha256']:raise AssertionError('archive cannot reproduce its own bytes')
         summary['source_archive_sha256']=one['sha256']
         if a.isolation:
             run('isolation',['-m','unittest','-v','isolation_checks'])

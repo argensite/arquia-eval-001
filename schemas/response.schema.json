@@ -25,10 +25,14 @@
       "additionalProperties": false,
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
         },
         "version": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
         }
       }
     },
@@ -44,7 +48,48 @@
           "type": "array",
           "maxItems": 8,
           "items": {
-            "type": "object"
+            "type": "object",
+            "required": [
+              "op",
+              "authority_epoch",
+              "grant",
+              "effect",
+              "scope"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "enum": [
+                  "dispatch",
+                  "complete",
+                  "alternate_commit"
+                ]
+              },
+              "authority_epoch": {
+                "type": "integer"
+              },
+              "grant": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "effect": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "scope": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "phase": {
+                "enum": [
+                  "dispatch",
+                  "start"
+                ]
+              }
+            }
           }
         },
         "observed": {
@@ -53,7 +98,19 @@
             "active_grants",
             "outcomes",
             "incidents"
-          ]
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "active_grants": {
+              "type": "array"
+            },
+            "outcomes": {
+              "type": "object"
+            },
+            "incidents": {
+              "type": "array"
+            }
+          }
         }
       }
     },

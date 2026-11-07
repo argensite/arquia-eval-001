@@ -23,7 +23,7 @@ jobs:
         shell: python
         run: |
           import subprocess
-          expected={'v0.1.0':'b540e71ff2f615197dd886d6e0dbcae3baa62589','v0.1.1':'0ee97e2df0eeff03956782cbf2ce2ef8bc7a7af3'}
+          expected={'v0.1.0':'b540e71ff2f615197dd886d6e0dbcae3baa62589','v0.1.1':'0ee97e2df0eeff03956782cbf2ce2ef8bc7a7af3','v0.1.2':'49e339f0d57c3794b68e12caa53feabe8ad7710c'}
           for tag, sha in expected.items():
               assert subprocess.check_output(['git','rev-parse',tag+'^{commit}'],text=True).strip()==sha
       - name: Offline acceptance
@@ -42,8 +42,14 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
-      - name: Require available isolation tools
-        run: command -v bwrap && command -v findmnt
+      - name: Install Linux isolation tool if absent
+        run: |
+          if ! command -v bwrap; then
+            sudo apt-get update
+            sudo apt-get install --no-install-recommends -y bubblewrap
+          fi
+          command -v bwrap
+          command -v findmnt
       - name: Demonstrate isolation restrictions
         env:
           TMPDIR: ${{ runner.temp }}

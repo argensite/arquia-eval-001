@@ -14,7 +14,9 @@ def safe_file(root, name):
             or '.' in p.parts or p.as_posix() != name):
         raise ValueError('unsafe path: ' + name)
     target = root / name
-    if any(part.is_symlink() for part in [target, *target.parents] if part != root.parent):
+    # Inspect the package boundary, not unrelated system ancestors such as
+    # macOS /var -> /private/var. Resolution still has to stay inside root.
+    if root.is_symlink() or any(root.joinpath(*p.parts[:i]).is_symlink() for i in range(1,len(p.parts)+1)):
         raise ValueError('symlink: ' + name)
     if not target.resolve().is_relative_to(root.resolve()) or not target.is_file():
         raise ValueError('missing/nonregular file: ' + name)

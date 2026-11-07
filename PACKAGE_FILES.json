@@ -13,6 +13,7 @@
   "AUDIT.md",
   "AUDIT_COMMUNITY.md",
   "CHANGELOG.md",
+  "COMMUNITY_REVIEW.md",
   "CONTRIBUTING.md",
   "COUNTEREXAMPLES.md",
   "LEEME.md",
@@ -111,6 +112,11 @@
   "evidence/baseline/v0.1.1-verify.json",
   "evidence/baseline/v0.1.1-verify.stderr",
   "evidence/baseline/v0.1.1-verify.stdout",
+  "evidence/community-review/README.json",
+  "evidence/community-review/isolation.stderr",
+  "evidence/community-review/original-unit.stderr",
+  "evidence/community-review/summary.json",
+  "evidence/community-review/unit.stderr",
   "examples/CANDIDATE.json",
   "examples/independent_candidate.py",
   "generate_cases.py",
@@ -173,6 +179,7 @@
   "test_measurement.py",
   "test_rsi_000001.py",
   "test_rsi_000002.py",
+  "test_rsi_000003.py",
   "verify_package.py",
   "verify_report.py"
 ]
