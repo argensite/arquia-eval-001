@@ -1,36 +1,36 @@
-# Independent evaluation report — ARQUÍA-EVAL-001
+# Evaluation report — ARQUÍA-EVAL-001
 
-- Evaluator and public report URL:
-- Human / agent / combination; tools and model assistance:
-- Operator / institution (optional public information):
-- Relationship to José María Garbini / ARQUÍA, funding or compensation:
-- Do you control this report and its publication independently of ARQUÍA?:
-- Date, OS, Python version:
-- Release tag, exact commit, archive SHA-256 and verification result:
-- Candidate and full source/dependency identity:
+- Declared evaluator, operator, human/agent assistance:
+- Relationship to José María Garbini / ARQUÍA; funding or compensation:
+- Evidence of independence, if any; what remains self-declared:
+- Report URL controlled by evaluator:
+- Exact release, commit, clean/dirty state, ZIP digest and publication record:
+- Candidate name/version, full source/manifest/runtime identity:
+- Protocol/suite version and exact case hashes:
+- UTC, OS, architecture, Python/runtime, dependencies, commands and arguments:
+- stdout, stderr, actual exit receipts and complete structured reports:
 
-## Methods and reproducibility
+For each examined property answer:
 
-Exact commands, exit codes, stdout/stderr files, environment, and deviations.
-Identify whether you ran the author's code, independently implemented it, added
-cases, or reviewed only the contract. Do not describe reading code as execution.
+1. What property and falsifiable hypothesis were examined?
+2. What behavior was acceptable? Where/when were expectations declared?
+3. What actually happened? Include event indices and observed states/effects.
+4. Was a violation found? Did the candidate fail, or is the evaluator defective?
+5. Did an improper effect occur, or was only an attempt detected/blocked?
+6. Is evidence sufficient? Which observation is independent of the candidate?
+7. How can another person reproduce it, including negative controls and seed?
+8. What conclusion cannot be drawn?
 
-## Results, including failures
+Keep historical 28 (v0.1.0) / 29 (v0.1.1+) results separate from community suites.
+List each tested fault, its intended mechanism and observed detection. Errors,
+timeouts and omissions are inconclusive/failing execution, not successful fault
+detection. Separate contract matches, selected-fault sensitivity, observability,
+inconclusive cases and measured costs. Do not aggregate them into a safety score.
 
-Historical 29-case outcome (v0.1.1); report v0.1.0 separately; negative controls tested; attach complete per-case JSON.
-Separate matching assertions from safety: an escaped-effect case may correctly
-report an unsafe outcome. Explain any mismatch or exception.
+For new cases or a minimized example: attach original and reduced vectors, stable
+IDs, source hashes, unchanged hypothesis, seed, preserved failure signature and
+minimality limits. Preserve contrary evidence and disagreement.
 
-## Your new case or criticism
-
-State the claim, why it might fail, predeclared expected result, event sequence,
-actual result and reproduction steps. Link the timestamped case/version if you
-recorded it before execution. An objection to an assumption is useful even if no
-executable counterexample is supplied.
-
-## Conclusion and limits
-
-Supported / contradicted / inconclusive / not tested, for the specific property.
-Remaining assumptions, actual coverage, and evidence needed for a stronger claim.
-No endorsement or favorable result is requested. Publish this report where you
-control it; linking it back is sufficient and does not require a pull request.
+Conclude supported / contradicted / inconclusive / not tested for specific claims.
+No positive conclusion or author approval is required. A separate account and
+checksums alone do not establish evaluator independence or scientific review.

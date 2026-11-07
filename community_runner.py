@@ -78,6 +78,7 @@ def validate_response(response):
 
 
 def main(argv=None):
+    if hasattr(sys.stdout, "reconfigure"): sys.stdout.reconfigure(encoding="utf-8")
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--cases',type=Path,default=ROOT/'suites/community-v1.json')
     p.add_argument('--fault',choices=FAULTS)

@@ -1,0 +1,72 @@
+{
+  "build_cases.py": [
+    "copy",
+    "hashlib",
+    "json",
+    "pathlib"
+  ],
+  "build_release.py": [
+    "hashlib",
+    "importlib",
+    "json",
+    "pathlib",
+    "runner",
+    "subprocess",
+    "sys",
+    "zipfile"
+  ],
+  "engine.py": [
+    "copy",
+    "hashlib",
+    "json"
+  ],
+  "original/engine.py": [
+    "dataclasses"
+  ],
+  "original/reconstruct_cases.py": [
+    "json",
+    "pathlib"
+  ],
+  "original/runner.py": [
+    "engine",
+    "json",
+    "pathlib",
+    "sys"
+  ],
+  "original/test_runner.py": [
+    "engine",
+    "runner",
+    "unittest"
+  ],
+  "runner.py": [
+    "argparse",
+    "hashlib",
+    "importlib",
+    "json",
+    "pathlib",
+    "platform",
+    "sys"
+  ],
+  "test_contract.py": [
+    "engine",
+    "json",
+    "os",
+    "pathlib",
+    "runner",
+    "subprocess",
+    "sys",
+    "tempfile",
+    "unittest"
+  ],
+  "test_rsi_000001.py": [
+    "engine",
+    "pathlib",
+    "runner",
+    "unittest"
+  ],
+  "verify_package.py": [
+    "hashlib",
+    "pathlib",
+    "sys"
+  ]
+}

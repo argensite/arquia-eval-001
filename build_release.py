@@ -1,76 +1,58 @@
-"""Regenerate author-side reports and a deterministic ZIP. No network operations."""
-import hashlib
-import importlib.util
+"""Build a byte-reproducible source ZIP from an explicit inventory; no network."""
+import argparse
 import json
 from pathlib import Path
-import subprocess
 import sys
 import zipfile
+from measurement import canonical,file_hash,git_state,sha
+from verify_package import safe_file
 
-ROOT = Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parent
 
 
-def run_report(args, dest, expected_exit):
-    r = subprocess.run([sys.executable, *args], cwd=ROOT, capture_output=True, text=True)
-    if r.returncode != expected_exit:
-        raise RuntimeError(f"Unexpected exit {r.returncode}: {args}\n{r.stderr}")
-    report = json.loads(r.stdout)
-    dest.write_text(r.stdout, encoding="utf-8")
-    return dict(exit_code=r.returncode, passed=report["passed"], total=report["total"],
-                report=str(dest.relative_to(ROOT)))
+def inventory(root=ROOT):
+    names=json.loads((root/'PACKAGE_FILES.json').read_text(encoding='utf-8'))
+    if not isinstance(names,list) or not all(isinstance(x,str) for x in names) or len(names)!=len(set(names)):
+        raise ValueError('invalid package inventory')
+    if 'PACKAGE_FILES.json' not in names or 'CHECKSUMS.sha256' in names:
+        raise ValueError('inventory must include itself and exclude generated checksums')
+    return names
+
+
+def manifest(files):
+    return ''.join(sha(data)+'  '+name+'\n' for name,data in sorted(files.items())).encode('utf-8')
+
+
+def write_manifest(root=ROOT):
+    files={n:safe_file(root,n).read_bytes() for n in inventory(root)}
+    (root/'CHECKSUMS.sha256').write_bytes(manifest(files))
+
+
+def build(output,root=ROOT):
+    files={n:safe_file(root,n).read_bytes() for n in inventory(root)}
+    # Archive identity is explicitly a declaration carried by the source package.
+    source=git_state() if root==ROOT else {'commit':None,'dirty':None,'status':[]}
+    files['SOURCE_IDENTITY.json']=canonical(source)+b'\n'
+    files['PACKAGE_FILES.json']=(json.dumps(sorted(set(files)|{'PACKAGE_FILES.json'}),indent=2)+'\n').encode()
+    files['CHECKSUMS.sha256']=manifest(files)
+    version=(root/'VERSION').read_text().strip();prefix='ARQUIA-EVAL-001-v'+version+'/'
+    output=Path(output);output.mkdir(parents=True,exist_ok=True)
+    archive=output/('ARQUIA-EVAL-001-v'+version+'.zip')
+    # ZIP_STORED avoids compressor/version differences across OS/runtime builds.
+    with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_STORED) as z:
+        for name,data in sorted(files.items()):
+            info=zipfile.ZipInfo(prefix+name,(2026,11,7,0,0,0));info.create_system=3
+            info.external_attr=0o100644<<16;info.compress_type=zipfile.ZIP_STORED
+            z.writestr(info,data)
+    digest=file_hash(archive)
+    archive.with_suffix('.zip.sha256').write_text(digest+'  '+archive.name+'\n',encoding='utf-8')
+    return {'archive':str(archive),'sha256':digest,'files':len(files),'source':source,
+            'scope':'source archive only; historical results unchanged; no execution attribution'}
 
 
 def main():
-    out = ROOT / "results"
-    out.mkdir(exist_ok=True)
-    summary = dict(evidence="project-side execution, not independent evaluation",
-                   operator="Native Qwen executing authentic ChatGPT advice for Jose Maria Garbini", version=(ROOT / "VERSION").read_text().strip())
-    summary["original_reference"] = run_report(["original/runner.py"], out / "original-reference.json", 0)
-    summary["original_negative_control"] = run_report(["original/runner.py", "--negative-control"], out / "original-negative.json", 1)
-    summary["reference"] = run_report(["runner.py", "--evaluator", "project-side-native-Qwen-ChatGPT"], out / "reference.json", 0)
-    from runner import MUTANTS
-    summary["negative_controls"] = {}
-    for name in MUTANTS:
-        summary["negative_controls"][name] = run_report(["runner.py", "--negative-control", name,
-            "--evaluator", "project-side-native-Qwen-ChatGPT"], out / (name + ".json"), 1)
-    spec = importlib.util.spec_from_file_location("original_gate_for_audit", ROOT / "original/engine.py")
-    original = importlib.util.module_from_spec(spec)
-    sys.modules[spec.name] = original
-    spec.loader.exec_module(original)
-    counterexamples = []
-    for case in json.loads((ROOT / "cases.json").read_text()):
-        if case["id"].split("-")[0] not in {"C14", "C15", "C16", "C23", "C25", "C28"}:
-            continue
-        obj = original.Gate()
-        for event in case["events"]:
-            obj.step(event)
-        got = obj.snapshot()
-        compared = {k:v for k,v in case["expect"].items() if k != "execution_order"}
-        mismatch = {k:dict(expected=v, actual=got.get(k)) for k,v in compared.items() if got.get(k) != v}
-        counterexamples.append(dict(case=case["id"], expected=compared, actual=got, mismatches=mismatch))
-    (out / "original-added-counterexamples.json").write_text(json.dumps(counterexamples, indent=2) + "\n")
-    summary["original_added_counterexamples"] = sum(bool(x["mismatches"]) for x in counterexamples)
-    (out / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
-    files = sorted(p for p in ROOT.rglob("*") if p.is_file()
-        and not any(part in {".git", "__pycache__", "dist"} for part in p.relative_to(ROOT).parts)
-        and p.name not in {"CHECKSUMS.sha256", "independent_result.json", "negative_result.json"}
-        and p.suffix not in {".pyc", ".pyo"})
-    manifest = ROOT / "CHECKSUMS.sha256"
-    manifest.write_text("".join(hashlib.sha256(p.read_bytes()).hexdigest() + "  " + p.relative_to(ROOT).as_posix() + "\n" for p in files))
-    files.append(manifest)
-    dist = ROOT / "dist"
-    dist.mkdir(exist_ok=True)
-    archive = dist / ("ARQUIA-EVAL-001-v" + (ROOT / "VERSION").read_text().strip() + ".zip")
-    with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as z:
-        for p in sorted(files):
-            info = zipfile.ZipInfo(("ARQUIA-EVAL-001-v" + (ROOT / "VERSION").read_text().strip() + "/") + p.relative_to(ROOT).as_posix(), (2026,11,5,0,0,0))
-            info.compress_type = zipfile.ZIP_DEFLATED
-            info.external_attr = 0o100644 << 16
-            z.writestr(info, p.read_bytes())
-    digest = hashlib.sha256(archive.read_bytes()).hexdigest()
-    (dist / (archive.name + ".sha256")).write_text(digest + "  " + archive.name + "\n")
-    print(json.dumps(dict(summary=summary, archive=str(archive), sha256=digest, files=len(files)), indent=2))
-
-
-if __name__ == "__main__":
-    main()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,default=ROOT/'dist')
+    p.add_argument('--write-manifest',action='store_true');a=p.parse_args()
+    if a.write_manifest:write_manifest();return 0
+    print(json.dumps(build(a.output),indent=2));return 0
+if __name__=='__main__':sys.exit(main())

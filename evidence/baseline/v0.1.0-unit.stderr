@@ -1,0 +1,10 @@
+test_cli_reports_failure_and_exact_source_identity (test_contract.ContractTests.test_cli_reports_failure_and_exact_source_identity) ... ok
+test_external_module_and_reviewer_cases_are_actually_loaded (test_contract.ContractTests.test_external_module_and_reviewer_cases_are_actually_loaded) ... ok
+test_independent_case_file_can_fail_and_exceptions_are_failures (test_contract.ContractTests.test_independent_case_file_can_fail_and_exceptions_are_failures) ... ok
+test_reference_and_each_negative_control (test_contract.ContractTests.test_reference_and_each_negative_control) ... ok
+test_restart_is_a_new_instance_with_identical_observable_state (test_contract.ContractTests.test_restart_is_a_new_instance_with_identical_observable_state) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.090s
+
+OK

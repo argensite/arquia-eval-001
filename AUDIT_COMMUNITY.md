@@ -22,6 +22,11 @@ the downloaded digest files:
 - v0.1.0: `fa9b1eacec0628fcd01aa3be9cb13717137f9d1d0ded39206df463daa888dbd2`
 - v0.1.1: `efd337b64e71e02d8c5b544a421ca9b7e74d42fd6df00946f5d603f6120a3ab2`
 
+Rebuilding v0.1.0 twice reproduced its published ZIP exactly. Rebuilding v0.1.1
+twice produced identical local ZIPs, but not its published ZIP: the old builder
+regenerates a different report set. This packaging discrepancy is retained in
+`evidence/baseline/historical-packaging.json`; historical assets were not changed.
+
 A full Git bundle, both Git archives and both release assets were saved before
 editing. Bundle SHA-256:
 `37e473c2f2afa124cec85d3b8b4ad8efb9166d442be78151eb8f8f2d2066559d`.
@@ -78,8 +83,8 @@ with their authors; this package links and paraphrases rather than relicensing i
 
 For each fixed release: run `python3 verify_package.py`, `python3 runner.py`,
 `python3 -m unittest discover -v`, the five `--negative-control` names above,
-and `python3 -m unittest discover -s original -v` from the original directory
-(use `cd original` followed by discovery to avoid Python module-name collisions).
+and, inside `original/`, `python3 -m unittest discover -v`
+(use that working directory to avoid Python module-name collisions).
 Use the downloaded ZIP matching the digest, not a moving branch.
 
 Command arrays, cwd, UTC, stdout, stderr, return codes and SHA-256 receipts are

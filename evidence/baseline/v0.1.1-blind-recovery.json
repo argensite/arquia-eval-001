@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "runner.py",
+    "--negative-control",
+    "blind-recovery"
+  ],
+  "cwd": "$EXTRACTED_RELEASE",
+  "utc": "2026-11-07T16:12:42.204553+00:00",
+  "exit_code": 1,
+  "stdout_sha256": "cfa33285534fd77d6b0e6693cbc73daff7d829030bb26ee816ba5cd8fccfb5a5",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

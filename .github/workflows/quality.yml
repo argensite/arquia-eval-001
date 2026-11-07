@@ -1,0 +1,50 @@
+name: Offline contract quality
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  portable:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ['3.10', '3.14']
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Historical tags
+        shell: python
+        run: |
+          import subprocess
+          expected={'v0.1.0':'b540e71ff2f615197dd886d6e0dbcae3baa62589','v0.1.1':'0ee97e2df0eeff03956782cbf2ce2ef8bc7a7af3'}
+          for tag, sha in expected.items():
+              assert subprocess.check_output(['git','rev-parse',tag+'^{commit}'],text=True).strip()==sha
+      - name: Offline acceptance
+        run: python check_all.py --output checks
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: evidence-${{ matrix.os }}-${{ matrix.python }}
+          path: checks
+          retention-days: 14
+          if-no-files-found: error
+  linux-isolation:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Require available isolation tools
+        run: command -v bwrap && command -v findmnt
+      - name: Demonstrate isolation restrictions
+        env:
+          TMPDIR: ${{ runner.temp }}
+        run: python3 -m unittest -v isolation_checks

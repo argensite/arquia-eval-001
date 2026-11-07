@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-v"
+  ],
+  "cwd": "$EXTRACTED_RELEASE",
+  "utc": "2026-11-07T16:12:42.052892+00:00",
+  "exit_code": 0,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "dd6ed26f5a448d3df22fb4fa67c4ab2e3002037ec8b6d283bb23e1e1df0cea95"
+}

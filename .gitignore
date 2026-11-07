@@ -4,3 +4,14 @@ __pycache__/
 independent_result.json
 negative_result.json
 dist/
+
+checks/
+.checks/
+*-result.json
+community.json
+historical.json
+example.json
+community.md
+historical.md
+generated.json
+counterexample.json

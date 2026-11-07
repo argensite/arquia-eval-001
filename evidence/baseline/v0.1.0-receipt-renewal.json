@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "runner.py",
+    "--negative-control",
+    "receipt-renewal"
+  ],
+  "cwd": "$EXTRACTED_RELEASE",
+  "utc": "2026-11-07T16:12:41.604379+00:00",
+  "exit_code": 1,
+  "stdout_sha256": "39de93c33b798d3c63f56626cddffa96a02236ced5a613c77ae3436df970c642",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

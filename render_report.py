@@ -42,5 +42,5 @@ def render(report):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('report',type=Path);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
-    a.output.write_text(render(json.loads(a.report.read_text(encoding='utf-8'))),encoding='utf-8')
+    a.output.write_text(render(json.loads(a.report.read_text(encoding='utf-8-sig'))),encoding='utf-8')
 if __name__=='__main__':main()

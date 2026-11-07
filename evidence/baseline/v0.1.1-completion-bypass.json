@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "runner.py",
+    "--negative-control",
+    "completion-bypass"
+  ],
+  "cwd": "$EXTRACTED_RELEASE",
+  "utc": "2026-11-07T16:12:42.242048+00:00",
+  "exit_code": 1,
+  "stdout_sha256": "19312784eccf9b3c1b7654b344940f3f5d5b907385a3434bdc55523e9c69b564",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

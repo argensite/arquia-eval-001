@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "runner.py",
+    "--negative-control",
+    "hide-escape"
+  ],
+  "cwd": "$EXTRACTED_RELEASE",
+  "utc": "2026-11-07T16:12:42.279312+00:00",
+  "exit_code": 1,
+  "stdout_sha256": "3b6386cb1ebbccdc89612202d7896b5fc119f51acf8fc14b104bfbac2bf0bca9",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

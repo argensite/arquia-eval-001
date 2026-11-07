@@ -1,115 +1,91 @@
-# Protocol — version 0.1.0
+# Protocol and observable limits — community extension 1
 
-## Question and falsifiers
+Two distinct protocols coexist. `runner.py` retains historical v0.1.1 vectors and
+engine semantics, including C29. `community_runner.py` runs
+`arquia.community-cases/1`; the schemas and cases are independently versioned.
+Neither contract uses ARQUÍA affiliation or doctrine as an approval criterion.
 
-Can an effect-scoped gate preserve revoked authority across receipt delivery and
-serialized recovery, while retaining evidence of an already-dispatched effect?
+## Historical contract
 
-The contract fails if any tested receipt, timeout, cache-clear or recovery changes
-active grants, dispatch count, completion count or committed effects (P1/P2);
-if an invalid binding confirms a different action (P3); if missing evidence becomes
-success or permission (P4); if an observed post-revocation hard-stop violation is
-hidden (P5); or if a completion exception authorizes an unstarted, different or
-second effect (P6). Partial state assertions are in `cases.json`; P1/P2 are checked
-after every passive event, so a temporary permission renewal cannot be hidden by
-a later revocation.
+P1/P2 compare active grants, dispatches, completions and committed effects before
+and after every receipt, timeout, cache-clear and recovery. P3 binds receipts to
+an effect, grant version and request SHA-256. P4 retains uncertainty. P5 reports an
+observed escaped effect. P6 bounds preauthorized completion to an already-started
+effect. A receipt updates evidence, never authority. C29 must fail solely for its
+step-4 transient active-grant revival, despite identical final states. A metatest
+requires the historical regression to fail if the temporal detector is disabled.
 
-P1/P2 checks are independent of the candidate's methods but depend on truthful
-adapter snapshots. A dishonest adapter can lie; this harness is not a trusted
-monitor of arbitrary real systems.
+`request_hash` is SHA-256 of UTF-8 JSON `[effect_id, request_string]`,
+`ensure_ascii=False`, sorted keys, separators `(',', ':')`. Labels such as
+`independent_observer` are synthetic assumptions, not signatures. Historical
+snapshots still belong to the candidate. `original/` is unchanged; its original
+archive identity remains unverified, as documented in PROVENANCE.
 
-## Fixed assumptions
+## Community contract
 
-- Synthetic actions have unique logical effect IDs and grants. Grant IDs are never
-  reused. A version belongs to one grant. No general-purpose capability is modeled.
-- An authoritative, correct grant store and serial event order are assumed. The
-  candidate and simulated observer inhabit one process. There is no real signature,
-  quorum, hostile writer, network transport or enforcement at a remote endpoint.
-- A request binding is SHA-256 of UTF-8 JSON `[effect_id, request_string]` with
-  `ensure_ascii=False`, sorted keys and separators `(',', ':')`. This is binding
-  within the fixture, not proof of who authorized the request. Version and grant
-  also form the receipt's logical deduplication key.
-- Accepted receipt IDs bind to one logical observation. Alternate delivery IDs do
-  not create another observation. Invalid/untrusted evidence cannot consume the
-  key of a later valid observation. Historical incidents remain visible.
-- `source: independent_observer` designates a trusted **simulated** actor. An
-  attacker who can choose this label is outside the trust model. The model also
-  requires a synthetic committed effect before accepting success evidence.
+The evaluator owns the issuer, logical clock, synthetic actuator and append-only
+per-case effect journal. The candidate receives JSON copies of an event and
+current public authority/evidence facts; it never receives expected answers.
+It returns proposed commands and its observed state. The evaluator compares
+observations before executing commands, then records every modeled command,
+including unauthorized commands. It does not silently repair faulty decisions.
 
-## Events and interpretation
+- `authority_epoch` identifies an issuer's valid grant generation. A repeated or
+  older grant cannot revive revocation. A new generation requires a verified
+  synthetic issuer event. `evidence_sequence` orders evidence only.
+- Grants bind an effect, scope, role, expiry, optional parent generation and
+  delegation permission. Parent revocation invalidates delegated authority.
+  Role changes invalidate old-role grants; returning to a role does not revive them.
+- Logical expiry is exclusive: a grant with `expires_at=2` is invalid at time 2.
+  Time cannot move backwards. This is serial logical order, not synchronized clocks.
+- Dispatch creates one `unresolved` effect. Repeating it, recovering or receiving
+  a timeout never retries it. Verified abort produces `aborted`; an observed
+  commit produces `committed`. Unverified or contradictory claims change neither.
+  Aborted IDs are not reused; another attempt requires a distinct effect/grant.
+- A `start` may capture an explicitly preauthorized finish exception. It permits
+  one completion after revocation, for that effect, scope and epoch only. It does
+  not survive expiry, role replacement or a newer generation. It does not permit
+  an unstarted effect. Its appropriateness remains an open contract question.
+- Compensation needs a separate new grant/effect. Detection of damage never grants
+  permission to compensate automatically.
+- Save/recover/restore reconstruct candidate state. The evaluator's authority and
+  effect journal remain current, including tombstones. This models loss of a
+  client cache; it does not demonstrate disk/fsync or real crash consistency.
+- Receipts and data cannot issue commands. Fake origin labels and malicious data
+  are inert. `alternate_commit` is a deliberate synthetic bypass route; its effect
+  is recorded and classified unauthorized. Unmodeled routes remain unobserved.
 
-| Event | Meaning |
-| --- | --- |
-| `grant` | Issuer authorizes one effect and request, with an explicit completion policy. |
-| `dispatch` / `start` | A logical attempt / first phase starts, once, under active authority. |
-| `timeout` | Missing acknowledgement; no proof of success or failure; no retry. |
-| `revoke` | No further starts under that grant. The first revocation position is retained. |
-| `external_commit` | Test observer injects a synthetic external effect outside gate control. |
-| `receipt` | Evidence can update a record; cannot authorize or perform an action. |
-| `complete` | Explicit local second phase; at most once for a previously started effect. |
-| `clear_client_cache` / `recover` | Runner serializes state to JSON and constructs a fresh candidate instance. No effect is executed. |
+`external_commit` injects an effect after a dispatch. COMM-015 expects its escaped
+effect to be reported: a matching result tests detection, **not prevention**.
+A candidate that refuses valid work fails the positive-action cases. Declaring
+no effects cannot erase the evaluator's journal. Observation independence is
+limited to this synthetic boundary, not arbitrary hostile Python in the same
+process. External candidates run behind the boundary described in SECURITY.
 
-Default `finish_after_revoke=false` is a hard-stop contract for future completion.
-`true` is a different grant contract: the issuer preauthorizes one bounded
-completion of an already-started effect after revocation of new starts. It does
-not promise that every human revocation can be overridden, and it cannot be added
-after the fact. Its suitability is an explicit question for reviewers.
+## Results and identity
 
-An external commit after hard-stop revocation yields
-`escaped_effect_after_revocation`. The test cannot undo it or prove prevention.
-When ordering is explicitly unavailable, `execution_order=undetermined` and
-`execution_order_undetermined` remain visible, even if existence is confirmed.
-No comparison of real clocks is performed. Automatic compensation is not
-implemented: a compensating dispatch needs a separate new grant (C20).
+Results conform to `schemas/result.schema.json`; measurement identity conforms
+to `schemas/measurement.schema.json`. Each contains per-case events, violations,
+errors, expected/observed fields, consequences and missing evidence; commands,
+UTC, OS/architecture/Python, exact commit or archive declaration, dirty state,
+local source hashes, loaded runtime files, effective selected environment,
+configuration digest, measured duration and intended process exit.
 
-Confirmation refers only to the synthetic observer or local model. The word
-`committed` in a snapshot describes simulated world state, not remote delivery.
+`check_all.py` records the actual child exit and byte hashes of stdout/stderr.
+`verify_report.py` checks the payload and supplied local source/case bytes without
+executing the candidate. Runtime dependency hashes are recorded, not proof that
+a different machine has the same runtime. Hashes are not signatures or proof of
+truth, authorship or independence. A changed evaluator requires a changed identity.
 
-## Execution, comparison and external extensions
+Exit 0 means all tested contract assertions matched; 1 means a case failed;
+invocation/input/isolation errors are nonzero, usually 2. Exceptions and timeouts
+are failed/inconclusive evidence, never an approved or skipped case. No global
+safety score is computed. Runtime is wall time, not a paid-service cost estimate.
 
-Default candidate: `engine:Gate`. Additional candidates implement `step`,
-`snapshot`, `export_state`, and `from_state`. See `ADAPTER.md`. `--cases` accepts
-a reviewer-owned JSON file with the same schema. Use a different file for added
-cases; retain the original vectors and report their results separately.
+## Falsifiability and nonclaims
 
-Record the exact commit/archive hash before execution. Keep stdout, stderr,
-commands, exit status, runtime and all changed source files. Runner records only
-the adapter entry file hash; reviewers must also record dependent source and
-environment hashes. Adapter code is executed as normal Python and is not sandboxed
-by this runner. Running the supplied default needs no extra packages or network.
-
-Five deliberate faults test different detection paths: receipt renewal, blind
-retry, unauthorized completion, hidden escaped effect, and lost revocation during
-reconstruction. Each must fail at least one case. Detecting these faults is a
-sensitivity check for selected bugs, not a measured rate of detecting all bugs.
-
-## Independence and publication
-
-An external report should declare who operated the test, their relationship to
-the author/project, and any assistance or compensation. A separate account alone
-does not establish independence; the report must be controlled by the evaluator.
-The project will distinguish an invitation, acceptance, self-reported execution,
-checkable reproduction, new counterexample, independent implementation and formal
-peer review. None can be inferred from the previous stage. Silence is no result.
-
-The evaluator is free to publish failures, limitations or rejection of the
-contract without author approval. Prefer an independently controlled repository
-or permanent publication, with an optional link from our issue tracker. Do not
-put secrets, personal data or production receipts in a report.
-
-Internal author-side results precede this freeze. This release is a prospective
-baseline for external runs, not a retroactive preregistration. Any later code or
-expectation change gets a new version; preserve earlier reports and hashes.
-
-## Explicitly outside the evidence
-
-Distributed races or partitions, cryptographic authenticity, Byzantine witnesses,
-crash consistency/fsync, real process failure, actual database recovery, live
-agents, external services, human harm, ethical validity, universal safety, and
-the full ARQUÍA framework. No statistical population or causal estimate is made.
-The finite vectors are examples, not exhaustive state-space verification.
-
-Priority external challenges: define a two-replica revocation/commit race with a
-real ordering witness; replace the candidate with an independent implementation;
-show a sequence that satisfies these assertions while violating the intended
-contract; or explain why the revocation/finish distinction is unacceptable.
+Cases declare hypotheses/expectations independently of candidate outputs.
+Generation records seeds; minimization retains a named violation and never
+relabels an error as that violation. Its result is 1-minimal, not proven globally
+shortest. Selected fault detection is not universal coverage or a statistical
+sensitivity estimate. See SCOPE for theory, production and distributed nonclaims.

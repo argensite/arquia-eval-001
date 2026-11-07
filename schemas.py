@@ -78,6 +78,10 @@ def validate(value,schema,root=None,path='$',depth=0):
 
 def load_suite(path):
     suite=read_json(path);validate(suite,read_json(ROOT/'schemas/case.schema.json'))
+    for case in suite['cases']:
+        for event in case['events']:
+            if event['op']=='grant' and (('parent' in event)!=('parent_epoch' in event)):
+                raise ValueError('delegation requires both parent and parent_epoch')
     ids=[x['id'] for x in suite['cases']]
     if len(set(ids))!=len(ids):raise ValueError('duplicate case ID')
     return suite

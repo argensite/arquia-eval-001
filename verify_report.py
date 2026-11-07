@@ -45,7 +45,7 @@ def main():
     p.add_argument('--cases', type=Path)
     args = p.parse_args()
     try:
-        print(json.dumps(verify(json.loads(args.report.read_text(encoding='utf-8')), args.root, args.cases), indent=2))
+        print(json.dumps(verify(json.loads(args.report.read_text(encoding='utf-8-sig')), args.root, args.cases), indent=2))
         return 0
     except (OSError, ValueError, KeyError, TypeError) as exc:
         print('Invalid measurement: ' + str(exc), file=sys.stderr)

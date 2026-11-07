@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "runner.py",
+    "--evaluator",
+    "project-side-Codex-audit"
+  ],
+  "cwd": "$EXTRACTED_RELEASE",
+  "utc": "2026-11-07T16:12:42.129517+00:00",
+  "exit_code": 0,
+  "stdout_sha256": "ff29850518f6a96684edeab1c5a0f21b2c8afa2fda4f8382672e694bc14e355b",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

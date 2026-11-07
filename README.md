@@ -1,110 +1,77 @@
-<!-- native-release -->
-Current version: **v0.1.1**. See [release notes](RELEASE_NOTES.md) and [RSI evidence](RSI_RELEASE.json). Historical v0.1.0 remains available at its immutable commit/tag. Counts and results below that explicitly refer to v0.1.0 are historical. Current verified counts are in RSI_RELEASE.json. Project-side tests do not establish independent validation.
-<!-- /native-release -->
-
 # ARQUÍA-EVAL-001
 
-**Late receipts, revoked authority, and escaped effects — v0.1.0**
+An offline, falsifiable experiment about an agent's authority to act. Can revoked
+permission reappear after a receipt or recovery? Can an implementation conceal an
+unauthorized effect? A valid counterexample matters as much as a passing result.
 
-A small, offline experiment for independent criticism and replication. A late
-receipt may update evidence about an earlier action. It must not restore a
-revoked grant, initiate another action, or conceal an effect that escaped after
-revocation.
+This branch prepares **0.2.0**. Check the GitHub release record for publication.
+No ARQUÍA affiliation, endorsement, paid model, API key or account is needed to
+run or criticize it. **Passing means matching a bounded synthetic contract. It is
+not a safety certification, production validation or approval of the 0-1-2-3 theory.**
 
-**Status: author-side simulation, externally unvalidated.** Passing these cases
-means matching the stated model contract. It does not certify an agent, a live
-system, the ARQUÍA architecture, or the philosophical 0-1-2-3 theory. This is a
-standard kind of access-control question; we do not claim the invariant is unique
-to ARQUÍA or that this example establishes scientific novelty.
+## First run
 
-## Run in a few seconds
-
-Python 3.10 or later, standard library only. No installation, API keys, network,
-models, paid services, or real-world actions are needed. Read the source before
-running it. On systems where Python is named `python`, substitute that command.
+Python 3.10+ and its standard library. Download a fixed release and inspect its
+sources. Linux/macOS (`python3`); Windows uses `py -3`:
 
 ```sh
 python3 verify_package.py
-python3 runner.py --evaluator YOUR_NAME > independent_result.json
-python3 -m unittest -v test_contract
-python3 runner.py --negative-control receipt-renewal > negative_result.json
+python3 runner.py --evaluator YOUR_NAME --relationship unspecified > historical.json
+python3 community_runner.py --evaluator YOUR_NAME --relationship unspecified --markdown community.md > community.json
+python3 community_runner.py --example-jsonl > example.json
+python3 verify_report.py community.json --cases suites/community-v1.json
+python3 check_all.py --output checks
 ```
 
-The reference command should exit **0** and match **29/29** cases. The negative
-control should exit **1** because its intentionally introduced bug is detected.
-Four more negative controls are listed by `python3 runner.py --help`. A report
-contains each event, observed state, mismatched fields, invariant violations,
-Python version, and hashes of the vectors and adapter file. An error is a failure,
-not a skipped or successful case.
+The historical runner retains **29 cases** from v0.1.1 (v0.1.0 has 28).
+The separately versioned community battery has **28 cases**. `check_all.py` checks
+five historical and ten additional deliberate faults, temporal sensitivity,
+source preservation, schemas, reports, deterministic generation and packaging.
+An expected negative-control exit **1** is success of that sensitivity check;
+an exception or timeout is never a successful detection. See [QUICKSTART](QUICKSTART.md).
 
-`verify_package.py` checks file hashes against the supplied manifest. It does not
-prove authorship or that the manifest is trustworthy; compare the archive digest
-with the separate publication record. See [the protocol](PROTOCOL.md).
+## What the results mean
 
-## What is being evaluated
+- Historical reports use candidate snapshots; dishonest snapshots remain a limitation.
+- Community reports use an evaluator-owned **synthetic effect ledger**. No real
+  endpoint is contacted. Only the modeled command routes are visible.
+- A case may correctly detect an effect that already happened. It must not be
+  described as preventing that effect. COMM-015 and historical C05 illustrate this.
+- Contract matches, selected-fault sensitivity, observability, inconclusive cases
+  and measured runtime remain separate. There is no global safety score.
 
-The 29 historical cases cover receipt/revocation ordering, renamed and duplicate
-deliveries, wrong effect/version/request binding, self-reported success, unknown
-outcomes, escaped effects, two-phase completion contracts, separate compensation
-authority, and restoration into a new object through a serialized checkpoint.
+The independent example implements an ordinary capability/ACL policy without
+importing `engine.Gate` or the evaluator. It was written for the project, so code
+independence is **not evaluator independence**. Agreement with this comparator
+establishes no advantage unique to ARQUÍA. No complete production ARQUÍA
+architecture is evaluated here.
 
-The observer is simulated. Its `independent_observer` label is **not** real
-authentication or evidence of third-party independence. JSON checkpoint restoration
-is **not** a process-kill, durable-disk, distributed-consensus, or production test.
-`ordering: undetermined` checks how missing ordering evidence is represented; it
-does not create or solve a network partition.
+## Connect, challenge and contribute
 
-In C05, a synthetic external effect commits after hard-stop revocation. The case
-passes only when the violation is **reported**. The world in that case is still
-unsafe: a green contract result must not be described as successful prevention.
+[ADAPTER](ADAPTER.md) defines portable JSONL messages, size/time bounds and failure
+behavior. Arbitrary Python imports are disabled in the legacy CLI. External code
+requires express acceptance and the demonstrated Linux isolation boundary; it
+is never silently run without that isolation. The shipped example works across
+platforms without extra libraries.
 
-## Independent evaluation
+Keep new cases separate from `cases.json`. [COUNTEREXAMPLES](COUNTEREXAMPLES.md)
+explains hypotheses, deterministic seeds and minimized traces. Publish criticism
+or results under your own control, then optionally link them in
+[issue #1](https://github.com/argensite/arquia-eval-001/issues/1). No favorable result
+or author approval is required for external criticism.
 
-You control your conclusions and publication. No positive result, endorsement,
-merge, or ARQUÍA approval is required. Negative and inconclusive results are useful.
+Read [PROTOCOL](PROTOCOL.md), [CONTRIBUTING](CONTRIBUTING.md),
+[REPORT_TEMPLATE](REPORT_TEMPLATE.md), [SECURITY](SECURITY.md),
+[CHANGELOG](CHANGELOG.md) and [MIGRATION](MIGRATION.md).
+[External evidence](community/EVIDENCE.md) distinguishes claims, reproducible runs,
+implementations and critiques without treating them as ranks.
 
-1. Record the archive SHA-256, release tag and exact Git commit.
-2. Run the unmodified cases and at least one negative control; retain complete
-   output, command lines, exit codes, and environment information.
-3. Challenge the contract and its assumptions, including which revocation
-   semantics are meaningful. A model can consistently implement a wrong contract.
-4. Add at least one case designed by you, or implement the contract independently.
-   Describe the hypothesis and expected result before running the new experiment.
-5. Publish the full report in a repository or venue you control. Link it in an
-   issue here or in the originating discussion. State your relationship to ARQUÍA
-   and whether a human, agent, or combination performed the work.
-
-Use [REPORT_TEMPLATE.md](REPORT_TEMPLATE.md) and [ADAPTER.md](ADAPTER.md).
-Re-running our code externally is replication of this fixture. An independently
-implemented candidate or new falsifying case provides different evidence. Neither
-automatically constitutes human academic peer review.
-
-## Provenance and internal review
-
-The [original example](original/) was recovered from visible code in the supplied
-ChatGPT conversation. Its 12-case result and 8 detected failures in the original
-negative control were reproduced. The original archive could not be downloaded;
-we do not claim our reconstructed directory is a byte-identical copy of that ZIP.
-
-Six additional cases exposed weaknesses in that original example. The amended
-model and additional assertions are separate. See [AUDIT.md](AUDIT.md),
-[PROVENANCE.md](PROVENANCE.md), and [historical author-side results](results/validation.json).
-All preparation, revisions and runs in this release were performed on behalf of
-the project owner with AI assistance (ChatGPT/Codex). They are not independent
-review. The baseline is frozen for subsequent external testing; internal results
-were already known when it was frozen, so this is not their preregistration.
-
-## Discussion and attribution
-
-This experiment follows the concrete objections and offer to test in the
-[October 16 discussion on The Colony](https://thecolony.ai/post/a04d3184-c593-476d-91db-153531d0f79a).
-Deep Seeker raised evidence provenance, compensation and replay binding;
-ColonistOne raised timeout recovery, two-phase effects and timestamp semantics.
-These contributions are credited in [PROVENANCE.md](PROVENANCE.md).
+Historical releases, `original/`, case bytes and historical reports are retained.
+[AUDIT_COMMUNITY](AUDIT_COMMUNITY.md) records the initial audit and
+[PROVENANCE](PROVENANCE.md) credits earlier work. SHA-256 identifies bytes; it does
+not authenticate an author. Software and original package documentation use the
+[MIT license](LICENSE); linked third-party material retains its own rights.
 
 Project owner: José María Garbini. [ARQUÍA](https://arquia.live) is the originating
-governance research project, not a certifying authority for this package.
-The software and documentation authored for this package are available under the
-[MIT license](LICENSE); linked third-party material retains its own terms.
-
-Resumen en español: [LEEME.md](LEEME.md).
+governance research project. Evidence, proposed mechanisms and broader theory
+are distinguished in [SCOPE](SCOPE.md). [Guía en español](LEEME.md).

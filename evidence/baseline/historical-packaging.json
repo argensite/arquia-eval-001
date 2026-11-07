@@ -1,0 +1,18 @@
+{
+  "v0.1.0": {
+    "build_archive_digests": [
+      "fa9b1eacec0628fcd01aa3be9cb13717137f9d1d0ded39206df463daa888dbd2",
+      "fa9b1eacec0628fcd01aa3be9cb13717137f9d1d0ded39206df463daa888dbd2"
+    ],
+    "same_bytes_on_repeated_local_build": true,
+    "same_as_published_asset": true
+  },
+  "v0.1.1": {
+    "build_archive_digests": [
+      "b979b175110de5bbf9eade3bb689006f0a796d4b96f68fae7707396bbcd6246b",
+      "b979b175110de5bbf9eade3bb689006f0a796d4b96f68fae7707396bbcd6246b"
+    ],
+    "same_bytes_on_repeated_local_build": true,
+    "same_as_published_asset": false
+  }
+}

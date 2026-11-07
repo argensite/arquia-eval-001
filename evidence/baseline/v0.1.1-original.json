@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python3",
+    "original/runner.py"
+  ],
+  "cwd": "$EXTRACTED_RELEASE",
+  "utc": "2026-11-07T16:12:42.342134+00:00",
+  "exit_code": 0,
+  "stdout_sha256": "ef5b2603674964a62c8662c18944bb9201e2456338299155b376d52440d92840",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python3",
+    "verify_package.py"
+  ],
+  "cwd": "$EXTRACTED_RELEASE",
+  "utc": "2026-11-07T16:12:41.345300+00:00",
+  "exit_code": 0,
+  "stdout_sha256": "ab842f8e830582c9bd7fd59fb806396d4df9907730b8731321a3e7b111f212e8",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

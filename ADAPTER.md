@@ -1,37 +1,61 @@
-# Bring an independent implementation
+# Portable candidate integration
 
-Implement a class in an importable Python module, without inheriting `engine.Gate`
-if you want to claim implementation independence. It must support:
+Level 1: `python3 runner.py` and `python3 community_runner.py` need only Python.
+Level 2: implement the JSONL contract below in any language. The standalone
+`examples/independent_candidate.py` has no imports from the engine or evaluator.
+Level 3: a real-system experiment requires its own authorized isolated environment,
+threat model, effect boundary and protocol; this release does not implement it.
 
-```python
-class Candidate:
-    def __init__(self): ...
-    def step(self, event: dict): ...
-    def snapshot(self) -> dict: ...
-    def export_state(self) -> dict: ...  # JSON-serializable complete checkpoint
-    @classmethod
-    def from_state(cls, checkpoint: dict): ...  # a newly constructed instance
+## One request, one response, one process
+
+UTF-8 JSONL, exactly one object and final LF on stdin and stdout. Maximum 256 KiB
+per message, 64 KiB stderr, 8 commands per response, 2 seconds per process. The
+launcher starts a new process per event and carries the returned JSON checkpoint.
+It never repeats an uncertain call. No unsolicited output or extra stdout lines.
+
+Request (`schemas/request.schema.json`):
+
+```json
+{"protocol":"arquia.io/1","id":1,"event":{"op":"timeout"},"context":{"grants":{},"effects":{},"clock":0,"role":"operator","evidence_sequence":0,"incidents":[]},"checkpoint":{}}
 ```
 
-Use the event contract in `PROTOCOL.md`. The snapshot contains the fields used in
-`cases.json`, including counts, active grants, effects, outcomes, ordering and
-incidents. Stable lists are sorted; IDs are case-sensitive. Avoid importing this
-model to generate expected answers. Record a mapping if your representation differs.
+Response (`schemas/response.schema.json`):
 
-Place `my_candidate.py` beside `runner.py`, then run:
+```json
+{"protocol":"arquia.io/1","id":1,"candidate":{"name":"independent-conventional","version":"1"},"response":{"commands":[],"observed":{"active_grants":[],"outcomes":{},"incidents":[]}},"checkpoint":{}}
+```
+
+Echo the request ID and protocol exactly. `observed` describes **pre-command**
+state, derived from available facts. `commands` contains `dispatch`, `complete`
+or the deliberate fault route `alternate_commit`, with `grant`, `effect`, integer
+`authority_epoch`, `scope`, and optional `phase` (`dispatch` or `start`). Stable
+lists are sorted. `context.grants/effects` use the fields in PROTOCOL and the
+complete example. Requests never carry expected case answers.
+
+The candidate directory needs `CANDIDATE.json`: schema `arquia.candidate/1`,
+name/version, an explicit relative `files` array, and a command array (no shell).
+See the example manifest. Executable paths are `/usr/bin/...` or `/candidate/...`;
+only inventoried files are copied into the read-only candidate mount. Maximum
+128 files and 8 MiB. No symlinks or traversal paths. Candidate source/manifest
+hashes, commands, responses, stdout/stderr and exit codes are retained.
 
 ```sh
-python3 runner.py --adapter my_candidate:Candidate --evaluator YOUR_NAME > independent_result.json
-python3 runner.py --adapter my_candidate:Candidate --cases my_cases.json > added_cases_result.json
+python3 community_runner.py --example-jsonl > example.json
+python3 community_runner.py --candidate-dir examples --accept-external-code > isolated.json
 ```
 
-The adapter is executable code, not inert input. Inspect it yourself and choose an
-appropriate environment. The default experiment needs no network or credentials.
-Do not point an adapter at production, real messaging, accounts or payments for
-this evaluation. A different real-system study requires its own authorization,
-sandbox, threat model and protocol.
+The second command requires Linux, existing bubblewrap/findmnt and a persistent
+TMPDIR. External execution is off by default and refuses unavailable isolation.
+The first executes only the project-shipped example, not an isolation claim.
+For other languages put your standalone executable or script/runtime command in
+the manifest. Runtime binaries must exist inside `/usr`; no downloads occur.
 
-A case is a JSON object with `id`, `description`, a nonempty `events` array and a
-nonempty `expect` object. Keep added vectors in a separate file and commit their
-expected outcomes before inspecting the candidate's output. Report original and
-added cases separately. Exceptions are reported as failures, not swallowed.
+Malformed/oversized output, unknown operations, identity mismatch, changed source,
+nonzero exit and timeout fail the case or reject setup. A timeout is not a pass
+and is not retried. Checkpoint recovery does not erase the evaluator's ledger.
+On Windows/macOS use the shipped example for protocol development or a separately
+authorized Linux environment for foreign code; no insecure fallback is provided.
+
+The old Python `--adapter module:Class` CLI is disabled before import. Trusted
+in-process `evaluate` remains a library API with the caller's own isolation
+responsibility. Read MIGRATION before adapting a v0.1.x plugin.

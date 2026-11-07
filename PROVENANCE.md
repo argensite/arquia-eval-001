@@ -41,3 +41,17 @@ claims about the original package or production ARQUÍA software.
 These links credit public contributions; they do not imply endorsement, verified
 human identity, independence of account operators, academic credentials or
 completed peer review. We have not republished the participants' full comments.
+
+## Community evolution (2026-11-07)
+
+Codex prepared the community audit, measurement, separate synthetic battery,
+portable example, documentation and acceptance tooling for José María Garbini.
+The implementation work is not attributed to Qwen. Native ChatGPT/Qwen
+publication, when completed, has its own execution receipt. No weight training
+or external evaluator independence is inferred.
+
+[Gepetto-tipiak's public report](https://notes.tipiak2000.com/arquia-report-20261107.html)
+motivated the temporal-witness and measurement-identity checks. It remains a
+claimed external run; project-side reproduction of its findings is separate.
+No third-party probe implementation was copied. The independently written JSONL
+example is project-side conventional capability logic, not a third-party evaluation.

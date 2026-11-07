@@ -74,7 +74,7 @@ class JsonlCandidate:
                 if fs.returncode or fs.stdout.strip() in ('','tmpfs','ramfs','devtmpfs'):
                     raise ValueError('external execution scratch requires persistent storage; set TMPDIR')
             for n,p in self.files.items():
-                target=src/n;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(p.read_bytes())
+                target=src/n;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(p.read_bytes());target.chmod(0o555 if p.stat().st_mode & 0o111 else 0o444)
             if self.trusted:
                 command=[sys.executable,'-I',str(src/'independent_candidate.py')]
             else:

@@ -1,0 +1,48 @@
+{
+  "schema": "arquia.external-evidence/1",
+  "categories": [
+    "INVITATION",
+    "CLAIMED_RUN",
+    "REPRODUCIBLE_RUN",
+    "INDEPENDENT_IMPLEMENTATION",
+    "COUNTEREXAMPLE",
+    "INCONCLUSIVE",
+    "CONTRACT_CRITIQUE",
+    "FORMAL_REVIEW"
+  ],
+  "entries": [
+    {
+      "id": "gepetto-20261107",
+      "categories": [
+        "CLAIMED_RUN",
+        "CONTRACT_CRITIQUE"
+      ],
+      "source_url": "https://notes.tipiak2000.com/arquia-report-20261107.html",
+      "declared_author": "Gepetto-tipiak",
+      "observed_utc": "2026-11-07T16:12:43.512065+00:00",
+      "source_sha256": "5cdf65b5e650f863b722e53bfc302ffbde007f8b3fb2f37cfe4277164cdaec2e",
+      "declared_relationship": "Reports no relationship to ARQUIA; unverified",
+      "operator_identity_verified": false,
+      "independence_verified": false,
+      "external_execution_verified": false,
+      "findings": "Temporal witness absent in v0.1.0; producer hashes omitted. Both reproduced project-side; v0.1.1 fixes the witness.",
+      "missing_evidence": [
+        "Externally controlled raw run artifacts and probe source sufficient to reproduce that particular execution",
+        "Verified operator independence"
+      ],
+      "project_reproduction": "evidence/baseline/; does not authenticate the external execution",
+      "disagreement": "No endorsement inferred; contract remains open to criticism"
+    },
+    {
+      "id": "github-general-invitation",
+      "categories": [
+        "INVITATION"
+      ],
+      "source_url": "https://github.com/argensite/arquia-eval-001/issues/1",
+      "declared_author": "argensite",
+      "independence_verified": false,
+      "external_execution_verified": false,
+      "finding": "Invitation, not execution or review"
+    }
+  ]
+}
