@@ -29,6 +29,7 @@
   "RSI_RELEASE.json",
   "SCOPE.md",
   "SECURITY.md",
+  "SOURCE_IDENTITY.json",
   "VERSION",
   "build_cases.py",
   "build_community_cases.py",
@@ -213,6 +214,7 @@
   "test_rsi_000001.py",
   "test_rsi_000002.py",
   "test_rsi_000003.py",
+  "test_rsi_000009.py",
   "verify_package.py",
   "verify_report.py"
 ]

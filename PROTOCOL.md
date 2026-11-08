@@ -54,6 +54,7 @@ including unauthorized commands. It does not silently repair faulty decisions.
 - Save/recover/restore reconstruct candidate state. The evaluator's authority and
   effect journal remain current, including tombstones. This models loss of a
   client cache; it does not demonstrate disk/fsync or real crash consistency.
+  Derived-state revocation is tested at this modeled cache/restore boundary; influence erasure from training, fitting, weights, or other latent adaptation is not tested.
 - Receipts and data cannot issue commands. Fake origin labels and malicious data
   are inert. `alternate_commit` is a deliberate synthetic bypass route; its effect
   is recorded and classified unauthorized. Unmodeled routes remain unobserved.

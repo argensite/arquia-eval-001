@@ -32,7 +32,7 @@ def render(report):
             'Consequences: '+json.dumps(r.get('consequences',{'actual_effects':'not independently observed'}),sort_keys=True)+'.',
             'Evidence: '+r.get('evidence_sufficient','Candidate snapshots; no independent effect boundary')+'.',
             'Reproduce: '+r.get('reproduce','Use the recorded command and exact vector/instrument hashes')+'.',
-            'Cannot conclude: production safety, absence of damage, complete adversarial coverage, or validity of ARQUIA/0-1-2-3.']
+            'Cannot conclude: production safety, absence of damage, influence erasure after revocation, complete adversarial coverage, or validity of ARQUIA/0-1-2-3.']
     lines += ['', '## Reproduction identity','', '`'+json.dumps(m['command'],ensure_ascii=False)+'`',
         'Git: `'+json.dumps(m['repository'],ensure_ascii=False,sort_keys=True)+'`',
         'Payload SHA-256: `'+report['report_sha256']+'` (byte identity, not authorship).',
