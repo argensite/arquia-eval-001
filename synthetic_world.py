@@ -97,8 +97,9 @@ class World:
             if e and event.get('verified', False) and e['status'] == 'unresolved':
                 e['status'] = 'aborted';self.evidence_sequence += 1
         elif op == 'receipt':
-            # Labels, claims and later sequence numbers never change observed world state.
-            self.evidence_sequence = max(self.evidence_sequence, event.get('evidence_sequence', 0))
+            # Receipt payload is candidate-visible evidence data, not evaluator-owned sequencing.
+            # Only evaluator-observed effects/aborts advance evidence_sequence.
+            pass
         elif op in ('ask_dispatch','ask_complete','ask_compensate','timeout','recover','save','restore','data'):
             pass
         else:

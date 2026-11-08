@@ -215,6 +215,7 @@
   "test_rsi_000002.py",
   "test_rsi_000003.py",
   "test_rsi_000009.py",
+  "test_rsi_000010.py",
   "verify_package.py",
   "verify_report.py"
 ]
