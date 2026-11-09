@@ -2,6 +2,13 @@
 
 Panel web estático e instalable como acceso a pantalla de inicio en Android. No modifica el evaluador ni la semilla y no recolecta datos personales.
 
+
+## Acceso público a la semilla
+
+- [Descarga directa de ARQUÍA-SEED-001](https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md)
+- [Presentación personal de José María Garbini](../../PRESENTACION_PERSONAL_SEMILLA.md)
+- [Versión oficial y SHA-256](https://github.com/argensite/arquia-eval-001/releases/tag/seed-v0.1.0-experimental)
+
 ## Estado del producto
 
 - **Listo para probar como HTML**: abrir `index.html` desde un servidor web.
