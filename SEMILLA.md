@@ -1,5 +1,7 @@
 # ARQUÍA-SEED-001 — Semilla universal (experimental)
 
+**[Presentación personal e invitación del autor](PRESENTACION_PERSONAL_SEMILLA.md)** · Por qué compartir la semilla y cómo informar críticas y resultados.
+
 **Versión:** 0.1.0-experimental · **Fecha:** 8 de noviembre de 2026 · **Idioma:** español.
 
 ## Descarga pública y verificable
