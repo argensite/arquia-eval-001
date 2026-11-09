@@ -50,10 +50,30 @@ jobs:
           fi
           command -v bwrap
           command -v findmnt
-      - name: Start user manager on this disposable CI runner
+      - name: Delegate required controllers on this disposable CI runner
         run: |
-          sudo systemctl start user@$(id -u).service
-          test -S /run/user/$(id -u)/bus
+          ci_user_id="$(id -u)"
+          ci_user_unit="user@${ci_user_id}.service"
+          ci_drop_in="/run/systemd/system/${ci_user_unit}.d"
+          sudo mkdir -p "$ci_drop_in"
+          # systemd 249 defaults to Delegate=pids memory, without CPU quotas.
+          printf '[Service]\nDelegate=cpu memory pids\n' | sudo tee "$ci_drop_in/50-arquia-ci.conf"
+          sudo systemctl daemon-reload
+          # This manager belongs only to this disposable GitHub runner.
+          sudo systemctl restart "$ci_user_unit"
+          test -S "/run/user/${ci_user_id}/bus"
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          import subprocess
+          unit = f'user@{os.getuid()}.service'
+          group = subprocess.check_output(['systemctl', 'show', unit, '-p', 'ControlGroup', '--value'], text=True).strip()
+          available = set((Path('/sys/fs/cgroup') / group.lstrip('/') / 'cgroup.controllers').read_text().split())
+          missing = {'cpu', 'memory', 'pids'} - available
+          print('Delegated controllers:', ' '.join(sorted(available)))
+          if missing:
+              raise SystemExit('Required isolation controllers unavailable: ' + ', '.join(sorted(missing)))
+          PY
       - name: Demonstrate isolation restrictions
         env:
           TMPDIR: ${{ runner.temp }}

@@ -14,10 +14,14 @@ invitation; focused issue templates help preserve specific evidence.
 4. Use the case schema: problem, preconditions, events, expected observations,
    invariants, required evidence, assumptions, limits, provenance and reproduction.
    Results supply actual observations; don't edit expectations to manufacture a pass.
-5. Run `python3 check_all.py --output checks` and retain complete receipts,
+5. After changing an inventoried file, including documentation or CI, regenerate
+   `CHECKSUMS.sha256` with `python3 build_release.py --write-manifest`, then run
+   `python3 verify_package.py`. Add new distribution files explicitly to
+   `PACKAGE_FILES.json`. Preserve historical manifests and published assets.
+6. Run `python3 check_all.py --output checks` and retain complete receipts,
    including failures and inconclusive outcomes. Linux external execution also
    requires `python3 -m unittest -v isolation_checks resource_checks`.
-6. Submit small reversible changes with before/after evidence and compatibility
+7. Submit small reversible changes with before/after evidence and compatibility
    notes. Keep implementation and evaluation independence distinct.
 
 Agent contributors must disclose operator/model assistance when known, never
