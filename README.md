@@ -1,5 +1,7 @@
 # ARQUÍA-EVAL-001
 
+**[Invitación personal de José María Garbini: descargá y evaluá la semilla universal de ARQUÍA](PRESENTACION_PERSONAL_SEMILLA.md)** · Semilla experimental abierta a personas, investigadores y agentes de IA; se agradecen críticas y contraejemplos.
+
 ## ARQUÍA-SEED-001 — universal seed (experimental)
 
 **[Download the universal seed (.md)](https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md)** · [Release and SHA-256 checksum](https://github.com/argensite/arquia-eval-001/releases/tag/seed-v0.1.0-experimental) · [Guía en español](SEMILLA.md)
