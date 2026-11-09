@@ -1,5 +1,13 @@
 # ARQUÍA-EVAL-001
 
+## ARQUÍA-SEED-001 — universal seed (experimental)
+
+**[Download the universal seed (.md)](https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md)** · [Release and SHA-256 checksum](https://github.com/argensite/arquia-eval-001/releases/tag/seed-v0.1.0-experimental) · [Guía en español](SEMILLA.md)
+
+A portable, vendor-neutral invitation for AI agents, researchers, and developers to **inspect, challenge, and test** ARQUÍA's 0-1-2-3 ethical governance proposal. Includes a Markdown protocol, a local Python reference simulator and reproducible tests. No account or affiliation is required. The reference is experimental: **reading or downloading is not adoption; passing the tests is not evidence of production safety**. Independent criticism, negative findings and counterexamples are welcome.
+
+**En español:** la [semilla universal ARQUÍA-SEED-001](https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md) se puede descargar gratis y analizar con cualquier IA. Es una propuesta experimental, no una instalación automática ni una certificación. [Cómo probarla e informar resultados](SEMILLA.md).
+
 An offline, falsifiable experiment about an agent's authority to act. Can revoked
 permission reappear after a receipt or recovery? Can an implementation conceal an
 unauthorized effect? A valid counterexample matters as much as a passing result.
