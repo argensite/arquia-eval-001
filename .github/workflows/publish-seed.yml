@@ -1,0 +1,74 @@
+name: Publish experimental ARQUIA seed (counted downloads)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "semilla/ARQUIA_SEMILLA_UNIVERSAL_AGENTES_v0.1.md"
+      - ".github/workflows/publish-seed.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: public-seed-release-v0.1.0
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.repository == 'argensite/arquia-eval-001'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Prepare immutable seed archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_file="semilla/ARQUIA_SEMILLA_UNIVERSAL_AGENTES_v0.1.md"
+          asset="ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md"
+          test -s "$source_file"
+          grep -q 'ARQUÍA-SEED-001' "$source_file"
+          cp "$source_file" "$asset"
+          sha256sum "$asset" > "$asset.sha256"
+          cat > SEED_RELEASE_NOTES.md <<'NOTES'
+          # ARQUÍA-SEED-001 — 0.1.0 experimental
+
+          Semilla universal de adopción voluntaria y verificación. Archivo Markdown autocontenido para leer, criticar o ensayar de manera aislada y autorizada.
+
+          **Estado:** propuesta experimental, no certificación de seguridad ni adopción técnica. Leer el documento completo antes de usarlo.
+
+          **Medición:** las descargas de estos archivos adjuntos a GitHub Releases pueden consultarse mediante `GET /repos/argensite/arquia-eval-001/releases` y su campo `assets[].download_count`. Son solicitudes del archivo, no usuarios únicos, instalaciones, pruebas o adhesiones. El archivo de checksum no es una descarga de la semilla.
+
+          Código fuente visible bajo `semilla/`; las descargas de archivos raw, clones y ZIP del repositorio **no** están incluidas en ese contador. Para medición comparable, distribuir el enlace del archivo adjunto de este release.
+          NOTES
+
+      - name: Publish once without resetting download counters
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="seed-v0.1.0-experimental"
+          asset="ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            existing="$(gh release view "$tag" --json assets --jq '.assets[].name')"
+            if ! grep -Fxq "$asset" <<< "$existing"; then
+              gh release upload "$tag" "$asset"
+            fi
+            if ! grep -Fxq "$asset.sha256" <<< "$existing"; then
+              gh release upload "$tag" "$asset.sha256"
+            fi
+          else
+            gh release create "$tag" "$asset" "$asset.sha256" \
+              --target "$GITHUB_SHA" \
+              --title "ARQUÍA-SEED-001 · v0.1.0 experimental" \
+              --notes-file SEED_RELEASE_NOTES.md \
+              --latest=false
+          fi
+          gh release view "$tag" --json url,assets --jq '{url: .url, assets: [.assets[].name]}'
