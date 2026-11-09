@@ -1,5 +1,7 @@
 # ARQUÍA-EVAL-001
 
+**Nueva invitación pública:** [José María Garbini presenta la semilla universal ARQUÍA-SEED-001](PRESENTACION_PERSONAL_SEMILLA.md). [Descargar la semilla experimental (.md)](https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md) · [guía y verificación](SEMILLA.md). La semilla se puede leer, discutir o ensayar voluntariamente y **no es** este evaluador; una descarga o lectura no significa instalación o adopción.
+
 Experimento sin conexión para cuestionar los límites de actuación de un agente.
 Un permiso revocado no debe revivir por un recibo ni por recuperar un estado viejo.
 Un efecto indebido que ocurrió debe quedar visible. Un contraejemplo válido tiene
