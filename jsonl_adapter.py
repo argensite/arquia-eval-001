@@ -42,6 +42,15 @@ def limits():
     resource.setrlimit(resource.RLIMIT_NOFILE,(64,64))
 
 
+def trusted_environment():
+    env={'PATH':os.defpath}
+    if os.name=='nt':
+        root=os.environ.get('SystemRoot')
+        if not root:raise ValueError('Windows SystemRoot unavailable')
+        env['SystemRoot']=root
+    return env
+
+
 class JsonlCandidate:
     def __init__(self,directory=None,*,accept_external_code=False,trusted_example=False):
         self.directory=ROOT/'examples' if trusted_example else Path(directory).resolve()
@@ -99,7 +108,7 @@ class JsonlCandidate:
                 else:
                     kwargs={'start_new_session':True} if os.name=='posix' else {}
                     if sys.platform=='linux':kwargs['preexec_fn']=limits
-                    proc=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=out,stderr=err,env={'PATH':os.defpath},**kwargs)
+                    proc=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=out,stderr=err,env=trusted_environment(),**kwargs)
                     try:proc.communicate(raw,timeout=TIMEOUT)
                     except subprocess.TimeoutExpired:
                         if os.name=='posix':os.killpg(proc.pid,signal.SIGKILL)

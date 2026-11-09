@@ -60,7 +60,11 @@ jobs:
           printf '[Service]\nDelegate=cpu memory pids\n' | sudo tee "$ci_drop_in/50-arquia-ci.conf"
           sudo systemctl daemon-reload
           # This manager belongs only to this disposable GitHub runner.
-          sudo systemctl restart "$ci_user_unit"
+          if ! sudo systemctl start "$ci_user_unit"; then
+            sudo systemctl status "$ci_user_unit" --no-pager --full || true
+            sudo journalctl -b -u "$ci_user_unit" --no-pager -n 60
+            exit 1
+          fi
           test -S "/run/user/${ci_user_id}/bus"
           python3 - <<'PY'
           import os
