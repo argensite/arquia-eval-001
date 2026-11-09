@@ -78,6 +78,10 @@ jobs:
           if missing:
               raise SystemExit('Required isolation controllers unavailable: ' + ', '.join(sorted(missing)))
           PY
+          # An already running user manager cached the old controller set.
+          XDG_RUNTIME_DIR="/run/user/${ci_user_id}" \
+            DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${ci_user_id}/bus" \
+            systemctl --user daemon-reexec
       - name: Demonstrate isolation restrictions
         env:
           TMPDIR: ${{ runner.temp }}
