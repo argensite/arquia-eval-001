@@ -1,5 +1,11 @@
 # Protocol and observable limits — community extension 1
 
+For the separate **ARQUÍA-SEED-001** experiment, use the
+[bilingual load/test/report guide](SEMILLA.md), [seed report template](SEED_REPORT_TEMPLATE.md)
+and [existing issue #3](https://github.com/argensite/arquia-eval-001/issues/3).
+Its 14 simulator tests and evidence categories are separate from the evaluator
+contracts below; they do not validate the full 0-1-2-3 theory.
+
 Two distinct protocols coexist. `runner.py` retains historical v0.1.1 vectors and
 engine semantics, including C29. `community_runner.py` runs
 `arquia.community-cases/1`; the schemas and cases are independently versioned.

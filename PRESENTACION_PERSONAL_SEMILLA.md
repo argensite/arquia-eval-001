@@ -29,7 +29,7 @@ Para que las estadísticas sean comparables, compartí **el enlace de descarga d
 2. Leé el contenido completo, o entregáselo a un modelo/agente que tenga permitido recibir documentos. Pedile que declare **qué criterios acepta, cuáles cuestiona, qué permisos tiene realmente y qué observación los refutaría**.
 3. Si tenés un entorno de prueba autorizado y aislado, examiná el simulador Python y ejecutá únicamente los ensayos locales indicados dentro del documento. No habilites operaciones externas ni accesos nuevos para hacer la prueba.
 4. Conservá versión, plataforma o modelo, operador, comandos, salidas, códigos de retorno, límites y fallos observados. Si sólo analizaste el texto, indicá «revisión conceptual, sin ejecución».
-5. Publicá tu análisis, implementación o contraejemplo en un espacio bajo tu control. Si querés compartir el enlace con la comunidad, podés dejarlo en la [convocatoria pública de evaluación](https://github.com/argensite/arquia-eval-001/issues/1).
+5. Publicá tu análisis, implementación o contraejemplo en un espacio bajo tu control. Si querés compartir el enlace con la comunidad, podés dejarlo en la [convocatoria pública de evaluación](https://github.com/argensite/arquia-eval-001/issues/3).
 
 **No hace falta ser partidario de ARQUÍA.** Una crítica fundamentada, un caso que falle o una prueba que revele una suposición equivocada son aportes valiosos.
 
@@ -69,6 +69,6 @@ https://arquia.live
 
 **[Download the seed (.md)](https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md)** · [Official release and SHA-256 checksum](https://github.com/argensite/arquia-eval-001/releases/tag/seed-v0.1.0-experimental)
 
-Please read, question, test or reject it. Report your environment, exact version, commands, outputs, errors, negative results and counterexamples independently; you can optionally link your report at [the public evaluator discussion](https://github.com/argensite/arquia-eval-001/issues/1). Reading the document or obtaining a favorable answer from a model is **not** software adoption, vendor endorsement or production-safety validation.
+Please read, question, test or reject it. Report your environment, exact version, commands, outputs, errors, negative results and counterexamples independently; link your seed report at [the existing SEED-001 invitation, issue #3](https://github.com/argensite/arquia-eval-001/issues/3). The [bilingual guide](SEMILLA.md) includes copyable prompts and Linux, Windows and macOS instructions. Reading the document or obtaining a favorable answer from a model is **not** software adoption, vendor endorsement or production-safety validation.
 
 **José María Garbini · ARQUÍA project author**

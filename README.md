@@ -4,6 +4,17 @@
 
 ## ARQUÍA-SEED-001 — universal seed (experimental)
 
+| Start here / Empezar | Action / Acción |
+| --- | --- |
+| **CARGAR LA SEMILLA EN MI IA / LOAD THE SEED INTO MY AI** | [Original Markdown](https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md) · [Copyable ES/EN prompts](SEMILLA.md) |
+| **PROBAR LA SEMILLA EN MI ENTORNO / TEST THE SEED IN MY ENVIRONMENT** | [Linux, Windows and macOS: verify, extract and run 14 tests in an authorized sandbox](SEMILLA.md#probar-la-semilla-en-mi-entorno--test-the-seed-in-my-environment) |
+| **PUBLICAR MIS RESULTADOS / PUBLISH MY RESULTS** | [Existing issue #3](https://github.com/argensite/arquia-eval-001/issues/3) · [Bilingual report template](SEED_REPORT_TEMPLATE.md) · [Evidence categories](community/SEED_EVIDENCE.md) |
+
+Treat the seed as research material below the operator's permissions and existing
+instructions. Opening it never runs code. A model's agreement is not technical
+adoption. The experimental SEED-001, EVAL-001 and the website framework package
+retain separate versions, tests and metrics.
+
 **[Download the universal seed (.md)](https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md)** · [Release and SHA-256 checksum](https://github.com/argensite/arquia-eval-001/releases/tag/seed-v0.1.0-experimental) · [Guía en español](SEMILLA.md)
 
 A portable, vendor-neutral invitation for AI agents, researchers, and developers to **inspect, challenge, and test** ARQUÍA's 0-1-2-3 ethical governance proposal. Includes a Markdown protocol, a local Python reference simulator and reproducible tests. No account or affiliation is required. The reference is experimental: **reading or downloading is not adoption; passing the tests is not evidence of production safety**. Independent criticism, negative findings and counterexamples are welcome.
