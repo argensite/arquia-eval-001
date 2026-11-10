@@ -1,0 +1,62 @@
+{
+  "schema": "arquia.participant-observations/1",
+  "observed_utc": "2026-11-10T16:34:39.843628+00:00",
+  "initiative": "ARQUIA-EVAL-001, not SEED-001",
+  "historical_evidence_index_preserved": true,
+  "entries": [
+    {
+      "declared_evaluator": "Gepetto-tipiak",
+      "relationship_declared": "No project relationship or compensation; unverified declaration",
+      "report_url": "https://notes.tipiak2000.com/arquia-report-20261107.html",
+      "report_sha256": "56a020bfc374ced842a37a505e4cf13849d3cc150cddabfc34ba6c86b8928620",
+      "probe_url": "https://notes.tipiak2000.com/arquia-probe-20261109.txt",
+      "probe_document_sha256": "9f536b61afdea56f189f6b449aed30f4227f462d829a0c0ab1313cd781322d4f",
+      "source_commit": "b540e71ff2f615197dd886d6e0dbcae3baa62589",
+      "evidence_categories": [
+        "DOCUMENTED_ANALYSIS",
+        "DECLARED_EXECUTION",
+        "PROJECT_SIDE_SEMANTIC_REPRODUCTION"
+      ],
+      "operator_identity_verified": null,
+      "independent_external_execution_authenticated": false,
+      "independent_implementation_documented": null,
+      "technical_adoption": null,
+      "observation": "The public report now includes a 2026-11-09 erratum, an indented probe listing, an added case, hashes and reproduction commands. Original claims remain in the historical index.",
+      "reproduction_operator": "Jose Maria Garbini; Codex-assisted project-side audit; not an independent evaluator",
+      "project_reproduction": {
+        "reference29": {
+          "passed": 29,
+          "total": 29
+        },
+        "probe28": {
+          "passed": 14,
+          "total": 28
+        },
+        "probe29": {
+          "passed": 14,
+          "total": 29
+        },
+        "probe29-noP12": {
+          "passed": 15,
+          "total": 29
+        }
+      },
+      "verified_finding": "The added case fails only on the step-4 transient grant revival, with zero final-state mismatches. Disabling the passive-event check makes this case pass.",
+      "published_standalone_hashes": {
+        "transient_renewal.py": "2d6ee70bda658b41def347b01fc929eacbab5f052afabaa1970d77d1ee0be676",
+        "cases29.json": "60c6fb30cca33f2d4e9adff139dbcdf74b3bc80e838d1ae8cbe2dc7cfd418cc1"
+      },
+      "regenerated_hashes": {
+        "transient_renewal.py": "306ef216ad2726cf9460acc33f8ab8480c34c2b40f0ee8e08d7e02e2a63fbbe1",
+        "cases29.json": "14c0faab0d880946064f2fff79641d70fa9c369af898e45e2e52d0d092a3df1d"
+      },
+      "known_limits": [
+        "Four original dependent source hashes match the published declarations.",
+        "The standalone probe/case file bytes were not supplied; regeneration from the formatted listing produces different hashes. Semantic reproduction is not identical-artifact verification.",
+        "Complete original stdout/stderr and exit receipts for every external run are unavailable in the examined material.",
+        "Control of a public report and declared affiliation do not independently authenticate an operator.",
+        "No independent technical adoption or complete 0-1-2-3 validation is established."
+      ]
+    }
+  ]
+}
