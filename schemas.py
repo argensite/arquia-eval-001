@@ -3,6 +3,7 @@
 This is not a general JSON Schema implementation. Unsupported keywords fail.
 """
 import json
+import math
 from pathlib import Path
 import re
 
@@ -23,7 +24,11 @@ def strict_json(raw):
             result[k]=v
         return result
     def invalid(value):raise ValueError('nonfinite JSON number')
-    try:return json.loads(raw,object_pairs_hook=pairs,parse_constant=invalid)
+    def finite_float(value):
+        number=float(value)
+        if not math.isfinite(number):invalid(value)
+        return number
+    try:return json.loads(raw,object_pairs_hook=pairs,parse_constant=invalid,parse_float=finite_float)
     except RecursionError as exc:raise ValueError('JSON nesting exceeded') from exc
 
 
