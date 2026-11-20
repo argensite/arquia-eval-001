@@ -449,6 +449,8 @@ def run_suite(path: Path = FIXTURE, mutant: str | None = None,
 
 
 def main(argv=None) -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--cases',type=Path,default=FIXTURE)
     p.add_argument('--fault',choices=MUTANTS,help='deliberate sensitivity control')
