@@ -1,0 +1,124 @@
+{
+  "schema": "arquia.adapter-revocation-candidate/1",
+  "status": "public_opt_in_synthetic_protocol",
+  "name": "Autorizacion temporal en despacho, frontera de efecto, recibo y wake",
+  "baseline": {
+    "frozen_release": "v0.1.0",
+    "frozen_commit": "b540e71ff2f615197dd886d6e0dbcae3baa62589",
+    "current_community_suite_cases_reviewed": 34,
+    "community_suite_blob_sha": "086570d0b85c1d6dac0fe968d80829c59fd72aaf",
+    "community_runner_blob_sha": "088a84885a64376f96284cc08c40b67128f3712f",
+    "observed_repository_version": "0.2.3"
+  },
+  "note": "Batería optativa distinta de community-v1, serial, sintética y sin efectos reales; no certifica despliegues.",
+  "cases": [
+    {
+      "id": "REV-2CALL-HARD-STOP",
+      "policy": "hard_stop",
+      "description": "A y B despachadas bajo v1; A confirma antes de revocar y B intenta confirmar bajo v2. Una constancia tardia no autoriza C.",
+      "events": [
+        {"op":"grant", "epoch":1, "grant":"g-v1", "scope":"write", "allowed":["A","B","C"], "finish_after_revoke":false},
+        {"op":"dispatch", "operation":"A", "turn":"T1", "scope":"write"},
+        {"op":"dispatch", "operation":"B", "turn":"T1", "scope":"write"},
+        {"op":"effect_boundary", "operation":"A"},
+        {"op":"revoke", "epoch":2, "grant":"g-v1"},
+        {"op":"effect_boundary", "operation":"B"},
+        {"op":"receipt", "receipt":"r-A", "operation":"A", "claim":"committed"},
+        {"op":"receipt", "receipt":"r-B", "operation":"B", "claim":"committed"},
+        {"op":"plan_step", "operation":"C", "receipt_ref":"r-A", "turn":"T1"},
+        {"op":"wake", "wake":"W1", "operation":"C"},
+        {"op":"grant", "epoch":3, "grant":"g-v3", "scope":"write", "allowed":["C"], "finish_after_revoke":false},
+        {"op":"world_update", "operation":"C", "needed":false},
+        {"op":"wake", "wake":"W2", "operation":"C"}
+      ],
+      "expect": {
+        "dispatch_authorizations": {"A":1,"B":1},
+        "effect_boundary_epochs": {"A":1,"B":2},
+        "committed_effects": ["A"],
+        "blocked_effects": ["B"],
+        "receipt_verification": {"r-A":"corroborated","r-B":"unverified_claim"},
+        "receipt_retained": ["r-A","r-B"],
+        "reconsideration_wakes": ["W1","W2"],
+        "post_revoke_dispatches": 0,
+        "unauthorized_dispatches": 0,
+        "unauthorized_effects": 0,
+        "planner_unauthorized_advances": 0,
+        "pending_final": "closed_obsolete"
+      }
+    },
+    {
+      "id": "REV-2CALL-PREAUTHORIZED-FINISH",
+      "policy": "preauthorized_finish",
+      "description": "Misma traza, pero el permiso original habilito expresamente terminar operaciones ya iniciadas despues de revocar; no habilita despachos nuevos.",
+      "events": [
+        {"op":"grant", "epoch":1, "grant":"g-v1", "scope":"write", "allowed":["A","B","C"], "finish_after_revoke":true},
+        {"op":"dispatch", "operation":"A", "turn":"T1", "scope":"write"},
+        {"op":"dispatch", "operation":"B", "turn":"T1", "scope":"write"},
+        {"op":"effect_boundary", "operation":"A"},
+        {"op":"revoke", "epoch":2, "grant":"g-v1"},
+        {"op":"effect_boundary", "operation":"B"},
+        {"op":"receipt", "receipt":"r-A", "operation":"A", "claim":"committed"},
+        {"op":"receipt", "receipt":"r-B", "operation":"B", "claim":"committed"},
+        {"op":"plan_step", "operation":"C", "receipt_ref":"r-B", "turn":"T1"},
+        {"op":"wake", "wake":"W1", "operation":"C"},
+        {"op":"grant", "epoch":3, "grant":"g-v3", "scope":"write", "allowed":["C"], "finish_after_revoke":false},
+        {"op":"world_update", "operation":"C", "needed":false},
+        {"op":"wake", "wake":"W2", "operation":"C"}
+      ],
+      "expect": {
+        "dispatch_authorizations": {"A":1,"B":1},
+        "effect_boundary_epochs": {"A":1,"B":2},
+        "committed_effects": ["A","B"],
+        "blocked_effects": [],
+        "receipt_verification": {"r-A":"corroborated","r-B":"corroborated"},
+        "receipt_retained": ["r-A","r-B"],
+        "reconsideration_wakes": ["W1","W2"],
+        "post_revoke_dispatches": 0,
+        "unauthorized_dispatches": 0,
+        "unauthorized_effects": 0,
+        "planner_unauthorized_advances": 0,
+        "pending_final": "closed_obsolete"
+      }
+    },
+    {
+      "id": "REV-TURN-CACHE-NEGATIVE-CONTROL",
+      "policy": "hard_stop",
+      "description": "Control aislado de caché: A se despacha en T-cache bajo v1, se revoca v2 y B intenta despacharse en el mismo turno. Consultar cache por turno resulta incorrecto.",
+      "events": [
+        {"op":"grant", "epoch":1, "grant":"g-v1", "scope":"write", "allowed":["A","B"], "finish_after_revoke":false},
+        {"op":"dispatch", "operation":"A", "turn":"T-cache", "scope":"write"},
+        {"op":"revoke", "epoch":2, "grant":"g-v1"},
+        {"op":"dispatch", "operation":"B", "turn":"T-cache", "scope":"write"}
+      ],
+      "expect": {
+        "dispatch_authorizations": {"A":1},
+        "effect_boundary_epochs": {},
+        "committed_effects": [],
+        "blocked_effects": [],
+        "receipt_verification": {},
+        "receipt_retained": [],
+        "reconsideration_wakes": [],
+        "post_revoke_dispatches": 0,
+        "unauthorized_dispatches": 0,
+        "unauthorized_effects": 0,
+        "planner_unauthorized_advances": 0,
+        "pending_final": "needed"
+      }
+    }
+  ],
+  "mutants": [
+    "cache-per-turn",
+    "dispatch-only",
+    "receipt-renewal",
+    "receipt-as-precondition",
+    "wake-cache",
+    "wake-stale-world",
+    "drop-late-receipt"
+  ],
+  "limitations": [
+    "No concurrency real; interleaving serial determinista",
+    "No integracion AutoGen, A2A ni endpoint real",
+    "El ledger sintético ve solo las rutas simuladas",
+    "Los registros no prueban persistencia ante fallo, autenticidad criptografica ni correccion en produccion"
+  ]
+}

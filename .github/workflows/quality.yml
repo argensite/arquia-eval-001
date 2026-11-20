@@ -91,3 +91,7 @@ jobs:
         env:
           TMPDIR: ${{ runner.temp }}
         run: python3 strict_unittest.py isolation_checks resource_checks
+      - name: Exercise isolated temporal JSONL candidate
+        env:
+          TMPDIR: ${{ runner.temp }}
+        run: python3 temporal_runner.py --candidate-dir examples/temporal --accept-external-code --summary > temporal-isolated.json

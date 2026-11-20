@@ -73,6 +73,17 @@ def main():
             witnesses=[r['id'] for r in data['results'] if not r['passed'] and r['error'] is None]
             if not witnesses:raise AssertionError('no non-error witness for '+fault)
             summary['community_controls'][fault]={'witnesses':witnesses,'inconclusive':sum(bool(r['error']) for r in data['results'])}
+        from temporal_runner import MUTANTS as TEMPORAL_MUTANTS
+        temporal=json.loads(run('temporal-reference',['temporal_runner.py','--summary']))
+        if temporal['total']!=3 or temporal['passed']!=3 or temporal['exit_code']!=0:
+            raise AssertionError('temporal reference failed')
+        summary['temporal_cases']=temporal['total']
+        summary['temporal_controls']={}
+        for name in TEMPORAL_MUTANTS:
+            data=json.loads(run('temporal-'+name,['temporal_runner.py','--fault',name,'--summary'],1))
+            witnesses=[r['id'] for r in data['results'] if not r['passed'] and r['violations'] and r['error'] is None]
+            if not witnesses:raise AssertionError('undetected temporal fault '+name)
+            summary['temporal_controls'][name]=witnesses
         report('independent-example',['community_runner.py','--example-jsonl'],0,ROOT/'suites/community-v1.json')
         from build_community_cases import build,generate
         if suite['cases']!=build():raise AssertionError('community declarations drift')
