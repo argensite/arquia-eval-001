@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0",
+  "name": "ARQUIA-EVAL-001",
+  "display_name": "ARQUÍA-EVAL-001",
+  "version": "v0.1.2",
+  "description": "Offline synthetic contract test for revoked agent authority, late receipts and escaped effects.",
+  "canonical_url": "https://arquia.live/ARQUIA/eval-001/",
+  "languages": [
+    "es",
+    "en"
+  ],
+  "repository": "https://github.com/argensite/arquia-eval-001",
+  "release_url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.2",
+  "commit": "49e339f0d57c3794b68e12caa53feabe8ad7710c",
+  "download": {
+    "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.1.2/ARQUIA-EVAL-001-v0.1.2.zip",
+    "upstream_url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.1.2/ARQUIA-EVAL-001-v0.1.2.zip",
+    "sha256": "dded386309f21f53ec43199944767002a7f56afa42c0717b96443afe9dca540a",
+    "bytes": 67853
+  },
+  "requirements": {
+    "python": ">=3.10",
+    "standard_library_only": true,
+    "network_during_execution": false,
+    "api_keys_required": false
+  },
+  "fixed_cases": 29,
+  "deliberately_faulty_controls": 5,
+  "commands": [
+    "python3 verify_package.py",
+    "python3 runner.py --evaluator YOUR_NAME > independent_result.json",
+    "python3 -m unittest -v test_contract",
+    "python3 runner.py --negative-control receipt-renewal > negative_result.json"
+  ],
+  "expected_exit_codes": {
+    "verify_package": 0,
+    "reference": 0,
+    "test_contract": 0,
+    "receipt-renewal_negative_control": 1
+  },
+  "scope": "Simulated event ordering and observer; contract replication, criticism and independent implementations.",
+  "limitations": [
+    "Not a production security certification",
+    "Not validation of the full ARQUIA framework or CAUCEPA",
+    "Checkpoint JSON restoration does not establish durable crash recovery",
+    "An escaped effect may be detected without being prevented",
+    "Project-side runs with AI assistance are not independent evaluations"
+  ],
+  "license": "MIT",
+  "license_url": "https://github.com/argensite/arquia-eval-001/blob/49e339f0d57c3794b68e12caa53feabe8ad7710c/LICENSE",
+  "protocol_url": "https://github.com/argensite/arquia-eval-001/blob/49e339f0d57c3794b68e12caa53feabe8ad7710c/PROTOCOL.md",
+  "report_template_url": "https://github.com/argensite/arquia-eval-001/blob/49e339f0d57c3794b68e12caa53feabe8ad7710c/REPORT_TEMPLATE.md",
+  "report_submission_url": "https://github.com/argensite/arquia-eval-001/issues/1",
+  "report_requirements": [
+    "Exact version and hashes",
+    "Commands, complete outputs, exit codes and environment",
+    "Evaluator/operator identity and relationship to ARQUIA",
+    "Report published under evaluator control; negative and inconclusive findings welcome"
+  ],
+  "author": {
+    "name": "José María Garbini",
+    "contact": "arquia.live@gmail.com"
+  },
+  "research_sources": [
+    {
+      "doi": "10.5281/zenodo.20799632",
+      "url": "https://doi.org/10.5281/zenodo.20799632",
+      "title": "ARQUÍA v5.0-ADI · revisión 2.0"
+    },
+    {
+      "doi": "10.5281/zenodo.21676134",
+      "url": "https://doi.org/10.5281/zenodo.21676134",
+      "title": "ARQUÍA v7.0-NRE · 0-1-2-3"
+    },
+    {
+      "doi": "10.5281/zenodo.21791061",
+      "url": "https://doi.org/10.5281/zenodo.21791061",
+      "title": "From ARQUÍA to 0-1-2-3 · v1.0"
+    },
+    {
+      "doi": "10.5281/zenodo.23485769",
+      "url": "https://doi.org/10.5281/zenodo.23485769",
+      "title": "CAUCEPA · v1.0"
+    }
+  ],
+  "discovery_metadata_updated_at": "2026-11-08T00:15:57.269059+00:00",
+  "baseline_modified": false,
+  "historical_baseline": {
+    "version": "v0.1.0",
+    "release_url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.0",
+    "commit": "b540e71ff2f615197dd886d6e0dbcae3baa62589",
+    "download": {
+      "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.1.0/ARQUIA-EVAL-001-v0.1.0.zip",
+      "upstream_url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.1.0/ARQUIA-EVAL-001-v0.1.0.zip",
+      "sha256": "fa9b1eacec0628fcd01aa3be9cb13717137f9d1d0ded39206df463daa888dbd2",
+      "bytes": 63530,
+      "historical_mirror_url": "https://arquia.live/ARQUIA/eval-001/ARQUIA-EVAL-001-v0.1.0.zip"
+    },
+    "fixed_cases": 28,
+    "protocol_url": "https://arquia.live/ARQUIA/eval-001/v0.1.0/PROTOCOL.md",
+    "report_template_url": "https://arquia.live/ARQUIA/eval-001/v0.1.0/REPORT_TEMPLATE.md"
+  },
+  "project_side_validation": {
+    "reference_passed": 29,
+    "deliberately_faulty_controls_detected": 5,
+    "independent_evaluation": false,
+    "evidence_url": "https://github.com/argensite/arquia-eval-001/blob/49e339f0d57c3794b68e12caa53feabe8ad7710c/RSI_RELEASE.json"
+  },
+  "external_evidence_status": {
+    "as_of": "2026-11-08T00:15:57.269059+00:00",
+    "campaign_verified_executions": 0,
+    "execution_claim_reports": 1,
+    "claim_report_url": "https://notes.tipiak2000.com/arquia-report-20261107.html",
+    "complete_evidence_verification": "pending"
+  },
+  "changes": [
+    "v0.1.1: C29 temporal-only witness",
+    "v0.1.2: runner_sha256 and verifier_sha256 provenance; a verifier hash does not prove execution"
+  ],
+  "publication_status": "stable",
+  "receipt_renewal_witness": {
+    "control": "receipt-renewal",
+    "case": "C29-transient-receipt-renewal",
+    "introduced": "v0.1.1",
+    "property": "P1/P2-passive-event",
+    "field": "active_grants",
+    "event": "receipt",
+    "step_zero_based": 4,
+    "error": null,
+    "final_state_mismatches": {},
+    "credit": "Gepetto-tipiak",
+    "source_url": "https://notes.tipiak2000.com/arquia-report-20261107.html"
+  },
+  "community_prerelease": {
+    "version": "v0.2.3",
+    "status": "public_prerelease",
+    "commit": "69274389ab5dfe5b0f3d2b0b2f6983dfa3d9f261",
+    "release_url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.3",
+    "download": {
+      "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.3/ARQUIA-EVAL-001-v0.2.3.zip",
+      "sha256": "54cd5c8c27c76bc92bef09ccb28d997d8f6d1a0fb602dcd453d58894127d74ef",
+      "bytes": 5157475
+    },
+    "historical_cases": 29,
+    "historical_controls": 5,
+    "community_cases": 34,
+    "community_controls": 10,
+    "guide_url": "https://github.com/argensite/arquia-eval-001/blob/69274389ab5dfe5b0f3d2b0b2f6983dfa3d9f261/QUICKSTART.md"
+  },
+  "development": {
+    "version": "v0.2.4",
+    "status": "development_source",
+    "source_url": "https://github.com/argensite/arquia-eval-001/tree/main",
+    "temporal_cases": 3,
+    "temporal_controls": 7
+  }
+}

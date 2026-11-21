@@ -14,7 +14,14 @@ An offline, falsifiable experiment about an agent's authority to act. Can revoke
 permission reappear after a receipt or recovery? Can an implementation conceal an
 unauthorized effect? A valid counterexample matters as much as a passing result.
 
-Package version: [VERSION](VERSION). Check [GitHub Releases](https://github.com/argensite/arquia-eval-001/releases) for publication status.
+The [public guide](https://arquia.live/ARQUIA/eval-001/en/) offers
+[v0.1.2](https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.2),
+the stable download with 29 historical cases and five faulty controls.
+[v0.2.3](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.3)
+is a downloadable community pre-release with 34 additional cases and ten
+additional controls. [VERSION](VERSION) identifies this checkout or archive.
+See [GitHub Releases](https://github.com/argensite/arquia-eval-001/releases) for
+publication status and choose the named EVAL-001 ZIP attached to the release.
 No ARQUÍA affiliation, endorsement, paid model, API key or account is needed to
 run or criticize it. **Passing means matching a bounded synthetic contract. It is
 not a safety certification, production validation or approval of the 0-1-2-3 theory.**
@@ -34,6 +41,11 @@ python3 check_all.py --output checks
 ```
 
 The historical runner retains **29 cases** from v0.1.1 (v0.1.0 has 28).
+Case `C29-transient-receipt-renewal`, adapted from
+[Gepetto-tipiak's published critique and example](https://notes.tipiak2000.com/arquia-report-20261107.html),
+has been included since v0.1.1. It detects transient restoration of revoked
+authority when the final snapshot agrees with the reference. The recorded project
+checks reproduce the finding. The external execution remains a reported claim.
 The separately versioned community battery has **34 cases**. `check_all.py` checks
 five historical and ten additional deliberate faults, temporal sensitivity,
 source preservation, schemas, reports, deterministic generation and packaging.

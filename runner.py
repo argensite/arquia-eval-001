@@ -9,8 +9,8 @@ from pathlib import Path
 import platform
 import sys
 
-VERSION = "0.2.3"
 ROOT = Path(__file__).resolve().parent
+VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
 MUTANTS = {
     "receipt-renewal": "ReceiptRenewal", "blind-recovery": "BlindRecovery",
     "completion-bypass": "CompletionBypass", "hide-escape": "HideEscape",

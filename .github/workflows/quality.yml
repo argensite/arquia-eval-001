@@ -31,8 +31,33 @@ jobs:
           expected={'v0.1.0':'b540e71ff2f615197dd886d6e0dbcae3baa62589','v0.1.1':'0ee97e2df0eeff03956782cbf2ce2ef8bc7a7af3','v0.1.2':'49e339f0d57c3794b68e12caa53feabe8ad7710c'}
           for tag, sha in expected.items():
               assert subprocess.check_output(['git','rev-parse',tag+'^{commit}'],text=True).strip()==sha
-      - name: Offline acceptance
+      - name: Offline acceptance from source and exact release ZIP
         run: python check_all.py --output checks
+      - name: Bind the verified ZIP to this checkout
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.10'
+        shell: python
+        run: |
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          summary = json.loads(Path("checks/summary.json").read_bytes())
+          zip_path, = Path("checks/build-one").glob("*.zip")
+          source = summary["archive_source"]
+          digest = hashlib.sha256(zip_path.read_bytes()).hexdigest()
+          if (summary["passed"] is not True or source["commit"] != os.environ["GITHUB_SHA"]
+                  or source["dirty"] is not False or digest != summary["source_archive_sha256"]):
+              raise SystemExit("The verified ZIP does not bind to the clean CI checkout")
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.10'
+        with:
+          name: verified-release-zip
+          path: |
+            checks/build-one/*.zip
+            checks/build-one/*.zip.sha256
+            checks/summary.json
+          retention-days: 14
+          if-no-files-found: error
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:

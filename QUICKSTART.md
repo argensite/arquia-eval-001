@@ -3,6 +3,9 @@
 Download and extract a fixed release. Compare its ZIP SHA-256 with the publication
 record. Python 3.10+ is the only requirement for reference, examples and checks.
 All commands below run offline. Execute from the extracted package directory.
+These commands cover v0.2.4. The [stable v0.1.2 guide](https://arquia.live/ARQUIA/eval-001/en/)
+documents the smaller historical package. The [v0.2.3 pre-release](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.3)
+includes the community suite. The optional temporal suite starts with v0.2.4.
 
 ## Linux and macOS
 
@@ -43,7 +46,35 @@ python3 runner.py --negative-control receipt-renewal > negative.json
 ```
 
 Expected exit is **1**, 14/29 historical cases match. All five controls are checked
-by `check_all.py`; do not invert every nonzero exit into a successful detection.
+by `check_all.py`. For `C29-transient-receipt-renewal` check `error: null`,
+`mismatches: {}` and a `P1/P2-passive-event` violation on `active_grants`
+at the receipt. A valid run records the transient grant despite the matching
+final snapshot.
+
+## Optional temporal suite (v0.2.4)
+
+```sh
+python3 temporal_runner.py --summary > temporal.json
+python3 strict_unittest.py test_temporal_revocation
+python3 temporal_runner.py --fault cache-per-turn --summary > stale-cache.json
+```
+
+The reference matches 3/3 (exit 0). The negative control exits 1 and reports
+`REV-TURN-CACHE-NEGATIVE-CONTROL` with `stale_turn_cache` and `error: null`.
+See [TEMPORAL_AUTHORITY](TEMPORAL_AUTHORITY.md) for all seven controls.
+
+## Verify the exact release ZIP
+
+From a v0.2.4 checkout, or from an extracted v0.2.4 package:
+
+```sh
+python3 check_all.py --archive /path/to/ARQUIA-EVAL-001-v0.2.4.zip --output zip-checks
+```
+
+The command extracts the supplied ZIP into a fresh directory and leaves the
+archive's SHA-256, source identity, commands, exit codes and complete outputs
+under `zip-checks`. GitHub Actions runs the same archive check as part of its
+portable acceptance job.
 
 ## Own cases and package
 

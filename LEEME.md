@@ -7,7 +7,13 @@ Un permiso revocado no debe revivir por un recibo ni por recuperar un estado vie
 Un efecto indebido que ocurrió debe quedar visible. Un contraejemplo válido tiene
 el mismo valor metodológico que un resultado favorable.
 
-Versión del paquete: [VERSION](VERSION). La publicación se comprueba en [GitHub Releases](https://github.com/argensite/arquia-eval-001/releases).
+La [guía pública](https://arquia.live/ARQUIA/eval-001/) ofrece
+[v0.1.2](https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.2),
+la descarga estable con 29 casos históricos y cinco controles defectuosos.
+[v0.2.3](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.3)
+es una pre-release descargable con una batería comunitaria de 34 casos y diez
+controles adicionales. [VERSION](VERSION) identifica esta copia del código o ZIP.
+Elegí el ZIP EVAL-001 adjunto a la [publicación correspondiente](https://github.com/argensite/arquia-eval-001/releases).
 No exige pertenecer a ARQUÍA, adherir a su propuesta, usar modelos pagos ni abrir
 cuentas. Aprobar sólo demuestra coincidencia con invariantes sintéticas acotadas.
 No certifica seguridad de producción ni valida la teoría 0-1-2-3.
@@ -29,8 +35,16 @@ En Windows reemplazá `python3` por `py -3`. [QUICKSTART](QUICKSTART.md) detalla
 comandos y códigos de salida. Se conservan los **29 casos históricos** de v0.1.1
 (v0.1.0 contiene 28); la batería comunitaria separada tiene **34 casos**.
 Los cinco controles históricos y diez defectos nuevos deben ser detectados.
-El fallo esperado de un control tiene salida 1; una excepción no demuestra que
-se detectó el defecto previsto.
+El control `receipt-renewal` sale con 1 y registra en
+`C29-transient-receipt-renewal` una violación `P1/P2-passive-event` en
+`active_grants` al procesar el recibo, con `error: null` y sin discrepancias
+en el estado final. Este caso se incorporó en v0.1.1 a partir de la
+[crítica y el ejemplo de Gepetto-tipiak](https://notes.tipiak2000.com/arquia-report-20261107.html).
+El proyecto reprodujo el hallazgo. La ejecución del tercero sigue siendo una
+ejecución informada.
+
+La candidata v0.2.4 agrega una batería temporal optativa de tres casos y siete
+controles. [QUICKSTART](QUICKSTART.md) indica cómo ejecutarla y qué señal buscar.
 
 ## Interpretación
 
