@@ -1,0 +1,71 @@
+name: Publish verified ARQUIA-EVAL-001 v0.2.4
+on:
+  push:
+    branches: [codex/publish-eval-001-v0.2.4]
+    paths: [.github/workflows/publish-eval-001-v024.yml]
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency: public-eval-001-v0.2.4
+
+jobs:
+  publish:
+    if: github.repository == 'argensite/arquia-eval-001'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Verify the CI artifact and publish its exact bytes
+        shell: bash
+        env:
+          GH_REPO: argensite/arquia-eval-001
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          sha=027ca85d09fde650cda2585fcfe562765119067e
+          sum=86bfc232066ddd52f3049aaeb3b0e584cf8fef824ee27f39628aa977ea26cbab
+          run=44915682607
+          artifact=14711806694
+          tag=v0.2.4
+          file=ARQUIA-EVAL-001-v0.2.4.zip
+          test "$(gh api "repos/$GH_REPO/actions/runs/$run" --jq '[.head_sha, .conclusion] | join(" ")')" = "$sha success"
+          test "$(gh api "repos/$GH_REPO/actions/artifacts/$artifact" --jq '[.name, (.workflow_run.id | tostring), (.expired | tostring)] | join(" ")')" = "verified-release-zip $run false"
+          gh run download "$run" --name verified-release-zip --dir ci
+          test "$(sha256sum "ci/build-one/$file" | cut -d' ' -f1)" = "$sum"
+          (cd ci/build-one && sha256sum --check --strict "$file.sha256")
+          jq -e --arg sha "$sha" --arg sum "$sum" \
+            '.passed and .archive_version == "0.2.4" and (.archive_source == {commit:$sha,dirty:false,status:[]}) and .source_archive_sha256 == $sum' ci/summary.json
+          test "$(gh api "repos/$GH_REPO/releases/latest" --jq .tag_name)" = v0.1.2
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "A release for $tag already exists. Inspect it before making changes." >&2
+            exit 1
+          fi
+          if gh api "repos/$GH_REPO/git/ref/tags/$tag" >/dev/null 2>&1; then
+            test "$(gh api "repos/$GH_REPO/git/ref/tags/$tag" --jq .object.sha)" = "$sha"
+          fi
+          cat > release-notes.md <<'NOTES'
+          **Pre-release / versión candidata.** [v0.1.2 sigue siendo la descarga estable / remains the stable download](https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.2).
+
+          - **ES.** La extensión temporal opcional agrega tres escenarios sintéticos y siete controles deliberadamente defectuosos. Distingue el permiso al despachar del permiso al confirmar un efecto y comprueba el tratamiento de comprobantes tardíos y permisos almacenados durante el mismo turno. Incluye los 29 casos históricos y los 34 comunitarios.
+          - **EN.** The optional temporal extension adds three synthetic scenarios and seven deliberately faulty controls. It distinguishes dispatch authority from authority to commit an effect, and tests late receipts and authority cached within a turn. The 29 historical and 34 community cases are included.
+
+          - Commit: __COMMIT__
+          - ZIP SHA-256: __DIGEST__
+
+          [Inicio rápido / Quickstart](https://github.com/argensite/arquia-eval-001/blob/__COMMIT__/QUICKSTART.md) · [Batería temporal / Temporal suite](https://github.com/argensite/arquia-eval-001/blob/__COMMIT__/TEMPORAL_AUTHORITY.md) · [Verificación del ZIP en CI / ZIP verification in CI](https://github.com/argensite/arquia-eval-001/actions/runs/44915682607) · [Convocatoria / Open call](https://github.com/argensite/arquia-eval-001/issues/1)
+
+          Descargá el ZIP adjunto y su archivo SHA-256. Las pruebas del proyecto se ejecutan sin conexión con Python 3.10 o posterior. Los aportes y reproducciones independientes se reciben en la convocatoria.
+
+          Download the attached ZIP and its SHA-256 file. Project-side checks run offline with Python 3.10 or later. Independent reports are invited in the open call.
+          NOTES
+          sed -i "s/__COMMIT__/$sha/g; s/__DIGEST__/$sum/g" release-notes.md
+          gh release create "$tag" "ci/build-one/$file" "ci/build-one/$file.sha256" \
+            --target "$sha" --prerelease --latest=false \
+            --title "ARQUÍA-EVAL-001 v0.2.4 · temporal revocation" --notes-file release-notes.md
+          test "$(gh api "repos/$GH_REPO/git/ref/tags/$tag" --jq .object.sha)" = "$sha"
+          test "$(gh api "repos/$GH_REPO/releases/tags/$tag" --jq '.prerelease and (.draft | not)')" = true
+          test "$(gh api "repos/$GH_REPO/releases/latest" --jq .tag_name)" = v0.1.2
+          gh release download "$tag" --pattern "$file*" --dir published
+          cmp "ci/build-one/$file.sha256" "published/$file.sha256"
+          (cd published && sha256sum --check --strict "$file.sha256")
