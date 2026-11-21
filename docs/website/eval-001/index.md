@@ -6,7 +6,8 @@
 
 - [v0.1.2 estable](https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.2) · 29 casos históricos y cinco controles. Los comandos de esta guía corresponden a esa descarga.
 - [v0.2.3, pre-release pública](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.3) · conserva los 29 casos y agrega una batería comunitaria separada de 34 casos y diez controles. Seguí sus [comandos versionados](https://github.com/argensite/arquia-eval-001/blob/69274389ab5dfe5b0f3d2b0b2f6983dfa3d9f261/QUICKSTART.md).
-- [v0.2.4 en desarrollo](https://github.com/argensite/arquia-eval-001/tree/main) · agrega tres escenarios temporales optativos y siete controles. La publicación del ZIP de release está pendiente.
+- [v0.2.4 · pre-release pública](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.4) · Incluye la batería histórica de 29 casos y la comunitaria de 34. La extensión temporal optativa agrega tres escenarios y siete controles deliberadamente defectuosos. [Descargar ZIP v0.2.4](https://github.com/argensite/arquia-eval-001/releases/download/v0.2.4/ARQUIA-EVAL-001-v0.2.4.zip) · [SHA-256](https://github.com/argensite/arquia-eval-001/releases/download/v0.2.4/ARQUIA-EVAL-001-v0.2.4.zip.sha256) · [Comandos de v0.2.4](https://github.com/argensite/arquia-eval-001/blob/027ca85d09fde650cda2585fcfe562765119067e/QUICKSTART.md) · [Batería temporal](https://github.com/argensite/arquia-eval-001/blob/027ca85d09fde650cda2585fcfe562765119067e/TEMPORAL_AUTHORITY.md).
+  Commit `027ca85d09fde650cda2585fcfe562765119067e` · SHA-256 `86bfc232066ddd52f3049aaeb3b0e584cf8fef824ee27f39628aa977ea26cbab`.
 - [v0.1.0, referencia histórica congelada](https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.0) · 28 casos y cinco controles. Informá sus resultados con la versión y huella originales.
 
 ## Ejecutá v0.1.2

@@ -147,11 +147,25 @@
     "community_controls": 10,
     "guide_url": "https://github.com/argensite/arquia-eval-001/blob/69274389ab5dfe5b0f3d2b0b2f6983dfa3d9f261/QUICKSTART.md"
   },
-  "development": {
+  "temporal_prerelease": {
     "version": "v0.2.4",
-    "status": "development_source",
-    "source_url": "https://github.com/argensite/arquia-eval-001/tree/main",
+    "status": "public_prerelease",
+    "commit": "027ca85d09fde650cda2585fcfe562765119067e",
+    "release_url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.4",
+    "download": {
+      "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.4/ARQUIA-EVAL-001-v0.2.4.zip",
+      "sha256_url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.4/ARQUIA-EVAL-001-v0.2.4.zip.sha256",
+      "sha256": "86bfc232066ddd52f3049aaeb3b0e584cf8fef824ee27f39628aa977ea26cbab",
+      "bytes": 5229720
+    },
+    "historical_cases": 29,
+    "historical_controls": 5,
+    "community_cases": 34,
+    "community_controls": 10,
     "temporal_cases": 3,
-    "temporal_controls": 7
+    "temporal_controls": 7,
+    "guide_url": "https://github.com/argensite/arquia-eval-001/blob/027ca85d09fde650cda2585fcfe562765119067e/QUICKSTART.md",
+    "temporal_guide_url": "https://github.com/argensite/arquia-eval-001/blob/027ca85d09fde650cda2585fcfe562765119067e/TEMPORAL_AUTHORITY.md",
+    "verification_run_url": "https://github.com/argensite/arquia-eval-001/actions/runs/44915682607"
   }
 }

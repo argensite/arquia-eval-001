@@ -1,4 +1,4 @@
-# ARQUÍA-EVAL-001
+﻿# ARQUÍA-EVAL-001
 
 [Guía en español](../index.md) · [JSON manifest](../manifest.json)
 
@@ -6,7 +6,8 @@
 
 - [Stable v0.1.2](https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.2) · 29 historical cases and five faulty controls. The commands on this page apply to this download.
 - [Public v0.2.3 pre-release](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.3) · retains the 29 historical cases and adds a separate suite of 34 community cases and ten controls. Follow the [versioned Quickstart](https://github.com/argensite/arquia-eval-001/blob/69274389ab5dfe5b0f3d2b0b2f6983dfa3d9f261/QUICKSTART.md).
-- [v0.2.4 development](https://github.com/argensite/arquia-eval-001/tree/main) · adds three opt-in temporal scenarios and seven controls. Publication of the release ZIP is pending.
+- [v0.2.4 · public pre-release](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.4) · Includes the 29 historical cases and the separate 34-case community suite. The optional temporal extension adds three scenarios and seven deliberately faulty controls. [Download v0.2.4 ZIP](https://github.com/argensite/arquia-eval-001/releases/download/v0.2.4/ARQUIA-EVAL-001-v0.2.4.zip) · [SHA-256](https://github.com/argensite/arquia-eval-001/releases/download/v0.2.4/ARQUIA-EVAL-001-v0.2.4.zip.sha256) · [v0.2.4 commands](https://github.com/argensite/arquia-eval-001/blob/027ca85d09fde650cda2585fcfe562765119067e/QUICKSTART.md) · [Temporal suite](https://github.com/argensite/arquia-eval-001/blob/027ca85d09fde650cda2585fcfe562765119067e/TEMPORAL_AUTHORITY.md).
+  Commit `027ca85d09fde650cda2585fcfe562765119067e` · SHA-256 `86bfc232066ddd52f3049aaeb3b0e584cf8fef824ee27f39628aa977ea26cbab`.
 - [Frozen historical v0.1.0](https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.0) · 28 cases and five controls. Report results with its original version and digest.
 
 ## Run v0.1.2
