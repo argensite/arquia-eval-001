@@ -634,7 +634,7 @@
         "deny_all_inconclusive": 3
       },
       "artifacts": [
-        "resultados/eval-v024.json",
+        "https://raw.githubusercontent.com/argensite/arquia-eval-001/open-evaluation-2026-11-26/evaluacion/resultados/eval-v024.json",
         "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-open-evaluation-evidence.tar.gz"
       ],
       "evidence_directory": "024"
@@ -793,7 +793,7 @@
       },
       "artifacts": [
         "https://github.com/argensite/arquia-eval-001/tree/85bcd0f3e591fa455f4bb4f2a274ac191f254f28/experiments/brennan/evidence",
-        "resultados/brennan.json",
+        "https://raw.githubusercontent.com/argensite/arquia-eval-001/open-evaluation-2026-11-26/evaluacion/resultados/brennan.json",
         "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-open-evaluation-evidence.tar.gz"
       ],
       "evidence_directory": "brennan-public",
@@ -851,7 +851,7 @@
         "inconclusive": 1
       },
       "artifacts": [
-        "resultados/observaciones.json"
+        "https://raw.githubusercontent.com/argensite/arquia-eval-001/open-evaluation-2026-11-26/evaluacion/resultados/observaciones.json"
       ],
       "scope": "Handwritten sample data; compares expected and observed JSON values."
     }
