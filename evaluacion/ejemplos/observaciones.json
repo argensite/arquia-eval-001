@@ -1,0 +1,6 @@
+{
+  "observations": [
+    {"id": "parte-incorporada", "observed": {"decision_reopened": true}},
+    {"id": "perdida-evitable", "observed": {"avoidable_loss": true}}
+  ]
+}

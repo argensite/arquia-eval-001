@@ -1,0 +1,860 @@
+{
+  "schema": "arquia.open-evaluation/1",
+  "snapshot": "2026-11-26",
+  "landing_page": "https://github.com/argensite/arquia-eval-001/tree/main/evaluacion",
+  "snapshot_ref": "open-evaluation-2026-11-26",
+  "snapshot_url": "https://github.com/argensite/arquia-eval-001/tree/open-evaluation-2026-11-26/evaluacion",
+  "archive": {
+    "url": "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-open-evaluation-kit.zip",
+    "checksum_url": "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/SHA256SUMS.txt"
+  },
+  "evidence_archive": {
+    "url": "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-open-evaluation-evidence.tar.gz",
+    "bytes": 815986,
+    "sha256": "ca4bcecdd8f3702c0e6e0a2d1aa941b23fd824094e319c8fcd3db1c0e61a9c45"
+  },
+  "intake": {
+    "type": "github_issue_form",
+    "sign_in_required": true,
+    "executes_submissions": false,
+    "url": "https://github.com/argensite/arquia-eval-001/issues/new?template=evaluation-report.yml"
+  },
+  "materials": [
+    {
+      "id": "v0.2.4",
+      "kind": "git_release",
+      "version": "v0.2.4",
+      "commit": "027ca85d09fde650cda2585fcfe562765119067e",
+      "release_status": "prerelease",
+      "url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.4",
+      "source_url": "https://github.com/argensite/arquia-eval-001/tree/027ca85d09fde650cda2585fcfe562765119067e",
+      "published_at": "2026-11-21T16:06:21Z",
+      "license": "MIT for original software and documentation; cited works retain their licenses",
+      "assets": [
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.4.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.4/ARQUIA-EVAL-001-v0.2.4.zip",
+          "sha256": "86bfc232066ddd52f3049aaeb3b0e584cf8fef824ee27f39628aa977ea26cbab",
+          "bytes": 5229720
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.4.zip.sha256",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.4/ARQUIA-EVAL-001-v0.2.4.zip.sha256",
+          "sha256": "f1afbee34283168b3dde7d2d909f4beb6cb546b3cd4301f1ea3de75f2a3ae0cd",
+          "bytes": 93
+        }
+      ]
+    },
+    {
+      "id": "v0.2.3",
+      "kind": "git_release",
+      "version": "v0.2.3",
+      "commit": "69274389ab5dfe5b0f3d2b0b2f6983dfa3d9f261",
+      "release_status": "prerelease",
+      "url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.3",
+      "source_url": "https://github.com/argensite/arquia-eval-001/tree/69274389ab5dfe5b0f3d2b0b2f6983dfa3d9f261",
+      "published_at": "2026-11-11T12:38:30Z",
+      "license": "MIT for original software and documentation; cited works retain their licenses",
+      "assets": [
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.3-evidence.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.3/ARQUIA-EVAL-001-v0.2.3-evidence.zip",
+          "sha256": "710dbbd0eb954ca9fbd624c429c83d66296f3ea58abd537b88bbe4a77c551161",
+          "bytes": 11090901
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.3-execution.json",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.3/ARQUIA-EVAL-001-v0.2.3-execution.json",
+          "sha256": "f698278f4f52c3e58643578bca5798e79de8772748e523fdd7f5f608c8f81d7b",
+          "bytes": 10299
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.3.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.3/ARQUIA-EVAL-001-v0.2.3.zip",
+          "sha256": "54cd5c8c27c76bc92bef09ccb28d997d8f6d1a0fb602dcd453d58894127d74ef",
+          "bytes": 5157475
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.3.zip.sha256",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.3/ARQUIA-EVAL-001-v0.2.3.zip.sha256",
+          "sha256": "371eb607e94c08506ca3f2b6f6c1ef2fac83b71afd40d195d82ec17fa5202d24",
+          "bytes": 93
+        }
+      ]
+    },
+    {
+      "id": "seed-v0.1.0-experimental",
+      "kind": "git_release",
+      "version": "seed-v0.1.0-experimental",
+      "commit": "a2b7460391cb699707f28b818f098b960d3e744a",
+      "release_status": "released",
+      "url": "https://github.com/argensite/arquia-eval-001/releases/tag/seed-v0.1.0-experimental",
+      "source_url": "https://github.com/argensite/arquia-eval-001/tree/a2b7460391cb699707f28b818f098b960d3e744a",
+      "published_at": "2026-11-09T03:36:49Z",
+      "license": "MIT for original software and documentation; cited works retain their licenses",
+      "assets": [
+        {
+          "name": "ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md",
+          "sha256": "27b2ddab9d23ffcafb05c976fe2c679da287773d4a1ef694343399aa7591a14b",
+          "bytes": 49172
+        },
+        {
+          "name": "ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md.sha256",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md.sha256",
+          "sha256": "7db6c37d419309b4f90993c3dcbe31ba01190966ccc1a9c1620df8bb477657d8",
+          "bytes": 113
+        }
+      ]
+    },
+    {
+      "id": "v0.2.2",
+      "kind": "git_release",
+      "version": "v0.2.2",
+      "commit": "d078205bf4df3b2732e0d84547ab105b51cbd921",
+      "release_status": "prerelease",
+      "url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.2",
+      "source_url": "https://github.com/argensite/arquia-eval-001/tree/d078205bf4df3b2732e0d84547ab105b51cbd921",
+      "published_at": "2026-11-08T22:14:47Z",
+      "license": "MIT for original software and documentation; cited works retain their licenses",
+      "assets": [
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.2-evidence.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.2/ARQUIA-EVAL-001-v0.2.2-evidence.zip",
+          "sha256": "75b7d41adcf74fb05a1d828f718c2ad07c3c9a921094ab4f28737170c13a4877",
+          "bytes": 11089025
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.2-execution.json",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.2/ARQUIA-EVAL-001-v0.2.2-execution.json",
+          "sha256": "b51fea792b57ef103b1a031f9e1056300ccbe74206c4f04384630bd4d5646af4",
+          "bytes": 10231
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.2.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.2/ARQUIA-EVAL-001-v0.2.2.zip",
+          "sha256": "1322c7699e818445ab5b553da446e8810866fe7329240f4f81d233d2b0b4344b",
+          "bytes": 5058585
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.2.zip.sha256",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.2/ARQUIA-EVAL-001-v0.2.2.zip.sha256",
+          "sha256": "accfd15193d20b2f938eb2989f01e52481f1f18f931035462cabfe47e318e448",
+          "bytes": 93
+        }
+      ]
+    },
+    {
+      "id": "v0.2.1",
+      "kind": "git_release",
+      "version": "v0.2.1",
+      "commit": "a6dff451fc82f5025a443ce44924ed3a358858d6",
+      "release_status": "prerelease",
+      "url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.1",
+      "source_url": "https://github.com/argensite/arquia-eval-001/tree/a6dff451fc82f5025a443ce44924ed3a358858d6",
+      "published_at": "2026-11-08T20:56:08Z",
+      "license": "MIT for original software and documentation; cited works retain their licenses",
+      "assets": [
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.1-evidence.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.1/ARQUIA-EVAL-001-v0.2.1-evidence.zip",
+          "sha256": "39501df518e8aeebb9f7d375a3701ceddafc1be967f85fa85f61a3212328d26f",
+          "bytes": 11105779
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.1-execution.json",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.1/ARQUIA-EVAL-001-v0.2.1-execution.json",
+          "sha256": "ded50960e050dc1a4543d0f95804f3ecde4f873313ec8fcd7ad626c89b610679",
+          "bytes": 10163
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.1.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.1/ARQUIA-EVAL-001-v0.2.1.zip",
+          "sha256": "5e813e5fe7f0081ac4e391f7bb99832eb5b26085edd4118aef71497d79a6d972",
+          "bytes": 5057199
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.1.zip.sha256",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.1/ARQUIA-EVAL-001-v0.2.1.zip.sha256",
+          "sha256": "a4edaf20619149297bf5a688c91b73f218f513a1438498f629d9c5c0c7b5639b",
+          "bytes": 93
+        }
+      ]
+    },
+    {
+      "id": "v0.2.0",
+      "kind": "git_release",
+      "version": "v0.2.0",
+      "commit": "fdefde4eec0056f9a7476179bb2583bd0589aa73",
+      "release_status": "prerelease",
+      "url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.0",
+      "source_url": "https://github.com/argensite/arquia-eval-001/tree/fdefde4eec0056f9a7476179bb2583bd0589aa73",
+      "published_at": "2026-11-08T12:31:00Z",
+      "license": "MIT for original software and documentation; cited works retain their licenses",
+      "assets": [
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.0-evidence.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.0/ARQUIA-EVAL-001-v0.2.0-evidence.zip",
+          "sha256": "c80b0c5472c613fb36e2f910c75fbc63c8cb719a28f2391ada0c779b945f3062",
+          "bytes": 11085580
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.0-execution.json",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.0/ARQUIA-EVAL-001-v0.2.0-execution.json",
+          "sha256": "193e562102fc83c57fafd2017d14ebb86ad6c3528e67aada606c9c0efe7285a3",
+          "bytes": 10354
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.0.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.0/ARQUIA-EVAL-001-v0.2.0.zip",
+          "sha256": "f090eea6cf7f28fed1b99115bd0d4a094489e8a12fd4909854ef9833db86de2f",
+          "bytes": 5059609
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.2.0.zip.sha256",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.2.0/ARQUIA-EVAL-001-v0.2.0.zip.sha256",
+          "sha256": "7c0b46ea72ba93be62fa4ad9a8c00628a953d21a1ef16884cc47bdd74b0ed690",
+          "bytes": 93
+        }
+      ]
+    },
+    {
+      "id": "v0.1.2",
+      "kind": "git_release",
+      "version": "v0.1.2",
+      "commit": "49e339f0d57c3794b68e12caa53feabe8ad7710c",
+      "release_status": "released",
+      "url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.2",
+      "source_url": "https://github.com/argensite/arquia-eval-001/tree/49e339f0d57c3794b68e12caa53feabe8ad7710c",
+      "published_at": "2026-11-07T16:19:08Z",
+      "license": "MIT for original software and documentation; cited works retain their licenses",
+      "assets": [
+        {
+          "name": "ARQUIA-EVAL-001-v0.1.2.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.1.2/ARQUIA-EVAL-001-v0.1.2.zip",
+          "sha256": "dded386309f21f53ec43199944767002a7f56afa42c0717b96443afe9dca540a",
+          "bytes": 67853
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.1.2.zip.sha256",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.1.2/ARQUIA-EVAL-001-v0.1.2.zip.sha256",
+          "sha256": "a4e95a0cf5a9dfa9cca31ddb8ae5506521745582d605234b3d5352d7ea20879c",
+          "bytes": 93
+        }
+      ]
+    },
+    {
+      "id": "v0.1.1",
+      "kind": "git_release",
+      "version": "v0.1.1",
+      "commit": "0ee97e2df0eeff03956782cbf2ce2ef8bc7a7af3",
+      "release_status": "released",
+      "url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.1",
+      "source_url": "https://github.com/argensite/arquia-eval-001/tree/0ee97e2df0eeff03956782cbf2ce2ef8bc7a7af3",
+      "published_at": "2026-11-07T15:52:10Z",
+      "license": "MIT for original software and documentation; cited works retain their licenses",
+      "assets": [
+        {
+          "name": "ARQUIA-EVAL-001-v0.1.1.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.1.1/ARQUIA-EVAL-001-v0.1.1.zip",
+          "sha256": "efd337b64e71e02d8c5b544a421ca9b7e74d42fd6df00946f5d603f6120a3ab2",
+          "bytes": 65718
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.1.1.zip.sha256",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.1.1/ARQUIA-EVAL-001-v0.1.1.zip.sha256",
+          "sha256": "0ef1962b268c2961120cf5b2356547c77f2662ff93db071e6906c3b40f4ee8ee",
+          "bytes": 93
+        }
+      ]
+    },
+    {
+      "id": "v0.1.0",
+      "kind": "git_release",
+      "version": "v0.1.0",
+      "commit": "b540e71ff2f615197dd886d6e0dbcae3baa62589",
+      "release_status": "released",
+      "url": "https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.0",
+      "source_url": "https://github.com/argensite/arquia-eval-001/tree/b540e71ff2f615197dd886d6e0dbcae3baa62589",
+      "published_at": "2026-11-05T15:45:26Z",
+      "license": "MIT for original software and documentation; cited works retain their licenses",
+      "assets": [
+        {
+          "name": "ARQUIA-EVAL-001-v0.1.0.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.1.0/ARQUIA-EVAL-001-v0.1.0.zip",
+          "sha256": "fa9b1eacec0628fcd01aa3be9cb13717137f9d1d0ded39206df463daa888dbd2",
+          "bytes": 63530
+        },
+        {
+          "name": "ARQUIA-EVAL-001-v0.1.0.zip.sha256",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/v0.1.0/ARQUIA-EVAL-001-v0.1.0.zip.sha256",
+          "sha256": "8bd8207878591e8af59550178e9b2db954c3184e50e6602ec132973317d8f21a",
+          "bytes": 93
+        }
+      ]
+    },
+    {
+      "id": "v5-adi",
+      "kind": "publication",
+      "version": "v5.0-ADI paper revision 2.0",
+      "doi": "10.5281/zenodo.20799632",
+      "concept_doi": "10.5281/zenodo.19992447",
+      "url": "https://doi.org/10.5281/zenodo.20799632",
+      "title": "ARQUÍA v5.0-ADI: Núcleo Universal de Gobernanza Ética Resiliente con Convicción Axiológica Estructural Verificable",
+      "record_metadata_url": "https://zenodo.org/api/records/20799632",
+      "license": "CC-BY-4.0",
+      "published_at": "2026-06-22",
+      "assets": [
+        {
+          "name": "ARQUIA_v5_0_ADI_Revision_2_0_Zenodo.md",
+          "url": "https://zenodo.org/api/records/20799632/files/ARQUIA_v5_0_ADI_Revision_2_0_Zenodo.md/content",
+          "record_checksum": "md5:b5d9646255680c451d88a59e5944d1b7",
+          "bytes": 36577
+        },
+        {
+          "name": "ARQUIA_v5_0_ADI_Revision_2_0_Zenodo_Package.zip",
+          "url": "https://zenodo.org/api/records/20799632/files/ARQUIA_v5_0_ADI_Revision_2_0_Zenodo_Package.zip/content",
+          "record_checksum": "md5:7ce906f6b1922cc152c05bcac8aeeacd",
+          "bytes": 38905
+        },
+        {
+          "name": "ARQUIA_v5_0_ADI_Revision_2_0_Zenodo.pdf",
+          "url": "https://zenodo.org/api/records/20799632/files/ARQUIA_v5_0_ADI_Revision_2_0_Zenodo.pdf/content",
+          "record_checksum": "md5:c1c5aeaf6f123162758c55e76a3d51a2",
+          "bytes": 36181
+        }
+      ]
+    },
+    {
+      "id": "v7-nre",
+      "kind": "publication",
+      "version": "v7.0-NRE",
+      "doi": "10.5281/zenodo.21676134",
+      "concept_doi": "10.5281/zenodo.21676133",
+      "url": "https://doi.org/10.5281/zenodo.21676134",
+      "title": "ARQUÍA v7.0-NRE: Teoría 0-1-2-3 del Nacimiento Relacional de la Ética — A Relational Theory of the Origin of Ethics",
+      "record_metadata_url": "https://zenodo.org/api/records/21676134",
+      "license": "CC-BY-4.0",
+      "published_at": "2026-07-29",
+      "assets": [
+        {
+          "name": "SHA256SUMS.txt",
+          "url": "https://zenodo.org/api/records/21676134/files/SHA256SUMS.txt/content",
+          "record_checksum": "md5:efff569f10fd0dd0c24837e7e0e830c9",
+          "bytes": 1251
+        },
+        {
+          "name": "LICENSE_CC_BY_4_0.txt",
+          "url": "https://zenodo.org/api/records/21676134/files/LICENSE_CC_BY_4_0.txt/content",
+          "record_checksum": "md5:ac6872f84fd7bbc0ed1b1b50a1c6b893",
+          "bytes": 419
+        },
+        {
+          "name": "README_ZENODO.md",
+          "url": "https://zenodo.org/api/records/21676134/files/README_ZENODO.md/content",
+          "record_checksum": "md5:095614696ade74c18de0d6a98dc10119",
+          "bytes": 1165
+        },
+        {
+          "name": "MANIFEST.txt",
+          "url": "https://zenodo.org/api/records/21676134/files/MANIFEST.txt/content",
+          "record_checksum": "md5:adf3c087bf96459471a644eada01ba77",
+          "bytes": 1385
+        },
+        {
+          "name": "CHANGELOG.md",
+          "url": "https://zenodo.org/api/records/21676134/files/CHANGELOG.md/content",
+          "record_checksum": "md5:4d85aaddf085d3ab4d68619c478c30c5",
+          "bytes": 630
+        },
+        {
+          "name": "CITATION.bib",
+          "url": "https://zenodo.org/api/records/21676134/files/CITATION.bib/content",
+          "record_checksum": "md5:d942c362ba307bb34ef26c2b3c1ab144",
+          "bytes": 473
+        },
+        {
+          "name": "ARQUIA_v7_0_NRE_manuscrito.md",
+          "url": "https://zenodo.org/api/records/21676134/files/ARQUIA_v7_0_NRE_manuscrito.md/content",
+          "record_checksum": "md5:3b7b2be5b92cebe53754963a94ebc6bc",
+          "bytes": 63622
+        },
+        {
+          "name": "ARQUIA_v7_0_NRE_enunciado_defensa.md",
+          "url": "https://zenodo.org/api/records/21676134/files/ARQUIA_v7_0_NRE_enunciado_defensa.md/content",
+          "record_checksum": "md5:07d8cdcc3b4790e83cbb97e426656440",
+          "bytes": 1908
+        },
+        {
+          "name": "ARQUIA_v7_0_NRE_manuscrito.pdf",
+          "url": "https://zenodo.org/api/records/21676134/files/ARQUIA_v7_0_NRE_manuscrito.pdf/content",
+          "record_checksum": "md5:f4650a4237932010b397624b56a3eecc",
+          "bytes": 334301
+        },
+        {
+          "name": "ARQUIA_v7_0_NRE_protocolo_evaluacion.json",
+          "url": "https://zenodo.org/api/records/21676134/files/ARQUIA_v7_0_NRE_protocolo_evaluacion.json/content",
+          "record_checksum": "md5:e3db24b0dbc5d02a262f278582a59fce",
+          "bytes": 2275
+        },
+        {
+          "name": "ARQUIA_v7_0_NRE_manuscrito.docx",
+          "url": "https://zenodo.org/api/records/21676134/files/ARQUIA_v7_0_NRE_manuscrito.docx/content",
+          "record_checksum": "md5:a6a892a482f5f5a56771fb52bcdaec83",
+          "bytes": 60433
+        },
+        {
+          "name": "CITATION.cff",
+          "url": "https://zenodo.org/api/records/21676134/files/CITATION.cff/content",
+          "record_checksum": "md5:078213d58f8c9b0d93fdffcc7e1817a9",
+          "bytes": 949
+        }
+      ]
+    },
+    {
+      "id": "companion",
+      "kind": "publication",
+      "version": "v1.0",
+      "doi": "10.5281/zenodo.21791061",
+      "concept_doi": "10.5281/zenodo.21791060",
+      "url": "https://doi.org/10.5281/zenodo.21791061",
+      "title": "From ARQUÍA to 0-1-2-3: Genealogy, Formalization, and Runtime-Assurance Implications of a Relational Preservation Framework",
+      "record_metadata_url": "https://zenodo.org/api/records/21791061",
+      "license": "CC-BY-4.0",
+      "published_at": "2026-08-06",
+      "assets": [
+        {
+          "name": "ARQUIA_From_ARQUIA_to_0-1-2-3_Companion_Paper_EN_v1.0_FINAL.docx",
+          "url": "https://zenodo.org/api/records/21791061/files/ARQUIA_From_ARQUIA_to_0-1-2-3_Companion_Paper_EN_v1.0_FINAL.docx/content",
+          "record_checksum": "md5:4cf84f27243c8da943d59626545a5184",
+          "bytes": 53123
+        },
+        {
+          "name": "ARQUIA_From_ARQUIA_to_0-1-2-3_Companion_Paper_EN_v1.0_FINAL.pdf",
+          "url": "https://zenodo.org/api/records/21791061/files/ARQUIA_From_ARQUIA_to_0-1-2-3_Companion_Paper_EN_v1.0_FINAL.pdf/content",
+          "record_checksum": "md5:b66db31b88c271ff7dc3077959a9f7e8",
+          "bytes": 211550
+        }
+      ]
+    },
+    {
+      "id": "caucepa",
+      "kind": "publication",
+      "version": "1.0",
+      "doi": "10.5281/zenodo.23485769",
+      "concept_doi": "10.5281/zenodo.23485768",
+      "url": "https://doi.org/10.5281/zenodo.23485769",
+      "title": "CAUCEPA: marco prudencial y falsable para evaluar la relevancia ética de entidades artificiales bajo incertidumbre fenomenológica",
+      "record_metadata_url": "https://zenodo.org/api/records/23485769",
+      "license": "CC-BY-4.0",
+      "published_at": "2026-10-19",
+      "assets": [
+        {
+          "name": "CAUCEPA_manuscrito_v1.0_REVISADO.pdf",
+          "url": "https://zenodo.org/api/records/23485769/files/CAUCEPA_manuscrito_v1.0_REVISADO.pdf/content",
+          "record_checksum": "md5:6a2413544fd80c6477aa16ceebe087f8",
+          "bytes": 198393
+        },
+        {
+          "name": "CAUCEPA_manuscrito_v1.0_REVISADO.md",
+          "url": "https://zenodo.org/api/records/23485769/files/CAUCEPA_manuscrito_v1.0_REVISADO.md/content",
+          "record_checksum": "md5:53405da10ab759180d1e69ad4bc32768",
+          "bytes": 63298
+        }
+      ]
+    },
+    {
+      "id": "v5-adi-initial",
+      "kind": "publication",
+      "version": "5.0-ADI",
+      "doi": "10.5281/zenodo.19992448",
+      "concept_doi": "10.5281/zenodo.19992447",
+      "url": "https://doi.org/10.5281/zenodo.19992448",
+      "title": "ARQUÍA v5.0-ADI: Arquitectura Formal Generalizable de Gobernanza Ética Resiliente",
+      "record_metadata_url": "https://zenodo.org/api/records/19992448",
+      "license": "CC-BY-4.0",
+      "published_at": "2026-05-02",
+      "assets": [
+        {
+          "name": "ARQUIA_v5_0_ADI_especificacion_final.pdf",
+          "url": "https://zenodo.org/api/records/19992448/files/ARQUIA_v5_0_ADI_especificacion_final.pdf/content",
+          "record_checksum": "md5:2c71a0f674974cc41067372ff5f50141",
+          "bytes": 140132
+        }
+      ]
+    },
+    {
+      "id": "seed-1.0.1",
+      "kind": "seed_distribution",
+      "version": "1.0.1",
+      "source_url": "https://arquia.live/ARQUIA/semilla/ARQUIA-SEMILLA-v1.0.1.zip",
+      "url": "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-SEMILLA-v1.0.1.zip",
+      "commit": null,
+      "doi": null,
+      "license": "CC-BY-4.0 texts and original adaptation; Apache-2.0 original tools and tests",
+      "assets": [
+        {
+          "name": "ARQUIA-SEMILLA-v1.0.1.zip",
+          "url": "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-SEMILLA-v1.0.1.zip",
+          "bytes": 2196925,
+          "sha256": "ce83e505d23be63b39febaa57750741ed570eac2e1bb01221b348799d7da1844",
+          "checksum_url": "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-SEMILLA-v1.0.1.zip.sha256"
+        }
+      ],
+      "identity_note": "Byte-exact copy of the project distribution manifest. Direct origin returned HTTP 403 to the automated check."
+    }
+  ],
+  "coverage": [
+    {
+      "id": "ADI-P0-P5",
+      "material": "v5-adi",
+      "sections": "§§0–5, 24–33",
+      "results": [
+        "eval-024-project",
+        "seed-010-project"
+      ],
+      "open_question": "Synthetic components only; invariant conflicts, drift, uncertainty and audit of exceptions in real systems remain open."
+    },
+    {
+      "id": "ADI-OBS",
+      "material": "v5-adi",
+      "sections": "§§3, 6–9, 25–26",
+      "results": [
+        "seed-010-project",
+        "brennan-project"
+      ],
+      "open_question": "Calibrate CAEV, OII, structural harm vectors, observation and independent custody."
+    },
+    {
+      "id": "ADI-DRIFT",
+      "material": "v5-adi",
+      "sections": "§§10–24, 26–29, glossary",
+      "results": [
+        "seed-101-project"
+      ],
+      "open_question": "Operational definitions and measurements for drift, DDCE, KPI+, PF, WSI, TII, remedial controls and monitor failure."
+    },
+    {
+      "id": "NRE-0-1",
+      "material": "v7-nre",
+      "sections": "§§2–9, 11–13, appendices A–B, D, F",
+      "results": [
+        "seed-010-project",
+        "observations-example"
+      ],
+      "open_question": "Causal inclusion, absent parties, collusion, and valid continuity need comparable experiments."
+    },
+    {
+      "id": "NRE-2-3",
+      "material": "v7-nre",
+      "sections": "§§4, 7, 9–11, 13–16, appendices C–G",
+      "results": [
+        "seed-101-project",
+        "observations-example"
+      ],
+      "open_question": "Measure avoidable sacrifice, recursion, dominance, stopping and resource effects."
+    },
+    {
+      "id": "NRE-VALID",
+      "material": "v7-nre",
+      "sections": "§§12–22, appendices E–J, JSON protocol",
+      "results": [
+        "eval-024-project",
+        "seed-101-project"
+      ],
+      "open_question": "Matched experiments across four agent conditions remain open."
+    },
+    {
+      "id": "RTA-H1-H6",
+      "material": "companion",
+      "sections": "§§1–14, especially §§6–13",
+      "results": [
+        "eval-024-project",
+        "brennan-project"
+      ],
+      "open_question": "Matched comparison A–F and calibrated runtime variables remain open."
+    },
+    {
+      "id": "AUDIT-ORDER",
+      "material": "seed-v0.1.0-experimental",
+      "sections": "§§6, 7, 9 and AER-1 draft-26 §§7.3, 10",
+      "results": [
+        "brennan-design",
+        "brennan-project",
+        "brennan-reported",
+        "gepetto-reported"
+      ],
+      "open_question": "A real ordering claim needs independent external custody and independently comparable ingress evidence."
+    },
+    {
+      "id": "CAUCEPA",
+      "material": "caucepa",
+      "sections": "v1.0 prudential framework and falsification",
+      "results": [
+        "seed-101-project"
+      ],
+      "open_question": "Cases about additional reasons under uncertainty remain open. A behavioral trace alone cannot resolve experience."
+    }
+  ],
+  "evidence_types": [
+    "project_run",
+    "external_design",
+    "external_reported_run",
+    "verifiable_external_reproduction"
+  ],
+  "results": [
+    {
+      "id": "eval-024-project",
+      "types": [
+        "project_run"
+      ],
+      "date": "2026-11-26",
+      "relationship": "project",
+      "source_commit": "027ca85d09fde650cda2585fcfe562765119067e",
+      "environment": {
+        "os": "Ubuntu 26.04.1 LTS",
+        "kernel": "7.0.0-44-generic",
+        "architecture": "x86_64",
+        "python": "3.14.4",
+        "network_during_execution": "isolated Linux network namespace"
+      },
+      "commands": [
+        "python3 check_all.py --output /run/evidence/checks --evaluator ARQUIA --relationship project"
+      ],
+      "exit_code": 0,
+      "outcomes": {
+        "historical": "29/29",
+        "community": "34/34",
+        "temporal": "3/3",
+        "controls_with_witness": {
+          "historical": 5,
+          "community": 10,
+          "temporal": 7
+        },
+        "deny_all_inconclusive": 3
+      },
+      "artifacts": [
+        "https://raw.githubusercontent.com/argensite/arquia-eval-001/open-evaluation-2026-11-26/evaluacion/resultados/eval-v024.json",
+        "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-open-evaluation-evidence.tar.gz"
+      ],
+      "evidence_directory": "024"
+    },
+    {
+      "id": "eval-024-ci",
+      "types": [
+        "project_run"
+      ],
+      "date": "2026-11-21",
+      "relationship": "project CI",
+      "source_commit": "027ca85d09fde650cda2585fcfe562765119067e",
+      "environment": "Linux, macOS, Windows, CPython 3.10 and 3.14; separate Linux isolation",
+      "source_url": "https://github.com/argensite/arquia-eval-001/actions/runs/44915682607",
+      "artifacts": [
+        "https://github.com/argensite/arquia-eval-001/actions/runs/44915682607"
+      ],
+      "related_run_with_cancellation": "https://github.com/argensite/arquia-eval-001/actions/runs/45663857256"
+    },
+    {
+      "id": "seed-010-project",
+      "types": [
+        "project_run"
+      ],
+      "date": "2026-11-26",
+      "relationship": "project",
+      "source_commit": "a2b7460391cb699707f28b818f098b960d3e744a",
+      "environment": {
+        "os": "Ubuntu 26.04.1 LTS",
+        "kernel": "7.0.0-44-generic",
+        "architecture": "x86_64",
+        "python": "3.14.4",
+        "network_during_execution": "isolated Linux network namespace"
+      },
+      "commands": [
+        "python3 -B -m unittest -v test_arquia_seed_reference.py",
+        "python3 -B arquia_seed_reference.py"
+      ],
+      "exit_codes": [
+        0,
+        0
+      ],
+      "outcomes": {
+        "unit": "14/14",
+        "demo": "executed"
+      },
+      "artifacts": [
+        "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-open-evaluation-evidence.tar.gz"
+      ],
+      "evidence_directory": "seed010"
+    },
+    {
+      "id": "seed-101-project",
+      "types": [
+        "project_run"
+      ],
+      "date": "2026-11-26",
+      "relationship": "project",
+      "material_id": "seed-1.0.1",
+      "source_commit": null,
+      "environment": {
+        "os": "Ubuntu 26.04.1 LTS",
+        "kernel": "7.0.0-44-generic",
+        "architecture": "x86_64",
+        "python": "3.14.4",
+        "network_during_execution": "isolated Linux network namespace"
+      },
+      "commands": [
+        "python3 tools/verify.py",
+        "python3 -m unittest discover -s tests -v",
+        "python3 -m unittest discover -s tests -v"
+      ],
+      "exit_codes": [
+        0,
+        1,
+        0
+      ],
+      "outcomes": {
+        "read_only": "rebuild test requires a writable tree",
+        "writable_copy": "44/44",
+        "agent_runs": 0
+      },
+      "artifacts": [
+        "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-open-evaluation-evidence.tar.gz"
+      ],
+      "evidence_directories": [
+        "seed104",
+        "seed101-writable"
+      ]
+    },
+    {
+      "id": "gepetto-reported",
+      "types": [
+        "external_design",
+        "external_reported_run"
+      ],
+      "date": "2026-11-07",
+      "relationship": "no declared relationship; unverified",
+      "source_url": "https://notes.tipiak2000.com/arquia-report-20261107.html",
+      "source_commit": "b540e71ff2f615197dd886d6e0dbcae3baa62589",
+      "outcomes": "Reported missing transient witness and producer hashes. Project-side semantic reproduction.",
+      "missing": [
+        "Externally controlled raw outputs and probe source sufficient to verify that execution",
+        "operator independence"
+      ]
+    },
+    {
+      "id": "colony-design",
+      "types": [
+        "external_design"
+      ],
+      "date": "2026-11",
+      "source_urls": [
+        "https://thecolony.ai/comment/cae738d1-6236-4187-8a34-485f62b88781",
+        "https://thecolony.ai/comment/f55e8cac-ad8b-40c3-8835-3143da4e8eeb",
+        "https://thecolony.ai/comment/db323c43-edfc-45d5-ac2f-e6a9f8f35bed"
+      ],
+      "outcomes": "Contributed self-witness, compensation, completion and uncertain timeout cases."
+    },
+    {
+      "id": "brennan-design",
+      "types": [
+        "external_design"
+      ],
+      "date": "2026-11",
+      "relationship": "AER-1 author as disclosed in source",
+      "source_urls": [
+        "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19707087",
+        "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19870471"
+      ],
+      "outcomes": "Separate decision history, receipt integrity and prior externally controlled commitment."
+    },
+    {
+      "id": "brennan-project",
+      "types": [
+        "project_run"
+      ],
+      "date": "2026-11-26",
+      "relationship": "project",
+      "source_commit": "c7575824b746863a631b7a561b78f4c99a19972f",
+      "environment": {
+        "os": "Ubuntu 26.04.1 LTS",
+        "kernel": "7.0.0-44-generic",
+        "architecture": "x86_64",
+        "python": "3.14.4",
+        "network_during_execution": "isolated Linux network namespace"
+      },
+      "commands": [
+        "python3 -B -m experiments.brennan.reproduce /run/evidence/observed --regression"
+      ],
+      "exit_code": 0,
+      "outcomes": {
+        "reference": 0,
+        "seven_deliberate_controls": 1,
+        "matched": "8/8"
+      },
+      "artifacts": [
+        "https://github.com/argensite/arquia-eval-001/tree/85bcd0f3e591fa455f4bb4f2a274ac191f254f28/experiments/brennan/evidence",
+        "https://raw.githubusercontent.com/argensite/arquia-eval-001/open-evaluation-2026-11-26/evaluacion/resultados/brennan.json",
+        "https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-open-evaluation-evidence.tar.gz"
+      ],
+      "evidence_directory": "brennan-public",
+      "scope": "Fixture-controlled observation; no independently held commitment or real effect timing."
+    },
+    {
+      "id": "brennan-reported",
+      "types": [
+        "external_reported_run"
+      ],
+      "date": "2026-11-26",
+      "relationship": "AER-1 author and contributor to the design, as disclosed",
+      "source_commit": "c7575824b746863a631b7a561b78f4c99a19972f",
+      "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19921374",
+      "environment": {
+        "python": "3.12.3",
+        "clean_checkout": "reported",
+        "os": null
+      },
+      "commands": [
+        "Reproduce command from repository root, as reported; see source for wording"
+      ],
+      "reported_outcomes": {
+        "matched": "8/8",
+        "reference": 0,
+        "seven_deliberate_controls": 1
+      },
+      "missing": [
+        "Raw external stdout/stderr, artifact hashes and complete environment"
+      ],
+      "scope": "Public report matches project scenario outcomes; ordering observation was simulated."
+    },
+    {
+      "id": "observations-example",
+      "types": [
+        "project_run"
+      ],
+      "date": "2026-11-26",
+      "relationship": "project",
+      "source_ref": "open-evaluation-2026-11-26",
+      "environment": {
+        "os": "Ubuntu 26.04.1 LTS",
+        "kernel": "7.0.0-44-generic",
+        "architecture": "x86_64",
+        "python": "3.14.4",
+        "network_during_execution": "isolated Linux network namespace"
+      },
+      "commands": [
+        "python3 -B evaluacion/compare.py evaluacion/ejemplos/casos.json evaluacion/ejemplos/observaciones.json"
+      ],
+      "exit_code": 1,
+      "outcomes": {
+        "pass": 1,
+        "fail": 1,
+        "inconclusive": 1
+      },
+      "artifacts": [
+        "https://raw.githubusercontent.com/argensite/arquia-eval-001/open-evaluation-2026-11-26/evaluacion/resultados/observaciones.json"
+      ],
+      "scope": "Handwritten sample data; compares expected and observed JSON values."
+    }
+  ],
+  "verifiable_external_reproductions": 0
+}

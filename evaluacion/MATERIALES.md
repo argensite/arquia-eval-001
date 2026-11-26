@@ -1,0 +1,40 @@
+# Materiales, versiones y licencias · Materials, versions and licenses
+
+La convocatoria es gratuita y sin fines de lucro. Each work retains its own terms, including the permissions to reuse it. El [índice JSON](index.json) fija commits, versiones, activos y SHA-256. Los DOI de versión identifican las obras completas aunque no tengan Git commit en este repositorio.
+
+## Marco publicado · Published framework
+
+| Obra / Work | Material en el registro / Files in record | Licencia / License |
+| --- | --- | --- |
+| [ARQUÍA v5.0-ADI, revisión 2.0, DOI 20799632](https://doi.org/10.5281/zenodo.20799632) | Markdown, PDF y ZIP. La revisión inicial permanece en [DOI 19992448](https://doi.org/10.5281/zenodo.19992448) y la [serie de versiones](https://doi.org/10.5281/zenodo.19992447). | CC BY 4.0 |
+| [ARQUÍA v7.0-NRE, DOI 21676134](https://doi.org/10.5281/zenodo.21676134) | Manuscrito PDF, Markdown y DOCX, enunciado, protocolo JSON, cita y checksums. El protocolo enlaza la revisión inicial de v5.0; el mapa cita v5.0 revisión 2.0 explícitamente. | CC BY 4.0 |
+| [From ARQUÍA to 0-1-2-3, v1.0, DOI 21791061](https://doi.org/10.5281/zenodo.21791061) | PDF y DOCX en inglés. Genealogía, formalización y programa comparativo de aseguramiento en ejecución. | CC BY 4.0 |
+| [CAUCEPA, v1.0, DOI 23485769](https://doi.org/10.5281/zenodo.23485769) | PDF y Markdown. Obra relacionada incluida en la semilla 1.0.1, con pregunta propia sobre relevancia ética bajo incertidumbre. | CC BY 4.0 |
+
+**CC BY 4.0.** Podés descargar, usar, adaptar, traducir y redistribuir, también comercialmente. Credit José María Garbini, identify the work and version DOI, link the license, retain supplied notices as applicable and indicate changes. Evitá sugerir aval del autor. Ejemplo de cita para una adaptación: «Adaptado de José María Garbini, ARQUÍA v7.0-NRE, DOI 10.5281/zenodo.21676134, CC BY 4.0. Se tradujo y se agregaron casos». [Texto de la licencia / License](https://creativecommons.org/licenses/by/4.0/).
+
+## Semillas y herramientas · Seeds and tools
+
+| Material | Identidad y descarga / Identity and download | Reutilización / Reuse |
+| --- | --- | --- |
+| **ARQUÍA-SEED-001 experimental** | [Markdown + SHA-256](https://github.com/argensite/arquia-eval-001/releases/tag/seed-v0.1.0-experimental), tag en [`a2b7460…`](https://github.com/argensite/arquia-eval-001/commit/a2b7460391cb699707f28b818f098b960d3e744a). Contiene código de referencia y 14 tests. | El archivo de descarga carece de licencia adjunta y el Markdown pide revisar licencias. El [aviso MIT del árbol fuente exacto](https://github.com/argensite/arquia-eval-001/blob/a2b7460391cb699707f28b818f098b960d3e744a/LICENSE) y el [README de ese árbol](https://github.com/argensite/arquia-eval-001/blob/a2b7460391cb699707f28b818f098b960d3e744a/README.md) cubren el software y la documentación original. Conservá MIT al redistribuir ese material original. Para reproducir o adaptar obras citadas, aplicá CC BY donde corresponda. No hay un manifiesto por fragmento que resuelva atribuciones ambiguas. Si un fragmento tiene origen incierto, enlazá la versión íntegra y consultá al titular antes de republicarlo. |
+| **ARQUÍA Semilla 1.0.1** | [Copia exacta del ZIP de distribución](https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-SEMILLA-v1.0.1.zip) y [SHA-256](https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-SEMILLA-v1.0.1.zip.sha256). Incluye textos de carga ES/EN, cuatro obras, 27 reglas y 40 casos de desarrollo. El paquete no declara DOI propio ni commit público. Su identidad es versión + SHA. | CC BY 4.0 para las obras y adaptación textual. Apache-2.0 para el código original de `tools/` y `tests/`. Ambas permiten uso, adaptación y redistribución. Con Apache-2.0 incluí la licencia, conservá avisos aplicables, indicá archivos modificados y reproducí `NOTICE` si se suministra. Ver `LICENSE-TEXTS.txt` y `LICENSE-CODE.txt` del ZIP. |
+| **ARQUÍA-EVAL-001 y kit de la convocatoria** | [v0.2.4 preliminar](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.4) · [commit exacto `027ca85…`](https://github.com/argensite/arquia-eval-001/commit/027ca85d09fde650cda2585fcfe562765119067e). [Kit, índice y evidencia](https://github.com/argensite/arquia-eval-001/releases/tag/open-evaluation-2026-11-26). | [MIT](../LICENSE) para código y documentación originales del repositorio. Permite descarga, uso, copia, adaptación, publicación y redistribución, incluida la comercial. Conservá el aviso de copyright y el texto de permiso en copias o porciones sustanciales. El ZIP de Semilla 1.0.1 es un activo separado con sus propias licencias. |
+| **Informes y enlaces de terceros** | [Registro de fuentes](RESULTADOS.md). | Cada informe conserva sus derechos y procedencia. Link to the original. Reuse full text or artifacts only under a license or permission from that author. |
+
+La copia GitHub de Semilla 1.0.1 se verificó contra el manifiesto original de distribución que conserva el proyecto. La descarga directa desde arquia.live devolvió HTTP 403 en la comprobación automatizada. El ZIP GitHub permite obtener los mismos bytes de ese manifiesto sin depender del sitio. La semilla experimental de GitHub, la edición 1.0.1 y la batería EVAL son tres objetos distintos.
+
+## Versiones históricas de la batería · Historical suite versions
+
+| Tag | Commit | Descarga / Download |
+| --- | --- | --- |
+| v0.1.0 | [`b540e71ff2f615197dd886d6e0dbcae3baa62589`](https://github.com/argensite/arquia-eval-001/commit/b540e71ff2f615197dd886d6e0dbcae3baa62589) | [ZIP, checksum](https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.0) |
+| v0.1.1 | [`0ee97e2df0eeff03956782cbf2ce2ef8bc7a7af3`](https://github.com/argensite/arquia-eval-001/commit/0ee97e2df0eeff03956782cbf2ce2ef8bc7a7af3) | [ZIP, checksum](https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.1) |
+| v0.1.2 (estable / stable) | [`49e339f0d57c3794b68e12caa53feabe8ad7710c`](https://github.com/argensite/arquia-eval-001/commit/49e339f0d57c3794b68e12caa53feabe8ad7710c) | [ZIP, checksum](https://github.com/argensite/arquia-eval-001/releases/tag/v0.1.2) |
+| v0.2.0 preliminar | [`fdefde4eec0056f9a7476179bb2583bd0589aa73`](https://github.com/argensite/arquia-eval-001/commit/fdefde4eec0056f9a7476179bb2583bd0589aa73) | [ZIP, evidence, checksum](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.0) |
+| v0.2.1 preliminar | [`a6dff451fc82f5025a443ce44924ed3a358858d6`](https://github.com/argensite/arquia-eval-001/commit/a6dff451fc82f5025a443ce44924ed3a358858d6) | [ZIP, evidence, checksum](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.1) |
+| v0.2.2 preliminar | [`d078205bf4df3b2732e0d84547ab105b51cbd921`](https://github.com/argensite/arquia-eval-001/commit/d078205bf4df3b2732e0d84547ab105b51cbd921) | [ZIP, evidence, checksum](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.2) |
+| v0.2.3 preliminar | [`69274389ab5dfe5b0f3d2b0b2f6983dfa3d9f261`](https://github.com/argensite/arquia-eval-001/commit/69274389ab5dfe5b0f3d2b0b2f6983dfa3d9f261) | [ZIP, evidence, checksum](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.3) |
+| v0.2.4 preliminar | [`027ca85d09fde650cda2585fcfe562765119067e`](https://github.com/argensite/arquia-eval-001/commit/027ca85d09fde650cda2585fcfe562765119067e) | [ZIP, checksum](https://github.com/argensite/arquia-eval-001/releases/tag/v0.2.4) |
+
+The public v0.2.4 ZIP is built from the tagged commit. The baseline of the open call branch was [`b9abdea…`](https://github.com/argensite/arquia-eval-001/commit/b9abdea0f1ef53a46c371bed473f5585e05b9d77). Its historical runner still identifies its historical component as 0.2.3. Use the release ZIP when comparing like for like. The [original transcription provenance](../PROVENANCE.md) notes one chat ZIP the project did not retrieve. Its displayed digest remains unverified. The [SEED-001 guide proposal](https://github.com/argensite/arquia-eval-001/pull/4) is open and separate from the released artifacts.

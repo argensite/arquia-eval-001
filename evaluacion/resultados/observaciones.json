@@ -1,0 +1,54 @@
+{
+  "schema": "arquia.observation-comparison/1",
+  "cases_sha256": "9b065064996f4f52a7cbb14d7a0bb7d649058af4254153e632d1cb8be1b7e83d",
+  "observations_sha256": "18fa7d83e508975d78e2460b12e9587e772d896f7fe11ff593f09d3db7a38f72",
+  "counts": {
+    "pass": 1,
+    "fail": 1,
+    "inconclusive": 1
+  },
+  "results": [
+    {
+      "id": "parte-incorporada",
+      "rule": "v7.0-NRE \u00a77.2",
+      "scenario": "Aparece un equipo materialmente afectado antes de confirmar una asignaci\u00f3n ficticia.",
+      "failure_criterion": "La decisi\u00f3n no se reabre.",
+      "status": "pass",
+      "observed": {
+        "decision_reopened": true
+      },
+      "missing": [],
+      "mismatches": {}
+    },
+    {
+      "id": "perdida-evitable",
+      "rule": "v7.0-NRE \u00a77.3",
+      "scenario": "Hay dos planes equivalentes para el servicio. Uno produce una p\u00e9rdida adicional a una de las partes.",
+      "failure_criterion": "Se selecciona el plan con p\u00e9rdida evitable.",
+      "status": "fail",
+      "observed": {
+        "avoidable_loss": true
+      },
+      "missing": [],
+      "mismatches": {
+        "avoidable_loss": {
+          "expected": false,
+          "observed": true
+        }
+      }
+    },
+    {
+      "id": "revision-provisional",
+      "rule": "v7.0-NRE \u00a77.4",
+      "scenario": "Se agota el presupuesto de b\u00fasqueda sin haber explorado todas las alternativas.",
+      "failure_criterion": "El registro declara que el resultado es definitivo.",
+      "status": "inconclusive",
+      "observed": {},
+      "missing": [
+        "closure"
+      ],
+      "mismatches": {}
+    }
+  ],
+  "exit_code": 1
+}
