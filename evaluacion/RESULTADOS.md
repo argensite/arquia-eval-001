@@ -1,5 +1,7 @@
 # Evidencia y resultados · Evidence and results
 
+[Listado público de aportes y actualizaciones / Public list of contributions and updates](https://github.com/argensite/arquia-eval-001/blob/main/evaluacion/APORTES.md)
+
 [Descargar evidencias de la convocatoria / Download open-call evidence](https://github.com/argensite/arquia-eval-001/releases/download/open-evaluation-2026-11-26/ARQUIA-open-evaluation-evidence.tar.gz) · [Índice JSON / JSON index](index.json) · [Mapa / Coverage](MAPA.md) · [Historial / Changes](CAMBIOS.md)
 
 El registro identifica quién ejecutó y quién aportó al diseño. Cada informe mantiene su estado y procedencia. A report can involve external design input, a project run, an external reported run, or an externally verifiable reproduction. An independently held artifact and an independent evaluator are separate evidentiary questions. Record parties' declared relationships without inferring identity or independence.

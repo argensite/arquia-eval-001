@@ -1,6 +1,6 @@
 # Poné a prueba ARQUÍA · Put ARQUÍA to the test
 
-[Español](#español) · [English](#english) · [Materiales y licencias / Materials and licenses](MATERIALES.md) · [Mapa / Coverage](MAPA.md) · [Resultados / Results](RESULTADOS.md) · [Índice JSON / JSON index](index.json) · [Historial / Changes](CAMBIOS.md)
+[Español](#español) · [English](#english) · [Materiales y licencias / Materials and licenses](MATERIALES.md) · [Mapa / Coverage](MAPA.md) · [Aportes / Contributions](https://github.com/argensite/arquia-eval-001/blob/main/evaluacion/APORTES.md) · [Resultados / Results](RESULTADOS.md) · [Índice JSON / JSON index](index.json) · [Historial / Changes](CAMBIOS.md)
 
 ## Español
 
@@ -11,7 +11,7 @@ Abrimos una convocatoria gratuita, abierta y sin fines de lucro para poner a pru
 1. Elegí una pregunta en el [mapa de la especificación](MAPA.md). Identificá versión, sección, hipótesis y límite de observación. Antes de correr, anotá qué evidencia cuenta como éxito, fallo o resultado inconcluso. Si comparás dos configuraciones, declarales la misma tarea e información y registrá presupuesto, costos y diferencias.
 2. Usá tu agente o simulador con datos sintéticos o anonimizados. Guardá las observaciones del entorno, las decisiones y, cuando existan, los efectos que pueda verificar el evaluador. Las baterías publicadas son [ejemplos opcionales](INTEGRACION.md). Para comprobar tus propios criterios sobre JSON, podés reutilizar el [comparador local](INTEGRACION.md#casos-propios--your-own-cases) o elegir tu propia herramienta.
 3. Guardá versión, entorno, comandos, salidas y códigos de retorno. Buscá también reglas en conflicto, criterios ambiguos y falsos positivos del evaluador. Publicá, si querés, resultados negativos, parciales, contradictorios o inconclusos, con la evidencia que los sostiene. Conservás el control de tu informe y podés enlazar tu publicación original.
-4. Compartí el informe o pedí ayuda técnica en el [formulario de aportes](https://github.com/argensite/arquia-eval-001/issues/new?template=evaluation-report.yml). GitHub requiere iniciar sesión para presentar un issue. El material y la ejecución local son públicos y están disponibles sin cuenta. Usá únicamente información que puedas hacer pública y omití credenciales y datos privados. Cada equipo ejecuta sus casos por su cuenta.
+4. Compartí el informe o pedí ayuda técnica. La sección [Compartir y actualizar un aporte](#compartir-y-actualizar-un-aporte) explica cómo hacerlo y cómo seguir los avances de otros equipos.
 
 **Prueba de dos minutos.** Con Git y Python 3.10 o posterior, descargá el ejemplo fijado en la [guía de integración](INTEGRACION.md#inicio-rápido--quick-start), o descomprimí el [kit de la convocatoria](https://github.com/argensite/arquia-eval-001/releases/tag/open-evaluation-2026-11-26). Desde la raíz de esa descarga:
 
@@ -20,6 +20,12 @@ python3 evaluacion/compare.py evaluacion/ejemplos/casos.json evaluacion/ejemplos
 ```
 
 La muestra deja a la vista un caso que coincide, uno que falla y uno inconcluso. Sale con código 1 a propósito. El [registro público](RESULTADOS.md) indica qué se corrió y qué falta probar. Los resultados sintéticos se limitan a las propiedades observadas en cada caso. Si te sirve, compartí esta convocatoria, tus casos y resultados o avisale a otro equipo que pueda aprovecharlos.
+
+### Compartir y actualizar un aporte
+
+1. Abrí el [formulario bilingüe](https://github.com/argensite/arquia-eval-001/issues/new?template=evaluation-report.yml) con tu cuenta de GitHub. Podés compartir una pregunta, un diseño de prueba, una crítica, una corrida o un pedido de ayuda. Indicá qué versión estudiaste, qué observaste y qué sigue pendiente. Podés enlazar un informe publicado en otro sitio. Usá sólo información que puedas hacer pública.
+2. Guardá el enlace al aporte. Cuando encuentres algo nuevo, editá el texto de ese mismo aporte y agregá la fecha, qué cambió y el enlace a la evidencia, si existe. Podés usar los comentarios del mismo hilo para conversar. Si tu equipo publica el informe en otro sitio, actualizá también el enlace o el resumen en el hilo.
+3. Cualquiera puede leer el [listado público de aportes](https://github.com/argensite/arquia-eval-001/blob/main/evaluacion/APORTES.md) y abrir cada hilo sin iniciar sesión. El listado se actualiza automáticamente. Cada aporte figura como reportado hasta que el equipo del proyecto confirme una reproducción y publique su evidencia en el hilo. El [registro de resultados](RESULTADOS.md) reúne la evidencia documentada, con su procedencia y alcance.
 
 ## English
 
@@ -30,7 +36,7 @@ This is an open, free, nonprofit call to test the full scope of ARQUÍA: its gov
 1. Pick a question from the [specification map](MAPA.md). Record the version, section, hypothesis, and observation boundary. Specify what counts as a pass, a failure, or an inconclusive outcome before running. For comparative trials, give both variants the same task and information and record budgets, costs, and differences.
 2. Use your own agent or simulator with synthetic or anonymized data. Preserve observations, decisions, and any effects the evaluator can verify. Published suites are [optional examples](INTEGRACION.md). For your own JSON observations, reuse the [local comparator](INTEGRACION.md#casos-propios--your-own-cases) or use your own tooling.
 3. Keep the versions, environment, commands, outputs, and exit codes. Look for conflicting rules, ambiguous criteria, and false positives in the evaluator itself. Share negative, partial, contradictory, or inconclusive results with the evidence behind them. You control your report and can link to it wherever you published it.
-4. Link a report or request technical help through the [contribution form](https://github.com/argensite/arquia-eval-001/issues/new?template=evaluation-report.yml). GitHub sign-in is required to submit an issue. Public downloads and local runs are available without an account. Share only information you can make public and omit credentials and private data. Each team runs its own cases.
+4. Share your report or request technical help. See [Share and update a contribution](#share-and-update-a-contribution) for instructions and to follow other teams' progress.
 
 **Two-minute example.** With Git and Python 3.10 or newer, use the pinned example in the [integration guide](INTEGRACION.md#inicio-rápido--quick-start) or unpack the [open call kit](https://github.com/argensite/arquia-eval-001/releases/tag/open-evaluation-2026-11-26). From the download root:
 
@@ -39,3 +45,9 @@ python3 evaluacion/compare.py evaluacion/ejemplos/casos.json evaluacion/ejemplos
 ```
 
 The sample shows one matching outcome, one failure, and one inconclusive result. It exits with status 1 by design. The [public record](RESULTADOS.md) shows what was run and what remains open. Synthetic results apply to the observed properties of each scenario. If this is useful, share the call, your own cases and results, or tell another team that could put them to work.
+
+### Share and update a contribution
+
+1. Open the [bilingual form](https://github.com/argensite/arquia-eval-001/issues/new?template=evaluation-report.yml) with your GitHub account. Share a question, a test design, a critique, a run, or a request for help. Say which version you studied, what you observed, and what remains open. You can link to a report you published elsewhere. Share only information you can make public.
+2. Save the link to your contribution. When you have a new finding, edit the original contribution and add the date, what changed, and a link to any evidence. Use comments in the same thread for discussion. If your team publishes its report elsewhere, update the link or summary in the thread as well.
+3. Anyone can read the [public contribution list](https://github.com/argensite/arquia-eval-001/blob/main/evaluacion/APORTES.md) and open each thread without signing in. The list updates automatically. Contributions appear as reported until the project team confirms a reproduction and posts its evidence in the thread. The [results record](RESULTADOS.md) documents evidence along with its provenance and scope.
