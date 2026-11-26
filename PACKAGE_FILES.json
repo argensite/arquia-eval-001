@@ -8,6 +8,8 @@
   ".github/ISSUE_TEMPLATE/independent-report.md",
   ".github/ISSUE_TEMPLATE/methodology.md",
   ".github/ISSUE_TEMPLATE/reproducible-run.md",
+  ".github/scripts/build_evaluation_contributions.py",
+  ".github/workflows/evaluation-contributions.yml",
   ".github/workflows/publish-seed.yml",
   ".github/workflows/quality.yml",
   ".gitignore",

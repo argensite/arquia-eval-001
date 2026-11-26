@@ -1,0 +1,54 @@
+name: Update public evaluation contributions
+
+on:
+  issues:
+    types: [opened, edited, deleted, transferred, labeled, unlabeled, reopened, closed]
+  issue_comment:
+    types: [created]
+  push:
+    branches: [main]
+    paths:
+      - .github/scripts/build_evaluation_contributions.py
+      - .github/workflows/evaluation-contributions.yml
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+
+jobs:
+  refresh:
+    if: >-
+      github.repository == 'argensite/arquia-eval-001' &&
+      github.ref_name == 'main' &&
+      (github.event_name != 'issue_comment' ||
+        contains(github.event.issue.labels.*.name, 'open-evaluation'))
+    concurrency:
+      group: public-evaluation-contributions
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Regenerate and publish the list
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git checkout --detach FETCH_HEAD
+            python3 .github/scripts/build_evaluation_contributions.py
+            if git diff --quiet -- evaluacion/APORTES.md; then
+              exit 0
+            fi
+            git add -- evaluacion/APORTES.md
+            git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'Refresh public ARQUÍA evaluation contributions'
+            if git push origin HEAD:refs/heads/main; then
+              exit 0
+            fi
+          done
+          exit 1

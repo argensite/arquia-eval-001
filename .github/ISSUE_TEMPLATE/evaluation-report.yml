@@ -1,6 +1,7 @@
 name: "Evaluación abierta / Open evaluation report"
 description: "Compartí un caso, resultado, crítica o pedido de ayuda / Share a case, result, critique or request for help."
 title: "[Open evaluation] "
+labels: [open-evaluation]
 body:
   - type: markdown
     attributes:
@@ -8,6 +9,7 @@ body:
         Los issues son públicos. Usá datos sintéticos o anonimizados. Omití credenciales y datos privados.
         Issues are public. Use synthetic or anonymized data. Omit credentials and private data.
         Podés enlazar tu informe original y mantenerlo bajo tu control. You can link to the original report you control.
+        Para agregar avances, editá este mismo aporte y anotá la fecha y los cambios. To add progress, edit this same contribution and record the date and changes.
         Si es un diseño o un pedido de ayuda, marcá lo que aún no ejecutaste. For designs and help requests, mark what has yet to run.
   - type: dropdown
     id: kind
