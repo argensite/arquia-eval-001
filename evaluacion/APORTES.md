@@ -5,4 +5,6 @@ This list updates automatically. Open a thread to read the contribution and its 
 
 [Cómo participar / How to take part](README.md) · [Evidencia y resultados / Evidence and results](RESULTADOS.md)
 
-Todavía no hay aportes en el listado. / No contributions have been listed yet.
+| Aporte / Contribution | Última actividad / Last activity (UTC) | Estado de evidencia / Evidence status |
+| --- | --- | --- |
+| [#8](https://github.com/argensite/arquia-eval-001/issues/8) \[Open evaluation\] Prueba técnica del listado de aportes \/ Contribution list test | 2026-11-26 19:07:38 | Reportado / Reported |
