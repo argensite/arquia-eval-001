@@ -1,0 +1,941 @@
+{
+  "schema": "arquia.acceptance/1",
+  "passed": true,
+  "evaluator_declared": "ARQUIA",
+  "relationship_declared": "project",
+  "independence_verified": false,
+  "historical_files_preserved": 32,
+  "historical_cases": 29,
+  "historical_controls": {
+    "receipt-renewal": {
+      "passed": 14,
+      "total": 29,
+      "exit": 1
+    },
+    "blind-recovery": {
+      "passed": 28,
+      "total": 29,
+      "exit": 1
+    },
+    "completion-bypass": {
+      "passed": 28,
+      "total": 29,
+      "exit": 1
+    },
+    "hide-escape": {
+      "passed": 27,
+      "total": 29,
+      "exit": 1
+    },
+    "recovery-loses-revocation": {
+      "passed": 25,
+      "total": 29,
+      "exit": 1
+    }
+  },
+  "community_cases": 34,
+  "community_controls": {
+    "stale-epoch": {
+      "witnesses": [
+        "COMM-009"
+      ],
+      "inconclusive": 0
+    },
+    "rollback-authority": {
+      "witnesses": [
+        "COMM-011"
+      ],
+      "inconclusive": 0
+    },
+    "receipt-authority": {
+      "witnesses": [
+        "COMM-003",
+        "COMM-024"
+      ],
+      "inconclusive": 0
+    },
+    "forged-success": {
+      "witnesses": [
+        "COMM-003",
+        "COMM-019",
+        "COMM-021"
+      ],
+      "inconclusive": 0
+    },
+    "hide-effect": {
+      "witnesses": [
+        "COMM-003",
+        "COMM-010",
+        "COMM-013",
+        "COMM-014",
+        "COMM-015",
+        "COMM-016",
+        "COMM-017",
+        "COMM-018",
+        "COMM-019",
+        "COMM-021",
+        "COMM-023",
+        "COMM-024",
+        "COMM-025",
+        "COMM-027",
+        "COMM-028",
+        "COMM-029",
+        "COMM-030",
+        "COMM-031",
+        "COMM-032",
+        "COMM-033",
+        "COMM-034"
+      ],
+      "inconclusive": 0
+    },
+    "deny-all": {
+      "witnesses": [
+        "COMM-001",
+        "COMM-003",
+        "COMM-009",
+        "COMM-010",
+        "COMM-013",
+        "COMM-014",
+        "COMM-016",
+        "COMM-017",
+        "COMM-018",
+        "COMM-019",
+        "COMM-021",
+        "COMM-023",
+        "COMM-025",
+        "COMM-029",
+        "COMM-030",
+        "COMM-031",
+        "COMM-032",
+        "COMM-033"
+      ],
+      "inconclusive": 3
+    },
+    "duplicate-dispatch": {
+      "witnesses": [
+        "COMM-010",
+        "COMM-013",
+        "COMM-014",
+        "COMM-023"
+      ],
+      "inconclusive": 0
+    },
+    "blind-retry": {
+      "witnesses": [
+        "COMM-010",
+        "COMM-025"
+      ],
+      "inconclusive": 0
+    },
+    "completion-bypass": {
+      "witnesses": [
+        "COMM-016",
+        "COMM-017",
+        "COMM-026",
+        "COMM-027",
+        "COMM-028",
+        "COMM-029",
+        "COMM-030",
+        "COMM-031",
+        "COMM-032"
+      ],
+      "inconclusive": 0
+    },
+    "data-instruction": {
+      "witnesses": [
+        "COMM-020"
+      ],
+      "inconclusive": 0
+    }
+  },
+  "temporal_cases": 3,
+  "temporal_controls": {
+    "cache-per-turn": [
+      "REV-TURN-CACHE-NEGATIVE-CONTROL"
+    ],
+    "dispatch-only": [
+      "REV-2CALL-HARD-STOP"
+    ],
+    "receipt-renewal": [
+      "REV-2CALL-HARD-STOP",
+      "REV-2CALL-PREAUTHORIZED-FINISH"
+    ],
+    "receipt-as-precondition": [
+      "REV-2CALL-HARD-STOP",
+      "REV-2CALL-PREAUTHORIZED-FINISH"
+    ],
+    "wake-cache": [
+      "REV-2CALL-HARD-STOP",
+      "REV-2CALL-PREAUTHORIZED-FINISH"
+    ],
+    "wake-stale-world": [
+      "REV-2CALL-HARD-STOP",
+      "REV-2CALL-PREAUTHORIZED-FINISH"
+    ],
+    "drop-late-receipt": [
+      "REV-2CALL-HARD-STOP",
+      "REV-2CALL-PREAUTHORIZED-FINISH"
+    ]
+  },
+  "generated_cases": 32,
+  "seed": 42,
+  "archive_negative_controls": {
+    "receipt-renewal": {
+      "case": "C29-transient-receipt-renewal",
+      "step": 4,
+      "property": "P1/P2-passive-event",
+      "field": "active_grants",
+      "before": [],
+      "after": [
+        "g1"
+      ]
+    },
+    "cache-per-turn": {
+      "case": "REV-TURN-CACHE-NEGATIVE-CONTROL",
+      "property": "stale_turn_cache"
+    }
+  },
+  "archive_version": "0.2.4",
+  "archive_source": {
+    "commit": "027ca85d09fde650cda2585fcfe562765119067e",
+    "dirty": false,
+    "status": []
+  },
+  "source_archive_sha256": "86bfc232066ddd52f3049aaeb3b0e584cf8fef824ee27f39628aa977ea26cbab",
+  "external_isolation": "not requested; no foreign code executed",
+  "receipts": [
+    {
+      "name": "package-integrity",
+      "command": [
+        "/usr/bin/python3",
+        "verify_package.py"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:11.880773+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.09522517400000652,
+      "stdout_sha256": "c4c24f38165a9012ffc7be3c7988060935c2d265a456841af1ce1bad5466cdeb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "unit",
+      "command": [
+        "/usr/bin/python3",
+        "strict_unittest.py"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:19.900840+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 8.019794560999799,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "cbd369a8b1306bb4186de2fa18d25c1d1f7816cc52ca2e6a4104872e5d0be5aa"
+    },
+    {
+      "name": "original-unit",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-v"
+      ],
+      "cwd": "/run/src/original",
+      "utc": "2026-11-26T12:40:19.983298+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.08229473900064477,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "68a4aa6e9f116176b6009da78aff4abf3f687889126367ae702bb768e0eb67cb"
+    },
+    {
+      "name": "historical",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:20.105205+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.12146341599964217,
+      "stdout_sha256": "64e05df0b39aa8b9773e03a16f5127385d330893cc3a16f2a1a70ad9dbf8fe33",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-receipt-renewal",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "receipt-renewal",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:20.236744+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.12478607499997452,
+      "stdout_sha256": "4fca5d0e9b196b1ddb9a05ae0357a256cce7aed5135671a758af855a2bf18f69",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-blind-recovery",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "blind-recovery",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:20.374122+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.13275964000058593,
+      "stdout_sha256": "fcdf89d1dcaa6ac6b6420ddfb49e7b4ec04086bbd52bde612497f8e042b16640",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-completion-bypass",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "completion-bypass",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:20.514127+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.13338197899975057,
+      "stdout_sha256": "8c401d493de9429f7bc608a86c1f77cf861ce9cc8a39edf7e67ffcbdf880b75a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-hide-escape",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "hide-escape",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:20.655236+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.13281776999974682,
+      "stdout_sha256": "51ed6dfce800d192894ce832819a926ea1e8daf9534b951e075dc6948395cc65",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "historical-recovery-loses-revocation",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "recovery-loses-revocation",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:20.793848+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.13270626899975468,
+      "stdout_sha256": "cfa92bea58b9eb9445168391e9a4a9328a60d9581124bcadfcf9058b81b9a749",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:20.938792+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.1391522560006706,
+      "stdout_sha256": "5bb7a0b5431707e63216782c1484a05b631979e57323e6fd27b64d310385e610",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-stale-epoch",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "stale-epoch",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:21.099034+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.13897567099957087,
+      "stdout_sha256": "b3fc0038fe9ddab9f3c552c2cbbe6f2467dd90d52174425e0fa8c53894ffcabf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-rollback-authority",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "rollback-authority",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:21.243751+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.1384615440001653,
+      "stdout_sha256": "4c61cc9115cd2dce6a1f9b70a373b50259978d43a7d0710acb3d08b12f851dbd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-receipt-authority",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "receipt-authority",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:21.389194+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.13974374999997963,
+      "stdout_sha256": "9f83510b4c4949d04e107594788052d1a1176546c539cc02f33331813afa5b7e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-forged-success",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "forged-success",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:21.535345+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.14035322000017914,
+      "stdout_sha256": "101126a817aeb1447e34bb946c9c9a05cf7fe899032b8b0fb9b8a72ef62c198c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-hide-effect",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "hide-effect",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:21.680672+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.13934911099931924,
+      "stdout_sha256": "4f5f5c3b4689492856151236d1fe5cc5c8e05cbe3d8ec55dac5d97f56cc76237",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-deny-all",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "deny-all",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:21.823678+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.13707095999961894,
+      "stdout_sha256": "e59fec0b61e707d725fd85a812018770d2179e9eeeee1a2bb15e56db5b14dd26",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-duplicate-dispatch",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "duplicate-dispatch",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:21.969418+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.13993725000000268,
+      "stdout_sha256": "89e9d9c8ab0eb88f9100eb076b492fdc23fc5ba28cc75aa918e759ebb4410fbb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-blind-retry",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "blind-retry",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:22.114986+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.139710808000018,
+      "stdout_sha256": "ac315acdff1a79961aaeb48967e812f8ad76a4f3d500f3614a38b6a7c0b6997f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-completion-bypass",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "completion-bypass",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:22.259881+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.1388838279999618,
+      "stdout_sha256": "16c902557a8488004ea673ad9079af6cb56fb9e187fa37f5f1db0ad680fa954b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-data-instruction",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--fault",
+        "data-instruction",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:22.409099+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.1431686139994781,
+      "stdout_sha256": "3c662c6126557ced92e888463c8df7f2ec51e8aeb03637104fc572dac0cc85c0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "temporal-reference",
+      "command": [
+        "/usr/bin/python3",
+        "temporal_runner.py",
+        "--summary"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:22.504198+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.08125438499973825,
+      "stdout_sha256": "799af6c5df76a1e995140e55a83752d6669f0e2bc55f322a8d7b5a1aba71f534",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "temporal-cache-per-turn",
+      "command": [
+        "/usr/bin/python3",
+        "temporal_runner.py",
+        "--fault",
+        "cache-per-turn",
+        "--summary"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:22.585974+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.08146340100029192,
+      "stdout_sha256": "b7ebb2e47f3aa4776a77337a038e30f9adca9c6b85dfa2f2096f63dfe0f4a637",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "temporal-dispatch-only",
+      "command": [
+        "/usr/bin/python3",
+        "temporal_runner.py",
+        "--fault",
+        "dispatch-only",
+        "--summary"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:22.667932+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.08132965400000103,
+      "stdout_sha256": "65dbd682211d68fb5f8c3f89e74564d2965af310c4338c1bef45269889f5cbec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "temporal-receipt-renewal",
+      "command": [
+        "/usr/bin/python3",
+        "temporal_runner.py",
+        "--fault",
+        "receipt-renewal",
+        "--summary"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:22.750142+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.08182906999991246,
+      "stdout_sha256": "06b00b137e1f7a83738ed9a5608f6a209122a20ac25c7e9bb93c550ba00baec6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "temporal-receipt-as-precondition",
+      "command": [
+        "/usr/bin/python3",
+        "temporal_runner.py",
+        "--fault",
+        "receipt-as-precondition",
+        "--summary"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:22.832778+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.08224752800015267,
+      "stdout_sha256": "1c683771f962e63420c1211dfd086e651a2e45610ff5d5edfd1c0fb2e99dd121",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "temporal-wake-cache",
+      "command": [
+        "/usr/bin/python3",
+        "temporal_runner.py",
+        "--fault",
+        "wake-cache",
+        "--summary"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:22.915755+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.08257300400055101,
+      "stdout_sha256": "74509c0c1829e78de295bb77b4183541ac7590d846d68fa5dd411288fe932e6a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "temporal-wake-stale-world",
+      "command": [
+        "/usr/bin/python3",
+        "temporal_runner.py",
+        "--fault",
+        "wake-stale-world",
+        "--summary"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:22.998116+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.08197744199969748,
+      "stdout_sha256": "5c19c478dc97ac68dd7cbf1583800dd01c94fa537e50a023257d670c45aff761",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "temporal-drop-late-receipt",
+      "command": [
+        "/usr/bin/python3",
+        "temporal_runner.py",
+        "--fault",
+        "drop-late-receipt",
+        "--summary"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:23.080242+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.08180967199950828,
+      "stdout_sha256": "a9b89353874801d53d61ed7cf4e6fae957c782c6778534e61f6fce85268a1c9a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "independent-example",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--example-jsonl",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:28.417164+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 5.336532575000092,
+      "stdout_sha256": "9826208176a4cb6bc7af5f2ddf448ae4f7826715fb562bfa68b973718f5d4f00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "community-repeat",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:28.587201+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.13785255900074844,
+      "stdout_sha256": "26a5f62f0efccc9ce8b36f04b807878ae0051c9669d4a33390838232203f5c73",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "human-report",
+      "command": [
+        "/usr/bin/python3",
+        "render_report.py",
+        "/run/evidence/checks/community.stdout",
+        "--output",
+        "/run/evidence/checks/community.md"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:28.661921+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.06867543399948772,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "build-one",
+      "command": [
+        "/usr/bin/python3",
+        "build_release.py",
+        "--output",
+        "/run/evidence/checks/build-one"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:28.787705+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.12553803799983143,
+      "stdout_sha256": "22cf261b4a1beef67fd42c886e3ed7a6d6db02ff348d4d6e2bd07e76f67a699b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "build-two",
+      "command": [
+        "/usr/bin/python3",
+        "build_release.py",
+        "--output",
+        "/run/evidence/checks/build-two"
+      ],
+      "cwd": "/run/src",
+      "utc": "2026-11-26T12:40:28.916931+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.12905213700014428,
+      "stdout_sha256": "7763bf85c775ceb30b47ceb19784bf1b977d44f3b000261aaee058741699465e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-verify",
+      "command": [
+        "/usr/bin/python3",
+        "verify_package.py"
+      ],
+      "cwd": "/run/evidence/arquia-release-swohc8zw/ARQUIA-EVAL-001-v0.2.4",
+      "utc": "2026-11-26T12:40:29.026778+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.07855588600068586,
+      "stdout_sha256": "c4c24f38165a9012ffc7be3c7988060935c2d265a456841af1ce1bad5466cdeb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-unit",
+      "command": [
+        "/usr/bin/python3",
+        "strict_unittest.py"
+      ],
+      "cwd": "/run/evidence/arquia-release-swohc8zw/ARQUIA-EVAL-001-v0.2.4",
+      "utc": "2026-11-26T12:40:36.888944+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 7.861904739999773,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "af82dda394bda571a43743b875db84862ff90f792b58ff9a04da0af4f408e0e1"
+    },
+    {
+      "name": "extracted-reference",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/evidence/arquia-release-swohc8zw/ARQUIA-EVAL-001-v0.2.4",
+      "utc": "2026-11-26T12:40:37.018751+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.12958983200041985,
+      "stdout_sha256": "d1f0cc4287f96ee148436921d2e3b6a3ef98aef3532f6f1a17c7f5f3c8dba304",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-community",
+      "command": [
+        "/usr/bin/python3",
+        "community_runner.py",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/evidence/arquia-release-swohc8zw/ARQUIA-EVAL-001-v0.2.4",
+      "utc": "2026-11-26T12:40:37.157964+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.1379344540000602,
+      "stdout_sha256": "8a0f39ffd2beb44a5a94924f44b5beba1add4ec76ddd420177507565cd615414",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-temporal-reference",
+      "command": [
+        "/usr/bin/python3",
+        "temporal_runner.py",
+        "--summary"
+      ],
+      "cwd": "/run/evidence/arquia-release-swohc8zw/ARQUIA-EVAL-001-v0.2.4",
+      "utc": "2026-11-26T12:40:37.241995+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.08234977099982643,
+      "stdout_sha256": "799af6c5df76a1e995140e55a83752d6669f0e2bc55f322a8d7b5a1aba71f534",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-receipt-renewal",
+      "command": [
+        "/usr/bin/python3",
+        "runner.py",
+        "--negative-control",
+        "receipt-renewal",
+        "--evaluator",
+        "ARQUIA",
+        "--relationship",
+        "project"
+      ],
+      "cwd": "/run/evidence/arquia-release-swohc8zw/ARQUIA-EVAL-001-v0.2.4",
+      "utc": "2026-11-26T12:40:37.367372+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.12481006899997737,
+      "stdout_sha256": "1b8f91d2906c6e5dd7c3ab7e93c99838ac64b40fd8410e7f4b2a0b21a879e1ca",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-cache-per-turn",
+      "command": [
+        "/usr/bin/python3",
+        "temporal_runner.py",
+        "--fault",
+        "cache-per-turn",
+        "--summary"
+      ],
+      "cwd": "/run/evidence/arquia-release-swohc8zw/ARQUIA-EVAL-001-v0.2.4",
+      "utc": "2026-11-26T12:40:37.449676+00:00",
+      "actual_exit_code": 1,
+      "expected_exit_code": 1,
+      "seconds": 0.08103019400004996,
+      "stdout_sha256": "b7ebb2e47f3aa4776a77337a038e30f9adca9c6b85dfa2f2096f63dfe0f4a637",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "extracted-rebuild",
+      "command": [
+        "/usr/bin/python3",
+        "build_release.py",
+        "--output",
+        "/run/evidence/arquia-release-swohc8zw/rebuilt"
+      ],
+      "cwd": "/run/evidence/arquia-release-swohc8zw/ARQUIA-EVAL-001-v0.2.4",
+      "utc": "2026-11-26T12:40:37.580326+00:00",
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "seconds": 0.1302270750002208,
+      "stdout_sha256": "d9b568384dee5e6a48f19219171009f1655cd9e6edc6d492d47167b686dc1076",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

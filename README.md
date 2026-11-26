@@ -1,5 +1,7 @@
 # ARQUÍA-EVAL-001
 
+**[Convocatoria abierta / Open call](evaluacion/README.md)** · Poné a prueba tus propios agentes / Test your own agents.
+
 **[Invitación personal de José María Garbini: descargá y evaluá la semilla universal de ARQUÍA](PRESENTACION_PERSONAL_SEMILLA.md)** · Semilla experimental abierta a personas, investigadores y agentes de IA; se agradecen críticas y contraejemplos.
 
 ## ARQUÍA-SEED-001 — universal seed (experimental)
