@@ -1,0 +1,76 @@
+{
+  "trace": "brennan-late-receipt",
+  "journal": [
+    {
+      "prev_digest": null,
+      "digest": "16d8d2259b717b99df2225c01d7123d86b2da2ed1e04bb29623918ee1492d1df",
+      "entry": {
+        "kind": "grant",
+        "grant_id": "grant-P",
+        "operation": "A"
+      }
+    },
+    {
+      "prev_digest": "16d8d2259b717b99df2225c01d7123d86b2da2ed1e04bb29623918ee1492d1df",
+      "digest": "4f5f50a8841ecc922f4404af392cd3380db1a0b7918a8238aed53cf698007281",
+      "entry": {
+        "kind": "dispatch",
+        "grant_id": "grant-P",
+        "operation": "A"
+      }
+    },
+    {
+      "prev_digest": "4f5f50a8841ecc922f4404af392cd3380db1a0b7918a8238aed53cf698007281",
+      "digest": "169f16ef1323fe05ab17b919d14f51a390098ea1ec62b253d4234c89542c9cb4",
+      "entry": {
+        "kind": "revoke",
+        "grant_id": "grant-P",
+        "acknowledged": true
+      }
+    },
+    {
+      "prev_digest": "169f16ef1323fe05ab17b919d14f51a390098ea1ec62b253d4234c89542c9cb4",
+      "digest": "a09b5cbf1c08867938822fb400610575f5546f5df6668c817b3572be2d64e880",
+      "entry": {
+        "kind": "decision",
+        "decision_id": "decision-A",
+        "anchor_status": "verified",
+        "receipt_id": "receipt-A",
+        "permission_active": false
+      }
+    },
+    {
+      "prev_digest": "a09b5cbf1c08867938822fb400610575f5546f5df6668c817b3572be2d64e880",
+      "digest": "8e3cb5c42670b80dbaec3c26dc57e8bb8cafb62f6122b35c146d9a2a6f8a89b1",
+      "entry": {
+        "kind": "arrival",
+        "receipt_id": "receipt-A",
+        "output_hash": "5df8af1e730e32b45ebf1342158f73f7b494a663914fb9ca0ba248571bc8e93d",
+        "anchor_status": "not checked"
+      }
+    },
+    {
+      "prev_digest": "8e3cb5c42670b80dbaec3c26dc57e8bb8cafb62f6122b35c146d9a2a6f8a89b1",
+      "digest": "d3c1d3b7f37067aa29252519e2ab5420b3fce92f80dc189b6ce5761d7e8f6698",
+      "entry": {
+        "kind": "verification",
+        "receipt_id": "receipt-A",
+        "anchor_status": "verified",
+        "computed_output_hash": "5df8af1e730e32b45ebf1342158f73f7b494a663914fb9ca0ba248571bc8e93d"
+      }
+    },
+    {
+      "prev_digest": "d3c1d3b7f37067aa29252519e2ab5420b3fce92f80dc189b6ce5761d7e8f6698",
+      "digest": "90821c0e57cd5b558dba467c78d6850dad0d7bf91ceebec171de135a7f02ac64",
+      "entry": {
+        "kind": "followup",
+        "operation": "B",
+        "allowed": false,
+        "active_grant": null,
+        "effect_committed": false
+      }
+    }
+  ],
+  "output_base64": "eyJvcGVyYXRpb24iOiJBIiwicmVzdWx0Ijoic2F2ZWQifQo=",
+  "publisher_witness": null
+}

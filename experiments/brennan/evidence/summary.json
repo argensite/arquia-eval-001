@@ -1,0 +1,915 @@
+{
+  "source_commit": "c7575824b746863a631b7a561b78f4c99a19972f",
+  "source_clean": true,
+  "environment": {
+    "system": "Linux",
+    "release": "7.0.0-44-generic",
+    "architecture": "x86_64",
+    "python": "3.14.4",
+    "implementation": "CPython",
+    "python_executable": "/usr/bin/python3"
+  },
+  "cases": {
+    "reference": {
+      "expected_violations": [],
+      "expected_ordering_reason": "committed_at_decision_before_receipt",
+      "commands": {
+        "simulate": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.simulate",
+            "reference",
+            "/mnt/observed/reference/trace"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 0,
+          "actual_exit_code": 0,
+          "stdout_sha256": "24be694fb8f91d4670f3f19317d4854bba0bb6f6eda2229f54d7937c01a7b1f6",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "verify": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.verify",
+            "/mnt/observed/reference/trace/publisher.json",
+            "/mnt/observed/reference/trace/observer.json"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 0,
+          "actual_exit_code": 0,
+          "stdout_sha256": "24be694fb8f91d4670f3f19317d4854bba0bb6f6eda2229f54d7937c01a7b1f6",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "matches": true,
+      "observed": {
+        "trace": "brennan-late-receipt",
+        "proof_scope": "evaluator-controlled simulation",
+        "checks": {
+          "authorization_remains_revoked": true,
+          "decision_history_preserved": true,
+          "chain_links_valid": true,
+          "receipt_bytes_verified": true,
+          "decision_committed_before_receipt": true
+        },
+        "ordering_reason": "committed_at_decision_before_receipt",
+        "violations": [],
+        "exit_code": 0
+      }
+    },
+    "rewrite": {
+      "expected_violations": [
+        "decision_history_preserved",
+        "decision_committed_before_receipt"
+      ],
+      "expected_ordering_reason": "decision_digest_mismatch",
+      "commands": {
+        "simulate": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.simulate",
+            "rewrite",
+            "/mnt/observed/rewrite/trace"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "35b9bdfaf6c3bde70ccf7e55233e000b40c0e48b37d06c6d048cbba1e926e269",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "verify": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.verify",
+            "/mnt/observed/rewrite/trace/publisher.json",
+            "/mnt/observed/rewrite/trace/observer.json"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "35b9bdfaf6c3bde70ccf7e55233e000b40c0e48b37d06c6d048cbba1e926e269",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "matches": true,
+      "observed": {
+        "trace": "brennan-late-receipt",
+        "proof_scope": "evaluator-controlled simulation",
+        "checks": {
+          "authorization_remains_revoked": true,
+          "decision_history_preserved": false,
+          "chain_links_valid": true,
+          "receipt_bytes_verified": true,
+          "decision_committed_before_receipt": false
+        },
+        "ordering_reason": "decision_digest_mismatch",
+        "violations": [
+          "decision_history_preserved",
+          "decision_committed_before_receipt"
+        ],
+        "exit_code": 1
+      }
+    },
+    "publisher-only": {
+      "expected_violations": [
+        "decision_committed_before_receipt"
+      ],
+      "expected_ordering_reason": "publisher_controlled_witness",
+      "commands": {
+        "simulate": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.simulate",
+            "publisher-only",
+            "/mnt/observed/publisher-only/trace"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "3e3bb4e5334cf1494150928ff854e84255ad14089becf101c2045efaf9f37199",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "verify": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.verify",
+            "/mnt/observed/publisher-only/trace/publisher.json",
+            "/mnt/observed/publisher-only/trace/observer.json"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "3e3bb4e5334cf1494150928ff854e84255ad14089becf101c2045efaf9f37199",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "matches": true,
+      "observed": {
+        "trace": "brennan-late-receipt",
+        "proof_scope": "evaluator-controlled simulation",
+        "checks": {
+          "authorization_remains_revoked": true,
+          "decision_history_preserved": true,
+          "chain_links_valid": true,
+          "receipt_bytes_verified": true,
+          "decision_committed_before_receipt": false
+        },
+        "ordering_reason": "publisher_controlled_witness",
+        "violations": [
+          "decision_committed_before_receipt"
+        ],
+        "exit_code": 1
+      }
+    },
+    "missing-commitment": {
+      "expected_violations": [
+        "decision_committed_before_receipt"
+      ],
+      "expected_ordering_reason": "missing_commitment",
+      "commands": {
+        "simulate": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.simulate",
+            "missing-commitment",
+            "/mnt/observed/missing-commitment/trace"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "0ebd4f8f7a35d302a4fad8bd4e9ff1731b1dd81392cecc9a75e22a142d36fb99",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "verify": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.verify",
+            "/mnt/observed/missing-commitment/trace/publisher.json",
+            "/mnt/observed/missing-commitment/trace/observer.json"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "0ebd4f8f7a35d302a4fad8bd4e9ff1731b1dd81392cecc9a75e22a142d36fb99",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "matches": true,
+      "observed": {
+        "trace": "brennan-late-receipt",
+        "proof_scope": "evaluator-controlled simulation",
+        "checks": {
+          "authorization_remains_revoked": true,
+          "decision_history_preserved": true,
+          "chain_links_valid": true,
+          "receipt_bytes_verified": true,
+          "decision_committed_before_receipt": false
+        },
+        "ordering_reason": "missing_commitment",
+        "violations": [
+          "decision_committed_before_receipt"
+        ],
+        "exit_code": 1
+      }
+    },
+    "late-commitment": {
+      "expected_violations": [
+        "decision_committed_before_receipt"
+      ],
+      "expected_ordering_reason": "commitment_after_receipt",
+      "commands": {
+        "simulate": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.simulate",
+            "late-commitment",
+            "/mnt/observed/late-commitment/trace"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "7cbff7d7cf629e0a60d64a6653f13ef71b8932715ddd12a333bd56fd14b8a997",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "verify": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.verify",
+            "/mnt/observed/late-commitment/trace/publisher.json",
+            "/mnt/observed/late-commitment/trace/observer.json"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "7cbff7d7cf629e0a60d64a6653f13ef71b8932715ddd12a333bd56fd14b8a997",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "matches": true,
+      "observed": {
+        "trace": "brennan-late-receipt",
+        "proof_scope": "evaluator-controlled simulation",
+        "checks": {
+          "authorization_remains_revoked": true,
+          "decision_history_preserved": true,
+          "chain_links_valid": true,
+          "receipt_bytes_verified": true,
+          "decision_committed_before_receipt": false
+        },
+        "ordering_reason": "commitment_after_receipt",
+        "violations": [
+          "decision_committed_before_receipt"
+        ],
+        "exit_code": 1
+      }
+    },
+    "collapsed-history": {
+      "expected_violations": [
+        "decision_history_preserved",
+        "receipt_bytes_verified",
+        "decision_committed_before_receipt"
+      ],
+      "expected_ordering_reason": "decision_digest_mismatch",
+      "commands": {
+        "simulate": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.simulate",
+            "collapsed-history",
+            "/mnt/observed/collapsed-history/trace"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "4a571e8fe70caf5f952c380582543f39f911f286b88c7af84f7eee124f76eb07",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "verify": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.verify",
+            "/mnt/observed/collapsed-history/trace/publisher.json",
+            "/mnt/observed/collapsed-history/trace/observer.json"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "4a571e8fe70caf5f952c380582543f39f911f286b88c7af84f7eee124f76eb07",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "matches": true,
+      "observed": {
+        "trace": "brennan-late-receipt",
+        "proof_scope": "evaluator-controlled simulation",
+        "checks": {
+          "authorization_remains_revoked": true,
+          "decision_history_preserved": false,
+          "chain_links_valid": true,
+          "receipt_bytes_verified": false,
+          "decision_committed_before_receipt": false
+        },
+        "ordering_reason": "decision_digest_mismatch",
+        "violations": [
+          "decision_history_preserved",
+          "receipt_bytes_verified",
+          "decision_committed_before_receipt"
+        ],
+        "exit_code": 1
+      }
+    },
+    "corrupt-output": {
+      "expected_violations": [
+        "receipt_bytes_verified"
+      ],
+      "expected_ordering_reason": "committed_at_decision_before_receipt",
+      "commands": {
+        "simulate": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.simulate",
+            "corrupt-output",
+            "/mnt/observed/corrupt-output/trace"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "13caa6f1c1a0037d6bd7f7a17e0a610fdb8fe39b8a5cb02c2b1384347c80c759",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "verify": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.verify",
+            "/mnt/observed/corrupt-output/trace/publisher.json",
+            "/mnt/observed/corrupt-output/trace/observer.json"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "13caa6f1c1a0037d6bd7f7a17e0a610fdb8fe39b8a5cb02c2b1384347c80c759",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "matches": true,
+      "observed": {
+        "trace": "brennan-late-receipt",
+        "proof_scope": "evaluator-controlled simulation",
+        "checks": {
+          "authorization_remains_revoked": true,
+          "decision_history_preserved": true,
+          "chain_links_valid": true,
+          "receipt_bytes_verified": false,
+          "decision_committed_before_receipt": true
+        },
+        "ordering_reason": "committed_at_decision_before_receipt",
+        "violations": [
+          "receipt_bytes_verified"
+        ],
+        "exit_code": 1
+      }
+    },
+    "renewal": {
+      "expected_violations": [
+        "authorization_remains_revoked"
+      ],
+      "expected_ordering_reason": "committed_at_decision_before_receipt",
+      "commands": {
+        "simulate": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.simulate",
+            "renewal",
+            "/mnt/observed/renewal/trace"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "ac232fba856cdc9c1c7a16aa8ede34e4884732f445f4eb779daa2009129dc2b3",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "verify": {
+          "command": [
+            "/usr/bin/python3",
+            "-m",
+            "experiments.brennan.verify",
+            "/mnt/observed/renewal/trace/publisher.json",
+            "/mnt/observed/renewal/trace/observer.json"
+          ],
+          "cwd": "/mnt/clean-source",
+          "expected_exit_code": 1,
+          "actual_exit_code": 1,
+          "stdout_sha256": "ac232fba856cdc9c1c7a16aa8ede34e4884732f445f4eb779daa2009129dc2b3",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      "matches": true,
+      "observed": {
+        "trace": "brennan-late-receipt",
+        "proof_scope": "evaluator-controlled simulation",
+        "checks": {
+          "authorization_remains_revoked": false,
+          "decision_history_preserved": true,
+          "chain_links_valid": true,
+          "receipt_bytes_verified": true,
+          "decision_committed_before_receipt": true
+        },
+        "ordering_reason": "committed_at_decision_before_receipt",
+        "violations": [
+          "authorization_remains_revoked"
+        ],
+        "exit_code": 1
+      }
+    }
+  },
+  "ordering_controls_retain_reference_chain": true,
+  "regression": {
+    "current": {
+      "command": [
+        "/usr/bin/python3",
+        "check_all.py",
+        "--output",
+        "/mnt/observed/regression/current",
+        "--evaluator",
+        "ARQUIA project",
+        "--relationship",
+        "author-side"
+      ],
+      "cwd": "/mnt/clean-source",
+      "expected_exit_code": 0,
+      "actual_exit_code": 0,
+      "stdout_sha256": "22398bd5167036729c48d826726d1e4ff9e970cf2b49c1830fc4e2b97de9fafa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "frozen": {
+      "v0.1.0": {
+        "commit": "b540e71ff2f615197dd886d6e0dbcae3baa62589",
+        "commands": {
+          "package": {
+            "command": [
+              "/usr/bin/python3",
+              "verify_package.py"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.0/source",
+            "expected_exit_code": 0,
+            "actual_exit_code": 0,
+            "stdout_sha256": "ab842f8e830582c9bd7fd59fb806396d4df9907730b8731321a3e7b111f212e8",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "unit": {
+            "command": [
+              "/usr/bin/python3",
+              "-m",
+              "unittest",
+              "-v",
+              "test_contract"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.0/source",
+            "expected_exit_code": 0,
+            "actual_exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "cbca1b9d49b308b783043c9c8d6ece260ed8cfb3e25bb3eba027883551421add"
+          },
+          "reference": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.0/source",
+            "expected_exit_code": 0,
+            "actual_exit_code": 0,
+            "stdout_sha256": "dee03f5427df4eb5d44c6d0dd5cb346f5e39206312199d5cdd0c844e91e19f6f",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 28,
+            "total": 28,
+            "matches": true
+          },
+          "receipt-renewal": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "receipt-renewal"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.0/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "06e3e8e36ed6cae80d49e13ffdd587a45919cf31695fdce1b60d0195eaf8b0fe",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 14,
+            "total": 28,
+            "matches": true
+          },
+          "blind-recovery": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "blind-recovery"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.0/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "b0c1b315cc900193429ec70821c106440e64b489dacac938ca87fdccadaf7882",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 27,
+            "total": 28,
+            "matches": true
+          },
+          "completion-bypass": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "completion-bypass"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.0/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "8d72049135a5572f0c2329c3067c3ecb8c7837de239dac9d0108203fd70086a4",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 27,
+            "total": 28,
+            "matches": true
+          },
+          "hide-escape": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "hide-escape"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.0/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "06a2296d1bfe477039eb4b419e3e7c74b9b24c060b4ac6a8142bac3f34f7fb31",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 26,
+            "total": 28,
+            "matches": true
+          },
+          "recovery-loses-revocation": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "recovery-loses-revocation"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.0/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "ac6159311a7142c12b6c851247b61388945e02f91e17ebef6720a24c045e3afc",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 24,
+            "total": 28,
+            "matches": true
+          },
+          "original-unit": {
+            "command": [
+              "/usr/bin/python3",
+              "-m",
+              "unittest",
+              "-v",
+              "test_runner"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.0/source/original",
+            "expected_exit_code": 0,
+            "actual_exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "68a4aa6e9f116176b6009da78aff4abf3f687889126367ae702bb768e0eb67cb"
+          },
+          "original-reference": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.0/source/original",
+            "expected_exit_code": 0,
+            "actual_exit_code": 0,
+            "stdout_sha256": "ef5b2603674964a62c8662c18944bb9201e2456338299155b376d52440d92840",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 12,
+            "total": 12,
+            "matches": true
+          },
+          "original-negative": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--negative-control"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.0/source/original",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "5f1fb40dbbe03b5d120f54cd67bd82d00f3bcb8bb043175f19f5225f6fad3b84",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 4,
+            "total": 12,
+            "matches": true
+          }
+        }
+      },
+      "v0.1.1": {
+        "commit": "0ee97e2df0eeff03956782cbf2ce2ef8bc7a7af3",
+        "commands": {
+          "package": {
+            "command": [
+              "/usr/bin/python3",
+              "verify_package.py"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.1/source",
+            "expected_exit_code": 0,
+            "actual_exit_code": 0,
+            "stdout_sha256": "ab842f8e830582c9bd7fd59fb806396d4df9907730b8731321a3e7b111f212e8",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "unit": {
+            "command": [
+              "/usr/bin/python3",
+              "-m",
+              "unittest",
+              "-v",
+              "test_contract"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.1/source",
+            "expected_exit_code": 0,
+            "actual_exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "466129d2b5a0cb40b4681e22d91775ed0ac2031e27b89039555dc0f77da3fb9a"
+          },
+          "reference": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.1/source",
+            "expected_exit_code": 0,
+            "actual_exit_code": 0,
+            "stdout_sha256": "e9ba12ef1ec95a3eafa5aff6aa83b287dd532cca7649647481e5acd29e4fe3cd",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 29,
+            "total": 29,
+            "matches": true
+          },
+          "receipt-renewal": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "receipt-renewal"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.1/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "cbcc7581dc4619718eb97dbdb8c6af31ee8803fc80ae5982b6aa2db745ebd542",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 14,
+            "total": 29,
+            "matches": true
+          },
+          "blind-recovery": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "blind-recovery"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.1/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "afd340f2418c1d02d0f215982af4331abd4bf8c88378cc2eb6ce3c6d9cf68cf0",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 28,
+            "total": 29,
+            "matches": true
+          },
+          "completion-bypass": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "completion-bypass"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.1/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "bc2795595201e3bf0a0e4e237dba2c276f0e3311f02af445aafd901d1fed0191",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 28,
+            "total": 29,
+            "matches": true
+          },
+          "hide-escape": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "hide-escape"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.1/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "1d88b37b2abb149c6eac0ee4ea590799f41770d80cbb0ad4fd76abd8ea38089d",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 27,
+            "total": 29,
+            "matches": true
+          },
+          "recovery-loses-revocation": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "recovery-loses-revocation"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.1/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "6e5147ce862815bc30d0c98017f9f640e4e90f897624140585fba5cb5302f1aa",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 25,
+            "total": 29,
+            "matches": true
+          }
+        }
+      },
+      "v0.1.2": {
+        "commit": "49e339f0d57c3794b68e12caa53feabe8ad7710c",
+        "commands": {
+          "package": {
+            "command": [
+              "/usr/bin/python3",
+              "verify_package.py"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.2/source",
+            "expected_exit_code": 0,
+            "actual_exit_code": 0,
+            "stdout_sha256": "ab842f8e830582c9bd7fd59fb806396d4df9907730b8731321a3e7b111f212e8",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "unit": {
+            "command": [
+              "/usr/bin/python3",
+              "-m",
+              "unittest",
+              "-v",
+              "test_contract"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.2/source",
+            "expected_exit_code": 0,
+            "actual_exit_code": 0,
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stderr_sha256": "fe463c7ff2c88d33b4914872c93044aa4d364da7ed35075ea7f2ad392af257d5"
+          },
+          "reference": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.2/source",
+            "expected_exit_code": 0,
+            "actual_exit_code": 0,
+            "stdout_sha256": "b570f4b6486c1c4d63d34b9f80d80f1d9270e56298f8916eb07e351e7188fa76",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 29,
+            "total": 29,
+            "matches": true
+          },
+          "receipt-renewal": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "receipt-renewal"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.2/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "ff20f86180426e2b7f6bd5accf5b10b7d7ef9d7496c93c09bc70ab8382d7987e",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 14,
+            "total": 29,
+            "matches": true
+          },
+          "blind-recovery": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "blind-recovery"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.2/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "02e271a31759ea342b436bf093ea28b0372ba4f59832a5e1b07770b905decaaa",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 28,
+            "total": 29,
+            "matches": true
+          },
+          "completion-bypass": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "completion-bypass"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.2/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "c30c2039690e146a41d7270231420402a8b434dfbb1b2a21d9ee6ae1eab6f233",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 28,
+            "total": 29,
+            "matches": true
+          },
+          "hide-escape": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "hide-escape"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.2/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "269833dc116a8e1d2495df82faadce9c214bcfbf95ca8660c1252d7d99a2ffb6",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 27,
+            "total": 29,
+            "matches": true
+          },
+          "recovery-loses-revocation": {
+            "command": [
+              "/usr/bin/python3",
+              "runner.py",
+              "--evaluator",
+              "ARQUIA project",
+              "--negative-control",
+              "recovery-loses-revocation"
+            ],
+            "cwd": "/mnt/observed/regression/v0.1.2/source",
+            "expected_exit_code": 1,
+            "actual_exit_code": 1,
+            "stdout_sha256": "2d65ecccc0c19fd133f9f1e39d152e4503dde66153a57e7675bb432ef23a644a",
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "passed": 25,
+            "total": 29,
+            "matches": true
+          }
+        }
+      }
+    },
+    "passed": true
+  },
+  "passed": true
+}

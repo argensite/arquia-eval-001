@@ -1,0 +1,17 @@
+{
+  "trace": "brennan-late-receipt",
+  "proof_scope": "evaluator-controlled simulation",
+  "checks": {
+    "authorization_remains_revoked": true,
+    "decision_history_preserved": false,
+    "chain_links_valid": true,
+    "receipt_bytes_verified": true,
+    "decision_committed_before_receipt": false
+  },
+  "ordering_reason": "decision_digest_mismatch",
+  "violations": [
+    "decision_history_preserved",
+    "decision_committed_before_receipt"
+  ],
+  "exit_code": 1
+}

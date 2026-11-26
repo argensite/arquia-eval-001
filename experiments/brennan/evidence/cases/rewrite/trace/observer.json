@@ -1,0 +1,19 @@
+{
+  "trace": "brennan-late-receipt",
+  "observations": [
+    {
+      "kind": "decision_point",
+      "decision_id": "decision-A"
+    },
+    {
+      "kind": "decision_commitment",
+      "decision_id": "decision-A",
+      "entry_digest": "b8a0b8f0d9efc07d2ea98633babd9b62cdd0f58e25b81a6de18a9db8d3c2f03f"
+    },
+    {
+      "kind": "receipt_ingress",
+      "receipt_id": "receipt-A",
+      "output_hash": "5df8af1e730e32b45ebf1342158f73f7b494a663914fb9ca0ba248571bc8e93d"
+    }
+  ]
+}
