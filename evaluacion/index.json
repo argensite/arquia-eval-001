@@ -582,7 +582,9 @@
         "brennan-design",
         "brennan-project",
         "brennan-reported",
-        "gepetto-reported"
+        "gepetto-reported",
+        "brennan-rerun-20261127",
+        "brennan-custody-design"
       ],
       "open_question": "A real ordering claim needs independent external custody and independently comparable ingress evidence."
     },
@@ -825,6 +827,49 @@
         "Raw external stdout/stderr, artifact hashes and complete environment"
       ],
       "scope": "Public report matches project scenario outcomes; ordering observation was simulated."
+    },
+    {
+      "id": "brennan-rerun-20261127",
+      "types": [
+        "external_reported_run"
+      ],
+      "date": "2026-11-27",
+      "relationship": "AER-1 author and contributor to the design, as disclosed",
+      "source_commit": "c7575824b746863a631b7a561b78f4c99a19972f",
+      "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19951434",
+      "environment": {
+        "system": "Linux",
+        "release": "7.0.0-44-generic",
+        "architecture": "x86_64",
+        "python": "3.12.3"
+      },
+      "commands": [
+        "python3 -B -m experiments.brennan.reproduce <output-dir> --regression"
+      ],
+      "reported_outcomes": {
+        "matched": "8/8",
+        "reference": 0,
+        "seven_deliberate_controls": 1,
+        "regression": "passed"
+      },
+      "artifacts": [
+        "https://gist.github.com/zambodotdev/bab827fe38f1c5d605f7ac15bd27ffe5/311ec7bd8c1d4eb7d2605a42d0f7ec6e2908ab54"
+      ],
+      "summary_sha256_verified_by_project": "4f46b63affcbadfb9312e25a7c3e3e011beb3d989fe117f317b5e87f65df6736",
+      "missing": [
+        "Original stdout/stderr files, held by the external operator"
+      ],
+      "scope": "Separate rerun of the 8-case fixture with a simulated observer and a public command record and output hashes."
+    },
+    {
+      "id": "brennan-custody-design",
+      "types": [
+        "external_design"
+      ],
+      "date": "2026-11-27",
+      "relationship": "AER-1 author and contributor to the pilot design, as disclosed",
+      "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19951434",
+      "scope": "Require exactly one accepted digest per evaluator-issued run ID. Record and refuse a distinct second digest before receipt release."
     },
     {
       "id": "awesome-auditable-ai-reported",
