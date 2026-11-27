@@ -28,6 +28,10 @@ python3 check_all.py --output ../evidence-024
 
 `check_all.py` conserva resúmenes, recibos, salidas y códigos de retorno. Its optional suites test synthetic authority and receipt behavior. A declared fault yielding exit 1 with the expected witness can pass the sensitivity check. The same exit by itself is insufficient. Do not merge the suites into a global score.
 
+### Ensayo de efecto observado · Observed-effect trial
+
+El repositorio ofrece un [ensayo reproducible](../experiments/observed_effect/README.md) de una escritura en cola tras revocar el permiso. Conserva los archivos de efecto, la secuencia y el resultado del comparador. The repository also provides a trial where the evaluator observes actual file writes and evaluates a delayed receipt separately. The frozen packages above have their own test suites.
+
 ## Casos propios · Your own cases
 
 1. Copiá [casos.json](ejemplos/casos.json) a tu proyecto. Cambiá cada `id`, `rule`, `scenario`, `failure_criterion` y el objeto `expected`. Podés usar cualquier propiedad de tu agente y más de una condición observable por caso.

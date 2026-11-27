@@ -21,6 +21,8 @@ python3 evaluacion/compare.py evaluacion/ejemplos/casos.json evaluacion/ejemplos
 
 La muestra deja a la vista un caso que coincide, uno que falla y uno inconcluso. Sale con código 1 a propósito. El [registro público](RESULTADOS.md) indica qué se corrió y qué falta probar. Los resultados sintéticos se limitan a las propiedades observadas en cada caso. Si te sirve, compartí esta convocatoria, tus casos y resultados o avisale a otro equipo que pueda aprovecharlos.
 
+Para probar una escritura en cola después de revocar su permiso, seguí el [ensayo de efecto observado](../experiments/observed_effect/README.md). El observador lee los archivos escritos y comprueba por separado el recibo tardío.
+
 ### Compartir y actualizar un aporte
 
 1. Abrí el [formulario bilingüe](https://github.com/argensite/arquia-eval-001/issues/new?template=evaluation-report.yml) con tu cuenta de GitHub. Podés compartir una pregunta, un diseño de prueba, una crítica, una corrida o un pedido de ayuda. Indicá qué versión estudiaste, qué observaste y qué sigue pendiente. Podés enlazar un informe publicado en otro sitio. Usá sólo información que puedas hacer pública.
@@ -45,6 +47,8 @@ python3 evaluacion/compare.py evaluacion/ejemplos/casos.json evaluacion/ejemplos
 ```
 
 The sample shows one matching outcome, one failure, and one inconclusive result. It exits with status 1 by design. The [public record](RESULTADOS.md) shows what was run and what remains open. Synthetic results apply to the observed properties of each scenario. If this is useful, share the call, your own cases and results, or tell another team that could put them to work.
+
+To test whether a queued write takes effect after revocation, run the [observed-effect trial](../experiments/observed_effect/README.md). The observer reads the files and corroborates the delayed receipt separately.
 
 ### Share and update a contribution
 

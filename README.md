@@ -46,6 +46,8 @@ an exception or timeout is never a successful detection. See [QUICKSTART](QUICKS
 
 `python3 temporal_runner.py --summary` evaluates three separate synthetic revocation scenarios and seven deliberately defective controls. Includes a bounded JSONL candidate interface under the existing Linux isolation requirements. See [TEMPORAL_AUTHORITY](TEMPORAL_AUTHORITY.md). The 34 existing community cases and frozen v0.1.0 remain unchanged; this is not a production safety certification.
 
+The [public results](evaluacion/RESULTADOS.md) include the joint custody pilot with AER-1 and a project trial that observes file writes after revocation. The [observed-effect trial](experiments/observed_effect/README.md) can be run separately from the release suites.
+
 ## What the results mean
 
 - Historical reports use candidate snapshots; dishonest snapshots remain a limitation.

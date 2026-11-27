@@ -34,6 +34,8 @@ Los cinco controles históricos y diez defectos nuevos deben ser detectados.
 El fallo esperado de un control tiene salida 1; una excepción no demuestra que
 se detectó el defecto previsto.
 
+El [registro público](evaluacion/RESULTADOS.md) incluye el piloto de custodia con AER-1 y una corrida del proyecto que observa escrituras en archivos tras revocar el permiso. El [ensayo de efecto observado](experiments/observed_effect/README.md) se ejecuta por separado.
+
 ## Interpretación
 
 El evaluador histórico depende de observaciones declaradas por el candidato.

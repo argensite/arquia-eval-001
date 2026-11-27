@@ -586,9 +586,10 @@
         "brennan-rerun-20261127",
         "brennan-custody-design",
         "brennan-aer1-single-operator-pilot",
-        "arquia-aer1-cross-operator-pilot-20261127"
+        "arquia-aer1-cross-operator-pilot-20261127",
+        "observed-effect-project-20261127"
       ],
-      "open_question": "Timing of real effects still requires observation in the environment where they occur."
+      "open_question": "Repeat the observed effect in an environment with observation controlled by an external evaluator."
     },
     {
       "id": "CAUCEPA",
@@ -859,7 +860,7 @@
         "https://gist.github.com/zambodotdev/bab827fe38f1c5d605f7ac15bd27ffe5/ecc72517422831f120a6c2449f511a749c973ee4"
       ],
       "summary_sha256_verified_by_project": "4f46b63affcbadfb9312e25a7c3e3e011beb3d989fe117f317b5e87f65df6736",
-      "scope": "Eight original scenario outputs from the external rerun, with a simulated observer. The historical regression is recorded separately in the external summary.",
+      "scope": "Sixteen original outputs from eight scenarios in the external rerun, with a simulated observer. The historical regression is recorded separately in the external summary.",
       "project_verified_scenario_stdout_hashes": 16,
       "project_verified_stderr_hashes_match_zero_bytes": 16
     },
@@ -914,7 +915,7 @@
       "source_commit": "22477d6887303d29758586c3e6017c76817ca307",
       "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19953726",
       "artifacts": [
-        "https://github.com/argensite/arquia-eval-001/tree/main/evaluacion/resultados/custodia-20261127",
+        "https://github.com/argensite/arquia-eval-001/tree/8c656a7616b570f3982264418cdca49a63214c1c/evaluacion/resultados/custodia-20261127",
         "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19955053",
         "https://gist.github.com/argensite/cf0b77edd924ef4168917c5438873bfb/a86e0a9ce8e08b83a597f7c4faafda7492601226",
         "https://gist.github.com/zambodotdev/fa87ff686619835994223a6c52318bfc/b4ea74bdbae2da4b8f8197ed5418b17dd486d18d"
@@ -936,7 +937,52 @@
         "reason": "receipt_mismatch",
         "recorded_rejections": 0
       },
-      "scope": "Controlled release and subsequent HTTP retrieval observed with synthetic receipts. The publisher fixture bytes were available before the measured release."
+      "scope": "Controlled release and subsequent HTTP retrieval observed with synthetic receipts. The publisher fixture bytes were available before the measured release.",
+      "publisher_corroboration": {
+        "date": "2026-11-27",
+        "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19955336",
+        "scope": "AER-1 reran the verifier on the same joint evidence and matched the three custody event digests, both case results, receipt bytes and the substitution control.",
+        "reference_exit_code": 0,
+        "double_submission_exit_code": 0,
+        "receipt_substitution_reason": "receipt_mismatch"
+      }
+    },
+    {
+      "id": "observed-effect-project-20261127",
+      "types": [
+        "project_run"
+      ],
+      "date": "2026-11-27",
+      "relationship": "project",
+      "source_commit": "ba788650d19f6edb4de8717e71b29ec4c80440ff",
+      "source_url": "https://github.com/argensite/arquia-eval-001/tree/ba788650d19f6edb4de8717e71b29ec4c80440ff/experiments/observed_effect",
+      "environment": {
+        "os": "Ubuntu 26.04.1 LTS",
+        "kernel": "7.0.0-44-generic",
+        "architecture": "x86_64",
+        "python": "3.14.4",
+        "network": "isolated Linux network namespace",
+        "filesystem": "ext4"
+      },
+      "outcomes": {
+        "reference": {
+          "exit_code": 0,
+          "status": "pass"
+        },
+        "stale-dispatch": {
+          "exit_code": 1,
+          "status": "fail"
+        },
+        "missing-observation": {
+          "exit_code": 3,
+          "status": "inconclusive"
+        }
+      },
+      "artifacts": [
+        "https://raw.githubusercontent.com/argensite/arquia-eval-001/main/evaluacion/resultados/efecto-observado-20261127.json"
+      ],
+      "scope": "Actual files with synthetic data; common local operator; controlled event order and receipt delivery.",
+      "external_evaluation": "pending"
     },
     {
       "id": "awesome-auditable-ai-reported",
