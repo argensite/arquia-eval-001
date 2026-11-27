@@ -584,7 +584,8 @@
         "brennan-reported",
         "gepetto-reported",
         "brennan-rerun-20261127",
-        "brennan-custody-design"
+        "brennan-custody-design",
+        "brennan-aer1-single-operator-pilot"
       ],
       "open_question": "A real ordering claim needs independent external custody and independently comparable ingress evidence."
     },
@@ -831,7 +832,7 @@
     {
       "id": "brennan-rerun-20261127",
       "types": [
-        "external_reported_run"
+        "verifiable_external_reproduction"
       ],
       "date": "2026-11-27",
       "relationship": "AER-1 author and contributor to the design, as disclosed",
@@ -853,13 +854,13 @@
         "regression": "passed"
       },
       "artifacts": [
-        "https://gist.github.com/zambodotdev/bab827fe38f1c5d605f7ac15bd27ffe5/311ec7bd8c1d4eb7d2605a42d0f7ec6e2908ab54"
+        "https://gist.github.com/zambodotdev/bab827fe38f1c5d605f7ac15bd27ffe5/311ec7bd8c1d4eb7d2605a42d0f7ec6e2908ab54",
+        "https://gist.github.com/zambodotdev/bab827fe38f1c5d605f7ac15bd27ffe5/ecc72517422831f120a6c2449f511a749c973ee4"
       ],
       "summary_sha256_verified_by_project": "4f46b63affcbadfb9312e25a7c3e3e011beb3d989fe117f317b5e87f65df6736",
-      "missing": [
-        "Original stdout/stderr files, held by the external operator"
-      ],
-      "scope": "Separate rerun of the 8-case fixture with a simulated observer and a public command record and output hashes."
+      "scope": "Eight original scenario outputs from the external rerun, with a simulated observer. The historical regression is recorded separately in the external summary.",
+      "project_verified_scenario_stdout_hashes": 16,
+      "project_verified_stderr_hashes_match_zero_bytes": 16
     },
     {
       "id": "brennan-custody-design",
@@ -870,6 +871,37 @@
       "relationship": "AER-1 author and contributor to the pilot design, as disclosed",
       "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19951434",
       "scope": "Require exactly one accepted digest per evaluator-issued run ID. Record and refuse a distinct second digest before receipt release."
+    },
+    {
+      "id": "brennan-aer1-single-operator-pilot",
+      "types": [
+        "external_reported_run"
+      ],
+      "date": "2026-11-27",
+      "relationship": "AER-1 author who played all roles in separate working directories, as disclosed",
+      "source_commit": "22477d6887303d29758586c3e6017c76817ca307",
+      "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19952915",
+      "artifacts": [
+        "https://gist.github.com/zambodotdev/648e15d901b8fd270b49c13f46df8943/f950b0a62e039a9058010a76bdaa1909803f9179"
+      ],
+      "project_artifact_checks": {
+        "reference": {
+          "status": "pass",
+          "reason": "one_decision_committed_before_ingress",
+          "recorded_rejections": 0
+        },
+        "substituted_receipt": {
+          "status": "fail",
+          "reason": "receipt_mismatch",
+          "recorded_rejections": 0
+        },
+        "double-submission": {
+          "status": "pass",
+          "reason": "one_decision_committed_before_ingress",
+          "recorded_rejections": 1
+        }
+      },
+      "scope": "AER-1 synthetic receipts in a single-operator pilot. The project replayed its verifier against the published ledgers, receipt bytes and observer files. Separate custody is being tested in a distinct run."
     },
     {
       "id": "awesome-auditable-ai-reported",
@@ -928,5 +960,5 @@
       "scope": "Handwritten sample data; compares expected and observed JSON values."
     }
   ],
-  "verifiable_external_reproductions": 0
+  "verifiable_external_reproductions": 1
 }
