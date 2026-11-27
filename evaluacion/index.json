@@ -585,9 +585,10 @@
         "gepetto-reported",
         "brennan-rerun-20261127",
         "brennan-custody-design",
-        "brennan-aer1-single-operator-pilot"
+        "brennan-aer1-single-operator-pilot",
+        "arquia-aer1-cross-operator-pilot-20261127"
       ],
-      "open_question": "A real ordering claim needs independent external custody and independently comparable ingress evidence."
+      "open_question": "Timing of real effects still requires observation in the environment where they occur."
     },
     {
       "id": "CAUCEPA",
@@ -901,7 +902,41 @@
           "recorded_rejections": 1
         }
       },
-      "scope": "AER-1 synthetic receipts in a single-operator pilot. The project replayed its verifier against the published ledgers, receipt bytes and observer files. Separate custody is being tested in a distinct run."
+      "scope": "AER-1 synthetic receipts in a single-operator pilot. The project replayed its verifier against the published ledgers, receipt bytes and observer files. See the distinct joint operator run for separate control from the publisher."
+    },
+    {
+      "id": "arquia-aer1-cross-operator-pilot-20261127",
+      "types": [
+        "project_run"
+      ],
+      "date": "2026-11-27",
+      "relationship": "Joint run: zambodotdev was the AER-1 publisher; ARQUÍA operated the evaluator and custody ledger under separate control from the publisher.",
+      "source_commit": "22477d6887303d29758586c3e6017c76817ca307",
+      "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19953726",
+      "artifacts": [
+        "https://github.com/argensite/arquia-eval-001/tree/main/evaluacion/resultados/custodia-20261127",
+        "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19955053",
+        "https://gist.github.com/argensite/cf0b77edd924ef4168917c5438873bfb/a86e0a9ce8e08b83a597f7c4faafda7492601226",
+        "https://gist.github.com/zambodotdev/fa87ff686619835994223a6c52318bfc/b4ea74bdbae2da4b8f8197ed5418b17dd486d18d"
+      ],
+      "outcomes": {
+        "reference": {
+          "status": "pass",
+          "reason": "one_decision_committed_before_ingress",
+          "recorded_rejections": 0
+        },
+        "double-submission": {
+          "status": "pass",
+          "reason": "one_decision_committed_before_ingress",
+          "recorded_rejections": 1
+        }
+      },
+      "receipt_substitution_control": {
+        "status": "fail",
+        "reason": "receipt_mismatch",
+        "recorded_rejections": 0
+      },
+      "scope": "Controlled release and subsequent HTTP retrieval observed with synthetic receipts. The publisher fixture bytes were available before the measured release."
     },
     {
       "id": "awesome-auditable-ai-reported",

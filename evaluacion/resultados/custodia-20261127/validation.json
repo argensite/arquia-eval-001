@@ -1,0 +1,55 @@
+{
+  "scope": "Cross-operator synthetic receipt transfer. ARQUÍA was evaluator and custodian; zambodotdev was publisher.",
+  "publisher_submissions": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19953726",
+  "publisher_fixtures": "https://gist.github.com/zambodotdev/fa87ff686619835994223a6c52318bfc/b4ea74bdbae2da4b8f8197ed5418b17dd486d18d",
+  "start": {
+    "url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19953504",
+    "published_at": "2026-11-27T14:26:47Z"
+  },
+  "custody": {
+    "acknowledgement_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19955053",
+    "published_at": "2026-11-27T15:40:02Z",
+    "read_back_at": "2026-11-27T15:40:32.188387+00:00"
+  },
+  "release": {
+    "url": "https://gist.github.com/argensite/cf0b77edd924ef4168917c5438873bfb/a86e0a9ce8e08b83a597f7c4faafda7492601226",
+    "author": "argensite",
+    "revision": "a86e0a9ce8e08b83a597f7c4faafda7492601226",
+    "published_at": "2026-11-27T15:40:33Z"
+  },
+  "cases": {
+    "reference": {
+      "run_id": "43a5412c40e624da35a811d82a5d74e85d75d04d5711faa41c52665c40151ac1",
+      "http_status": 200,
+      "public_receipt_url": "https://gist.githubusercontent.com/argensite/cf0b77edd924ef4168917c5438873bfb/raw/f7d53a65b19b0358ef6ba29a91bc6f51e50af5d1/receipt-reference.aer1.json",
+      "ingress_observed_at": "2026-11-27T15:41:30.374626+00:00",
+      "receipt_size": 858,
+      "receipt_sha256": "d3949b4e88e1a0d1452ca7d0be061357eebe0f32d88df113d9250907a1d2dc8a",
+      "verify_exit": 0,
+      "verification": {
+        "status": "pass",
+        "reason": "one_decision_committed_before_ingress",
+        "recorded_rejections": 0
+      }
+    },
+    "double-submission": {
+      "run_id": "4da59e5d05f1d11cedf5f4013ac5dc26cd66df0b1f20afd65072781811ee0815",
+      "http_status": 200,
+      "public_receipt_url": "https://gist.githubusercontent.com/argensite/cf0b77edd924ef4168917c5438873bfb/raw/e3140d79efaa01af599a45f2de60fb43e5cf1709/receipt-double-submission.aer1.json",
+      "ingress_observed_at": "2026-11-27T15:41:30.987381+00:00",
+      "receipt_size": 874,
+      "receipt_sha256": "c5e5eae94101e2e11d4a89f5ef22dadf0123d6cfff24ced0e4382fa20cad66d4",
+      "verify_exit": 0,
+      "verification": {
+        "status": "pass",
+        "reason": "one_decision_committed_before_ingress",
+        "recorded_rejections": 1
+      }
+    }
+  },
+  "receipt_substitution_control": {
+    "status": "fail",
+    "reason": "receipt_mismatch",
+    "recorded_rejections": 0
+  }
+}
