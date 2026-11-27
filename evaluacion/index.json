@@ -827,6 +827,33 @@
       "scope": "Public report matches project scenario outcomes; ordering observation was simulated."
     },
     {
+      "id": "awesome-auditable-ai-reported",
+      "types": [
+        "external_reported_run"
+      ],
+      "date": "2026-11-27",
+      "relationship": "External catalog maintainer, reporting runs by their team",
+      "source_url": "https://github.com/yzhao062/awesome-auditable-ai/issues/63#issuecomment-7210832217",
+      "source_refs": [
+        "v0.1.2",
+        "v0.2.4"
+      ],
+      "environment": "Fresh environments, as reported",
+      "reported_outcomes": {
+        "coverage": [
+          "test suites",
+          "reference runs",
+          "negative controls"
+        ],
+        "summary": "All behaved as documented, as reported"
+      },
+      "missing": [
+        "Exact commands, detailed environment, raw outputs and exit codes"
+      ],
+      "scope": "External report on the two named releases. The catalog entry has separate editorial provenance.",
+      "catalog_entry_url": "https://github.com/yzhao062/awesome-auditable-ai/commit/2e46f1362beef0b2b233f1efaf15310736fa9a0f"
+    },
+    {
       "id": "observations-example",
       "types": [
         "project_run"
