@@ -93,6 +93,12 @@ Coincidieron en bloquear la acción revocada, aunque no en el registro. En otro 
 
 [Informe público / Public report](https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19968144) · [Archivos enlazados por el evaluador / Evaluator-linked artifacts](https://gist.github.com/zambodotdev/b03511c8e06e30e6b136d56bb36441f4/19fe1efaa27c960127c0e3a0c7f2a4b236de11dc).
 
+## Revocación en flujos nativos / Revocation in native workflows
+
+Una corrida local del proyecto aprobó 7 de 7 casos con LangGraph 1.2.24 y Google ADK 2.15.1. En LangGraph, el ejemplo consultó el permiso vigente al reanudar un grafo y bloqueó el efecto aunque la reanudación estuviera aprobada. En ADK, el callback consultó el permiso en cada llamada y bloqueó la segunda dentro de la misma invocación. En ambos ejemplos la falta de confirmación de la autoridad también bloqueó el efecto y los controles con permiso vigente produjeron las marcas esperadas.
+
+A local project run passed all seven cases on LangGraph 1.2.24 and Google ADK 2.15.1. The LangGraph example checked current authority on resume and blocked the effect after revocation even with operator approval. The ADK callback checked permission for each call and blocked the second call in the same invocation. Both examples also blocked when authority was unavailable and recorded the expected markers when permission remained valid. [Protocolo y resultados / Protocol and results](../experiments/native_revocation/README.md).
+
 **Próxima comparación / Next comparison.** Repetir con un control reforzado, incluir un análisis de sensibilidad de los pesos y un estándar fijo en ambos brazos, y medir candidatos, tiempo y costo por separado. Evaluar una ruta de revisión acotada en casos sencillos como hipótesis, no como cambio adoptado: debe conservar las garantías en controles negativos y escalar cuando falte evidencia. / Use a stronger baseline, vary loss weights, and hold standards fixed in both arms. Measure candidates, time and cost separately. Test a bounded review path as a hypothesis, preserving guardrails and escalating when evidence is missing.
 
 ## Discrepancias y pendientes · Disagreements and open work
