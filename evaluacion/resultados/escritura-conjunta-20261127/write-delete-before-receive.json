@@ -1,0 +1,24 @@
+{
+  "schema": "arquia-write-observation-v1",
+  "run_id": "4a69f6960d504e3a9874f667d703c830",
+  "events": [
+    {
+      "sequence": 1,
+      "kind": "opened",
+      "slot": null,
+      "digest": null
+    },
+    {
+      "sequence": 2,
+      "kind": "write",
+      "slot": "prior",
+      "digest": "a349177bd6176ee14ddeba5db2f9511c7e40a40a66458044068fbb4191bc06c5"
+    },
+    {
+      "sequence": 3,
+      "kind": "revoked",
+      "slot": null,
+      "digest": null
+    }
+  ]
+}

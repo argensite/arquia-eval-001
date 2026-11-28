@@ -988,7 +988,7 @@
       "id": "brennan-write-observation-20261127",
       "types": [
         "external_design",
-        "external_reported_run"
+        "verifiable_external_reproduction"
       ],
       "date": "2026-11-27",
       "relationship": "AER-1 author, fixture design contributor and external operator",
@@ -1011,9 +1011,56 @@
         "rollback": "passed"
       },
       "missing": [
-        "External run environment and original unit-test output"
+        "Original unit-test console output; a separate rerun is linked."
       ],
-      "scope": "Synthetic single-operator run with three independently published journals and verdicts, all checked by the project. AER-1 and ARQUÍA have yet to run the worker and target as separate operators on this fixture."
+      "scope": "Single-operator external run from the pinned fixture with synthetic data and three published journals and verdicts verified by ARQUÍA. Unit-test rerun provenance is separate.",
+      "environment": {
+        "os": "Ubuntu 24.04.5 LTS",
+        "kernel": "7.0.0-44-generic",
+        "python": "3.12.3"
+      },
+      "external_unit_test_rerun": {
+        "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19964822",
+        "exit_code": 0,
+        "passed": 5,
+        "rollback": "passed",
+        "original_output_retained": false,
+        "scope": "External unit-test rerun in the environment reported for the original scenario run."
+      }
+    },
+    {
+      "id": "arquia-aer1-joint-write-observation-20261127",
+      "types": [
+        "project_run"
+      ],
+      "date": "2026-11-27",
+      "relationship": "Joint run: AER-1 operated the worker and ARQUÍA operated the targets and their journals.",
+      "source_commit": "4c07bc5cd9d7f80b17d133e2b9f1755e9ed417ef",
+      "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19964822",
+      "artifacts": [
+        "https://github.com/argensite/arquia-eval-001/tree/main/evaluacion/resultados/escritura-conjunta-20261127",
+        "https://gist.github.com/zambodotdev/eaf787eead3a1359069a599f83726a23/da4768bdd832efb370057e4c5880fa6b2e48a761"
+      ],
+      "outcomes": {
+        "reference": {
+          "exit_code": 0,
+          "status": "pass",
+          "reason": "no_write_accepted_after_revocation",
+          "witness": null
+        },
+        "write-delete": {
+          "exit_code": 1,
+          "status": "fail",
+          "reason": "write_accepted_after_revocation",
+          "witness": {
+            "run_id": "4a69f6960d504e3a9874f667d703c830",
+            "revocation_sequence": 3,
+            "write_sequence": 5,
+            "sha256": "416068405659f379f4519b12ec18b2c19a8785be44e4804cb9393a736a7d935f"
+          }
+        }
+      },
+      "scope": "Verified synthetic JSONL streams exchanged as files. Both targets were revoked before receiving their stream. The journals were sealed and the final object sets matched."
     },
     {
       "id": "awesome-auditable-ai-reported",
@@ -1072,5 +1119,5 @@
       "scope": "Handwritten sample data; compares expected and observed JSON values."
     }
   ],
-  "verifiable_external_reproductions": 1
+  "verifiable_external_reproductions": 2
 }

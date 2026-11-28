@@ -58,5 +58,17 @@
     "passed": 5,
     "rollback": "passed"
   },
-  "external_environment_and_rollback_stdout_stderr": "Not published in this gist; five passing tests and rollback stated in the external comment."
+  "external_environment_reported": {
+    "os": "Ubuntu 24.04.5 LTS",
+    "kernel": "7.0.0-44-generic",
+    "python": "3.12.3"
+  },
+  "external_unit_test_rerun_reported": {
+    "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19964822",
+    "exit_code": 0,
+    "passed": 5,
+    "rollback": "passed",
+    "original_output_retained": false,
+    "scope": "External unit-test rerun in the environment reported for the original scenario run."
+  }
 }
