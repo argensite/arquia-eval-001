@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.4 — opt-in temporal authorization extension
+
+- Three deterministic two-boundary scenarios (dispatch, effect confirmation, late receipts, same-turn cache and wake).
+- Seven deliberate fault modes, new bounded decision protocol, project-shipped JSONL example and CI regressions.
+- External candidate execution uses the existing verified Linux isolation; no legacy historical vectors changed.
+- Synthetic evaluation only; no claim of production actuator safety or independent validation.
+
 ## 0.2.0 — community candidate
 
 - Audit before editing, immutable backup and separate branch/commits.

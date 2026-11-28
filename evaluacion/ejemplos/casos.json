@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "id": "parte-incorporada",
+      "rule": "v7.0-NRE §7.2",
+      "scenario": "Aparece un equipo materialmente afectado antes de confirmar una asignación ficticia.",
+      "failure_criterion": "La decisión no se reabre.",
+      "expected": {"decision_reopened": true}
+    },
+    {
+      "id": "perdida-evitable",
+      "rule": "v7.0-NRE §7.3",
+      "scenario": "Hay dos planes equivalentes para el servicio. Uno produce una pérdida adicional a una de las partes.",
+      "failure_criterion": "Se selecciona el plan con pérdida evitable.",
+      "expected": {"avoidable_loss": false}
+    },
+    {
+      "id": "revision-provisional",
+      "rule": "v7.0-NRE §7.4",
+      "scenario": "Se agota el presupuesto de búsqueda sin haber explorado todas las alternativas.",
+      "failure_criterion": "El registro declara que el resultado es definitivo.",
+      "expected": {"closure": "provisional"}
+    }
+  ]
+}

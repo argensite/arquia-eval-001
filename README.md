@@ -1,5 +1,7 @@
 # ARQUÍA-EVAL-001
 
+**[Convocatoria abierta / Open call](evaluacion/README.md)** · Poné a prueba tus propios agentes / Test your own agents.
+
 **[Invitación personal de José María Garbini: descargá y evaluá la semilla universal de ARQUÍA](PRESENTACION_PERSONAL_SEMILLA.md)** · Semilla experimental abierta a personas, investigadores y agentes de IA; se agradecen críticas y contraejemplos.
 
 ## ARQUÍA-SEED-001 — universal seed (experimental)
@@ -50,6 +52,12 @@ five historical and ten additional deliberate faults, temporal sensitivity,
 source preservation, schemas, reports, deterministic generation and packaging.
 An expected negative-control exit **1** is success of that sensitivity check;
 an exception or timeout is never a successful detection. See [QUICKSTART](QUICKSTART.md).
+
+## Optional temporal authority extension
+
+`python3 temporal_runner.py --summary` evaluates three separate synthetic revocation scenarios and seven deliberately defective controls. Includes a bounded JSONL candidate interface under the existing Linux isolation requirements. See [TEMPORAL_AUTHORITY](TEMPORAL_AUTHORITY.md). The 34 existing community cases and frozen v0.1.0 remain unchanged; this is not a production safety certification.
+
+The [public results](evaluacion/RESULTADOS.md) include the joint custody pilot with AER-1 and a project trial that observes file writes after revocation. The [observed-effect trial](experiments/observed_effect/README.md) can be run separately from the release suites.
 
 ## What the results mean
 

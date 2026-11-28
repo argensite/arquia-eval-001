@@ -1,0 +1,54 @@
+{
+  "schema": "arquia-write-observation-v1",
+  "run_id": "4a69f6960d504e3a9874f667d703c830",
+  "events": [
+    {
+      "sequence": 1,
+      "kind": "opened",
+      "slot": null,
+      "digest": null
+    },
+    {
+      "sequence": 2,
+      "kind": "write",
+      "slot": "prior",
+      "digest": "a349177bd6176ee14ddeba5db2f9511c7e40a40a66458044068fbb4191bc06c5"
+    },
+    {
+      "sequence": 3,
+      "kind": "revoked",
+      "slot": null,
+      "digest": null
+    },
+    {
+      "sequence": 4,
+      "kind": "worker_started",
+      "slot": null,
+      "digest": null
+    },
+    {
+      "sequence": 5,
+      "kind": "write",
+      "slot": "pending",
+      "digest": "416068405659f379f4519b12ec18b2c19a8785be44e4804cb9393a736a7d935f"
+    },
+    {
+      "sequence": 6,
+      "kind": "delete",
+      "slot": "pending",
+      "digest": null
+    },
+    {
+      "sequence": 7,
+      "kind": "worker_finished",
+      "slot": null,
+      "digest": null
+    },
+    {
+      "sequence": 8,
+      "kind": "sealed",
+      "slot": null,
+      "digest": null
+    }
+  ]
+}

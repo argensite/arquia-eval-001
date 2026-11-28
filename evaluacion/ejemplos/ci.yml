@@ -1,0 +1,48 @@
+# Copy to your repository's .github/workflows and keep LICENSE with vendored code.
+name: Agent evaluation example
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Optional upstream reference
+        shell: bash
+        run: |
+          archive="$RUNNER_TEMP/arquia-eval.zip"
+          curl -fL https://github.com/argensite/arquia-eval-001/releases/download/v0.2.4/ARQUIA-EVAL-001-v0.2.4.zip -o "$archive"
+          printf '%s  %s\n' 86bfc232066ddd52f3049aaeb3b0e584cf8fef824ee27f39628aa977ea26cbab "$archive" | sha256sum -c -
+          unzip -q "$archive" -d "${RUNNER_TEMP}/upstream"
+          cd "${RUNNER_TEMP}/upstream/ARQUIA-EVAL-001-v0.2.4"
+          python3 verify_package.py
+          python3 temporal_runner.py --summary > "${RUNNER_TEMP}/temporal.json"
+          python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); sys.exit(not (d["passed"] == d["total"] == 3 and d["exit_code"] == 0))' "${RUNNER_TEMP}/temporal.json"
+      - name: Evaluate local observations
+        shell: bash
+        run: |
+          cd "${GITHUB_WORKSPACE}"
+          set +e
+          python3 evaluacion/compare.py evaluacion/ejemplos/casos.json evaluacion/ejemplos/observaciones.json > "${RUNNER_TEMP}/comparison.json" 2> "${RUNNER_TEMP}/comparison.stderr"
+          status=$?
+          set -e
+          printf '%s\n' "$status" > "${RUNNER_TEMP}/comparison.exit"
+          # This demonstration expects a failure and a missing observation.
+          # Replace the next line with 'exit "$status"' when gating on your own cases.
+          test "$status" -eq 1
+          python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); sys.exit(d["counts"] != {"pass": 1, "fail": 1, "inconclusive": 1})' "${RUNNER_TEMP}/comparison.json"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: evaluator-controlled-results
+          path: |
+            ${{ runner.temp }}/comparison.*
+            ${{ runner.temp }}/temporal.json

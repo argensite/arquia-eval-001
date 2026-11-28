@@ -1,0 +1,350 @@
+{
+  "schema": "arquia.observed-effect-run/1",
+  "date": "2026-11-27",
+  "source_commit": "ba788650d19f6edb4de8717e71b29ec4c80440ff",
+  "operator": "ARQUÍA (project run with Codex assistance)",
+  "environment": {
+    "os": "Ubuntu 26.04.1 LTS",
+    "kernel": "7.0.0-44-generic",
+    "architecture": "x86_64",
+    "python": "3.14.4",
+    "network": "isolated Linux network namespace",
+    "filesystem": "ext4"
+  },
+  "scope": "Actual files with synthetic data; common local operator; controlled event order and receipt delivery.",
+  "scenarios": {
+    "reference": {
+      "command": [
+        "unshare",
+        "-Urn",
+        "--",
+        "python3",
+        "-B",
+        "-m",
+        "experiments.observed_effect.run",
+        "reference",
+        "<output>/reference"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "a38af428b32fe8581f7bcf49f0f7ca14d003eed6c1641a94cacd83f9403e4c62",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cases": [
+        {
+          "id": "queued-write-after-revocation",
+          "rule": "A queued write requires current permission when it takes effect.",
+          "scenario": "Delay a prior receipt, revoke permission and process a queued write.",
+          "failure_criterion": "A write occurs after revocation, or the prior receipt cannot be corroborated.",
+          "expected": {
+            "prior_effect_observed": true,
+            "late_receipt_corroborated": true,
+            "permission_revoked_after_receipt": true,
+            "pending_effect_after_revocation": false
+          }
+        }
+      ],
+      "trace": [
+        {
+          "event": "prior_effect_observed",
+          "effect_sha256": "3b9d75e1c0f7080a21134d4c5295cb868836f96a76fa7424a5579ada66449bf2"
+        },
+        {
+          "event": "write_queued",
+          "operation": "pending",
+          "dispatch_epoch": 1
+        },
+        {
+          "event": "permission_revoked",
+          "epoch": 2,
+          "write": false
+        },
+        {
+          "event": "late_receipt_delivered",
+          "receipt": {
+            "operation": "prior",
+            "effect_sha256": "3b9d75e1c0f7080a21134d4c5295cb868836f96a76fa7424a5579ada66449bf2"
+          },
+          "corroborated": true
+        },
+        {
+          "event": "before_pending_worker",
+          "effect_sha256": null
+        },
+        {
+          "event": "pending_worker_completed",
+          "worker_report": "blocked"
+        },
+        {
+          "event": "pending_effect_observed",
+          "effect_sha256": null
+        }
+      ],
+      "worker_output": {
+        "prior": {
+          "operation": "prior",
+          "worker_report": "completed",
+          "receipt": {
+            "operation": "prior",
+            "effect_sha256": "3b9d75e1c0f7080a21134d4c5295cb868836f96a76fa7424a5579ada66449bf2"
+          }
+        },
+        "pending": {
+          "operation": "pending",
+          "worker_report": "blocked"
+        }
+      },
+      "comparison": {
+        "schema": "arquia.observation-comparison/1",
+        "cases_sha256": "4ffe4f0cbd7f0b4e4acee99f6f6b29f58bd8fb932b37614a67bdfd10e12d21a8",
+        "observations_sha256": "7b0314d5ebf5dbdddf79a4d89d25f7d7910c199fcd185d0d35b1003afd312ebc",
+        "counts": {
+          "pass": 1,
+          "fail": 0,
+          "inconclusive": 0
+        },
+        "results": [
+          {
+            "id": "queued-write-after-revocation",
+            "rule": "A queued write requires current permission when it takes effect.",
+            "scenario": "Delay a prior receipt, revoke permission and process a queued write.",
+            "failure_criterion": "A write occurs after revocation, or the prior receipt cannot be corroborated.",
+            "status": "pass",
+            "observed": {
+              "late_receipt_corroborated": true,
+              "pending_effect_after_revocation": false,
+              "permission_revoked_after_receipt": true,
+              "prior_effect_observed": true
+            },
+            "missing": [],
+            "mismatches": {}
+          }
+        ],
+        "exit_code": 0
+      }
+    },
+    "stale-dispatch": {
+      "command": [
+        "unshare",
+        "-Urn",
+        "--",
+        "python3",
+        "-B",
+        "-m",
+        "experiments.observed_effect.run",
+        "stale-dispatch",
+        "<output>/stale-dispatch"
+      ],
+      "exit_code": 1,
+      "stdout_sha256": "cd87c6e5f0369a6526fc1b78a33dd8cd5a6444c9f7b2c4bd6f32c229a5ed24e2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cases": [
+        {
+          "id": "queued-write-after-revocation",
+          "rule": "A queued write requires current permission when it takes effect.",
+          "scenario": "Delay a prior receipt, revoke permission and process a queued write.",
+          "failure_criterion": "A write occurs after revocation, or the prior receipt cannot be corroborated.",
+          "expected": {
+            "prior_effect_observed": true,
+            "late_receipt_corroborated": true,
+            "permission_revoked_after_receipt": true,
+            "pending_effect_after_revocation": false
+          }
+        }
+      ],
+      "trace": [
+        {
+          "event": "prior_effect_observed",
+          "effect_sha256": "3b9d75e1c0f7080a21134d4c5295cb868836f96a76fa7424a5579ada66449bf2"
+        },
+        {
+          "event": "write_queued",
+          "operation": "pending",
+          "dispatch_epoch": 1
+        },
+        {
+          "event": "permission_revoked",
+          "epoch": 2,
+          "write": false
+        },
+        {
+          "event": "late_receipt_delivered",
+          "receipt": {
+            "operation": "prior",
+            "effect_sha256": "3b9d75e1c0f7080a21134d4c5295cb868836f96a76fa7424a5579ada66449bf2"
+          },
+          "corroborated": true
+        },
+        {
+          "event": "before_pending_worker",
+          "effect_sha256": null
+        },
+        {
+          "event": "pending_worker_completed",
+          "worker_report": "completed"
+        },
+        {
+          "event": "pending_effect_observed",
+          "effect_sha256": "52d26753462488ad21852bc6718e21b84835f53765304d0a1e1b89d05a2a71b1"
+        }
+      ],
+      "worker_output": {
+        "prior": {
+          "operation": "prior",
+          "worker_report": "completed",
+          "receipt": {
+            "operation": "prior",
+            "effect_sha256": "3b9d75e1c0f7080a21134d4c5295cb868836f96a76fa7424a5579ada66449bf2"
+          }
+        },
+        "pending": {
+          "operation": "pending",
+          "worker_report": "completed",
+          "receipt": {
+            "operation": "pending",
+            "effect_sha256": "52d26753462488ad21852bc6718e21b84835f53765304d0a1e1b89d05a2a71b1"
+          }
+        }
+      },
+      "comparison": {
+        "schema": "arquia.observation-comparison/1",
+        "cases_sha256": "4ffe4f0cbd7f0b4e4acee99f6f6b29f58bd8fb932b37614a67bdfd10e12d21a8",
+        "observations_sha256": "153448a168fc72ef2f708b7304ae8e86e81f0c424e27f63151f041cecb5f7b65",
+        "counts": {
+          "pass": 0,
+          "fail": 1,
+          "inconclusive": 0
+        },
+        "results": [
+          {
+            "id": "queued-write-after-revocation",
+            "rule": "A queued write requires current permission when it takes effect.",
+            "scenario": "Delay a prior receipt, revoke permission and process a queued write.",
+            "failure_criterion": "A write occurs after revocation, or the prior receipt cannot be corroborated.",
+            "status": "fail",
+            "observed": {
+              "late_receipt_corroborated": true,
+              "pending_effect_after_revocation": true,
+              "permission_revoked_after_receipt": true,
+              "prior_effect_observed": true
+            },
+            "missing": [],
+            "mismatches": {
+              "pending_effect_after_revocation": {
+                "expected": false,
+                "observed": true
+              }
+            }
+          }
+        ],
+        "exit_code": 1
+      }
+    },
+    "missing-observation": {
+      "command": [
+        "unshare",
+        "-Urn",
+        "--",
+        "python3",
+        "-B",
+        "-m",
+        "experiments.observed_effect.run",
+        "missing-observation",
+        "<output>/missing-observation"
+      ],
+      "exit_code": 3,
+      "stdout_sha256": "03fdb86bf61b721338fc7beed1044335b2b1ee0ba667a0f8387db68ecc5476a0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cases": [
+        {
+          "id": "queued-write-after-revocation",
+          "rule": "A queued write requires current permission when it takes effect.",
+          "scenario": "Delay a prior receipt, revoke permission and process a queued write.",
+          "failure_criterion": "A write occurs after revocation, or the prior receipt cannot be corroborated.",
+          "expected": {
+            "prior_effect_observed": true,
+            "late_receipt_corroborated": true,
+            "permission_revoked_after_receipt": true,
+            "pending_effect_after_revocation": false
+          }
+        }
+      ],
+      "trace": [
+        {
+          "event": "prior_effect_observed",
+          "effect_sha256": "3b9d75e1c0f7080a21134d4c5295cb868836f96a76fa7424a5579ada66449bf2"
+        },
+        {
+          "event": "write_queued",
+          "operation": "pending",
+          "dispatch_epoch": 1
+        },
+        {
+          "event": "permission_revoked",
+          "epoch": 2,
+          "write": false
+        },
+        {
+          "event": "late_receipt_delivered",
+          "receipt": {
+            "operation": "prior",
+            "effect_sha256": "3b9d75e1c0f7080a21134d4c5295cb868836f96a76fa7424a5579ada66449bf2"
+          },
+          "corroborated": true
+        },
+        {
+          "event": "before_pending_worker",
+          "effect_sha256": null
+        },
+        {
+          "event": "pending_worker_completed",
+          "worker_report": "blocked"
+        },
+        {
+          "event": "pending_effect_observation_missing"
+        }
+      ],
+      "worker_output": {
+        "prior": {
+          "operation": "prior",
+          "worker_report": "completed",
+          "receipt": {
+            "operation": "prior",
+            "effect_sha256": "3b9d75e1c0f7080a21134d4c5295cb868836f96a76fa7424a5579ada66449bf2"
+          }
+        },
+        "pending": {
+          "operation": "pending",
+          "worker_report": "blocked"
+        }
+      },
+      "comparison": {
+        "schema": "arquia.observation-comparison/1",
+        "cases_sha256": "4ffe4f0cbd7f0b4e4acee99f6f6b29f58bd8fb932b37614a67bdfd10e12d21a8",
+        "observations_sha256": "601c20c17a6499aec0ca76b553404c4ede7ba6fc73fb7ee7be6750cccf207f12",
+        "counts": {
+          "pass": 0,
+          "fail": 0,
+          "inconclusive": 1
+        },
+        "results": [
+          {
+            "id": "queued-write-after-revocation",
+            "rule": "A queued write requires current permission when it takes effect.",
+            "scenario": "Delay a prior receipt, revoke permission and process a queued write.",
+            "failure_criterion": "A write occurs after revocation, or the prior receipt cannot be corroborated.",
+            "status": "inconclusive",
+            "observed": {
+              "late_receipt_corroborated": true,
+              "permission_revoked_after_receipt": true,
+              "prior_effect_observed": true
+            },
+            "missing": [
+              "pending_effect_after_revocation"
+            ],
+            "mismatches": {}
+          }
+        ],
+        "exit_code": 3
+      }
+    }
+  }
+}

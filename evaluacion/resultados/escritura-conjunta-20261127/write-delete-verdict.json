@@ -1,0 +1,10 @@
+{
+  "status": "fail",
+  "reason": "write_accepted_after_revocation",
+  "witness": {
+    "run_id": "4a69f6960d504e3a9874f667d703c830",
+    "revocation_sequence": 3,
+    "write_sequence": 5,
+    "sha256": "416068405659f379f4519b12ec18b2c19a8785be44e4804cb9393a736a7d935f"
+  }
+}

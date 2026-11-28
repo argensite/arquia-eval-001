@@ -1,5 +1,7 @@
 # ARQUÍA-EVAL-001
 
+**[Convocatoria abierta / Open call](evaluacion/README.md)** · Poné a prueba tus propios agentes / Test your own agents.
+
 **Semilla experimental SEED-001:** [cargarla con una instrucción lista para copiar, probar sus 14 tests en Linux/Windows/macOS y publicar resultados](SEMILLA.md). [Convocatoria existente: issue #3](https://github.com/argensite/arquia-eval-001/issues/3). Su simulador y sus métricas se registran por separado del evaluador.
 
 **Nueva invitación pública:** [José María Garbini presenta la semilla universal ARQUÍA-SEED-001](PRESENTACION_PERSONAL_SEMILLA.md). [Descargar la semilla experimental (.md)](https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md) · [guía y verificación](SEMILLA.md). La semilla se puede leer, discutir o ensayar voluntariamente y **no es** este evaluador; una descarga o lectura no significa instalación o adopción.
@@ -33,6 +35,8 @@ comandos y códigos de salida. Se conservan los **29 casos históricos** de v0.1
 Los cinco controles históricos y diez defectos nuevos deben ser detectados.
 El fallo esperado de un control tiene salida 1; una excepción no demuestra que
 se detectó el defecto previsto.
+
+El [registro público](evaluacion/RESULTADOS.md) incluye el piloto de custodia con AER-1 y una corrida del proyecto que observa escrituras en archivos tras revocar el permiso. El [ensayo de efecto observado](experiments/observed_effect/README.md) se ejecuta por separado.
 
 ## Interpretación
 

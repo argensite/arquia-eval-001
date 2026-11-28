@@ -9,6 +9,7 @@ permissions:
   contents: read
 jobs:
   portable:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     strategy:
       fail-fast: false
       matrix:
@@ -33,6 +34,10 @@ jobs:
               assert subprocess.check_output(['git','rev-parse',tag+'^{commit}'],text=True).strip()==sha
       - name: Offline acceptance
         run: python check_all.py --output checks
+      - name: Custody pilot controls
+        run: python -B -m unittest -v experiments.custody_pilot.test_pilot
+      - name: Observed effect controls
+        run: python -B -m unittest -v experiments.observed_effect.test_observation
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
@@ -41,6 +46,7 @@ jobs:
           retention-days: 14
           if-no-files-found: error
   linux-isolation:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-22.04
     timeout-minutes: 10
     steps:
@@ -91,3 +97,7 @@ jobs:
         env:
           TMPDIR: ${{ runner.temp }}
         run: python3 strict_unittest.py isolation_checks resource_checks
+      - name: Exercise isolated temporal JSONL candidate
+        env:
+          TMPDIR: ${{ runner.temp }}
+        run: python3 temporal_runner.py --candidate-dir examples/temporal --accept-external-code --summary > temporal-isolated.json

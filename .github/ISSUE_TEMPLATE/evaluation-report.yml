@@ -1,0 +1,66 @@
+name: "Evaluación abierta / Open evaluation report"
+description: "Compartí un caso, resultado, crítica o pedido de ayuda / Share a case, result, critique or request for help."
+title: "[Open evaluation] "
+labels: [open-evaluation]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Los issues son públicos. Usá datos sintéticos o anonimizados. Omití credenciales y datos privados.
+        Issues are public. Use synthetic or anonymized data. Omit credentials and private data.
+        Podés enlazar tu informe original y mantenerlo bajo tu control. You can link to the original report you control.
+        Para agregar avances, editá este mismo aporte y anotá la fecha y los cambios. To add progress, edit this same contribution and record the date and changes.
+        Si es un diseño o un pedido de ayuda, marcá lo que aún no ejecutaste. For designs and help requests, mark what has yet to run.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Tipo de aporte / Contribution type
+      options:
+        - Caso, hipótesis o crítica / Case, hypothesis or critique
+        - Corrida del proyecto / Project run
+        - Corrida externa / External run
+        - Reproducción / Reproduction
+        - Ayuda técnica / Technical help
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Material, versión, commit o DOI / Material, version, commit or DOI
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Escenario y reglas / Scenario and rules
+      description: "Identificá la sección, el efecto observado y el alcance. Identify the section, observed effect and scope."
+    validations:
+      required: true
+  - type: textarea
+    id: criterion
+    attributes:
+      label: Criterio de fallo / Failure criterion
+      description: "Registrá qué distinguiría un fallo, un resultado favorable y uno inconcluso. State what separates failure, success and inconclusive outcomes."
+    validations:
+      required: true
+  - type: textarea
+    id: run
+    attributes:
+      label: Fecha, entorno y comandos / Date, environment and commands
+      description: "Versiones, configuración, presupuesto y semilla si aplican. Escribí «sin ejecutar» cuando corresponda. Include versions, configuration, budget and seed if applicable. Say “not run” if appropriate."
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Resultado, salidas, códigos de retorno y evidencia / Outcome, outputs, exit codes and evidence
+      description: "Enlazá el informe original, trazas y hashes si existen. Indicá evidencia faltante, contradicciones y límites. Link the original report, logs and hashes if available. State missing evidence, contradictions and scope limits."
+    validations:
+      required: true
+  - type: input
+    id: relationship
+    attributes:
+      label: Relación con el proyecto / Relationship to the project
+      description: "Por ejemplo, autor, colaborador o sin afiliación declarada. For example, author, contributor or no declared affiliation."
+    validations:
+      required: true
