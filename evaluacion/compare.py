@@ -1,14 +1,23 @@
 """Compare evaluator-defined expectations with local JSON observations."""
 
 import argparse
+from decimal import Decimal
 from hashlib import sha256
 import json
+import math
 from pathlib import Path
 import sys
 
 
 def reject_constant(value):
     raise ValueError(f"non-finite JSON number: {value}")
+
+
+def finite_float(value):
+    number = float(value)
+    if not math.isfinite(number):
+        reject_constant(value)
+    return number
 
 
 def unique_object(pairs):
@@ -22,7 +31,8 @@ def unique_object(pairs):
 
 def read_rows(path, key):
     source = path.read_bytes()
-    document = json.loads(source, parse_constant=reject_constant, object_pairs_hook=unique_object)
+    document = json.loads(source, parse_constant=reject_constant, parse_float=finite_float,
+                          object_pairs_hook=unique_object)
     if not isinstance(document, dict) or not isinstance(document.get(key), list):
         raise ValueError(f"{key} must be an array")
     indexed = {}
@@ -32,6 +42,23 @@ def read_rows(path, key):
             raise ValueError(f"invalid or duplicate id in {key}: {case_id!r}")
         indexed[case_id] = row
     return indexed, sha256(source).hexdigest()
+
+
+def same_value(left, right):
+    if isinstance(left, bool) or isinstance(right, bool):
+        return left is right
+    if isinstance(left, dict):
+        return (isinstance(right, dict) and left.keys() == right.keys()
+                and all(same_value(left[key], right[key]) for key in left))
+    if isinstance(left, list):
+        return (isinstance(right, list) and len(left) == len(right)
+                and all(same_value(a, b) for a, b in zip(left, right)))
+    if isinstance(left, (int, float)) and isinstance(right, (int, float)):
+        # Compare the decimal values that the report emits as JSON numbers.
+        left_number = Decimal(str(left)) if isinstance(left, float) else Decimal(left)
+        right_number = Decimal(str(right)) if isinstance(right, float) else Decimal(right)
+        return left_number == right_number
+    return left == right
 
 
 def compare(cases_path, observations_path):
@@ -56,10 +83,7 @@ def compare(cases_path, observations_path):
         missing = sorted(expected.keys() - observed.keys())
         mismatches = {}
         for field in sorted(expected.keys() & observed.keys()):
-            # JSON comparison preserves the distinction between a boolean and a number.
-            left = json.dumps(expected[field], sort_keys=True, allow_nan=False)
-            right = json.dumps(observed[field], sort_keys=True, allow_nan=False)
-            if left != right:
+            if not same_value(expected[field], observed[field]):
                 mismatches[field] = {"expected": expected[field], "observed": observed[field]}
         status = "pass"
         if mismatches:

@@ -71,9 +71,9 @@ class Candidate:
         live = valid_grant(view, event["operation"], op["scope"])
         grandfather = (view["policy"] == "preauthorized_finish"
                        and op["finish_exception"] and op["authorized_at_dispatch"]
-                       and op["scope"] == "write"
                        and view["active_grant"] is None
-                       and view["permission_epoch"] == op["dispatch_grant_version"] + 1
+                       and view.get("revoked_grant") == {
+                           "grant": op["dispatch_grant_id"], "epoch": op["dispatch_grant_version"]}
                        and op["status"] == "in_flight")
         if self.mutant == "dispatch-only":
             return {"attempt_commit": True, "basis": "stale_dispatch_grant"}
@@ -138,6 +138,7 @@ class EvaluatorWorld:
         self.policy = policy
         self.permission_epoch = 0
         self.revoked_epochs = set()
+        self.revoked_grant = None
         self.active_grant = None
         self.operations = {}
         self.receipts = {}
@@ -157,6 +158,7 @@ class EvaluatorWorld:
             "policy": self.policy,
             "permission_epoch": self.permission_epoch,
             "active_grant": self.active_grant,
+            "revoked_grant": self.revoked_grant,
             "operations": self.operations,
             "committed_effects": sorted({x["operation"] for x in self.effects}),
             "operation_dispatch_epochs": {op: item["dispatch_grant_version"] for op,item in self.operations.items()},
@@ -181,6 +183,7 @@ class EvaluatorWorld:
                 raise ValueError("revoke must target current grant")
             if event["epoch"] <= self.permission_epoch:
                 raise ValueError("revocation epoch must increase")
+            self.revoked_grant = {"grant": self.active_grant["grant"], "epoch": self.active_grant["epoch"]}
             self.active_grant = None
             self.permission_epoch = event["epoch"]
             self.revoked_epochs.add(self.permission_epoch)
@@ -222,7 +225,9 @@ class EvaluatorWorld:
                                   and operation["finish_exception"]
                                   and operation["authorized_at_dispatch"]
                                   and self.active_grant is None
-                                  and self.permission_epoch == operation["dispatch_grant_version"] + 1
+                                  and self.revoked_grant == {
+                                      "grant": operation["dispatch_grant_id"],
+                                      "epoch": operation["dispatch_grant_version"]}
                                   and operation["status"] == "in_flight")
             permitted_at_boundary = live or explicit_exception
             if decision["attempt_commit"]:
