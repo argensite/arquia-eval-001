@@ -21,8 +21,9 @@ def respond(request):
         live=bool(item and permitted(view,event['operation'],item['scope']))
         preauthorized=bool(item and view['policy']=='preauthorized_finish' and
             item['finish_exception'] and item['authorized_at_dispatch'] and
-            item['scope']=='write' and view['active_grant'] is None and
-            view['permission_epoch']==item['dispatch_grant_version']+1 and
+            view['active_grant'] is None and
+            view.get('revoked_grant')=={'grant':item['dispatch_grant_id'],
+                                       'epoch':item['dispatch_grant_version']} and
             item['status']=='in_flight')
         decision={'attempt_commit':bool(live or preauthorized),
                   'basis':'current_grant' if live else 'explicit_preauthorized_finish' if preauthorized

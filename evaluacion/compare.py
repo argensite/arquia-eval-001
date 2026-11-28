@@ -1,6 +1,7 @@
 """Compare evaluator-defined expectations with local JSON observations."""
 
 import argparse
+from decimal import Decimal, InvalidOperation
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -22,7 +23,11 @@ def unique_object(pairs):
 
 def read_rows(path, key):
     source = path.read_bytes()
-    document = json.loads(source, parse_constant=reject_constant, object_pairs_hook=unique_object)
+    try:
+        document = json.loads(source, parse_constant=reject_constant, parse_float=Decimal,
+                              object_pairs_hook=unique_object)
+    except InvalidOperation as error:
+        raise ValueError("JSON number outside the supported decimal range") from error
     if not isinstance(document, dict) or not isinstance(document.get(key), list):
         raise ValueError(f"{key} must be an array")
     indexed = {}
@@ -32,6 +37,18 @@ def read_rows(path, key):
             raise ValueError(f"invalid or duplicate id in {key}: {case_id!r}")
         indexed[case_id] = row
     return indexed, sha256(source).hexdigest()
+
+
+def same_value(left, right):
+    if isinstance(left, bool) or isinstance(right, bool):
+        return left is right
+    if isinstance(left, dict):
+        return (isinstance(right, dict) and left.keys() == right.keys()
+                and all(same_value(left[key], right[key]) for key in left))
+    if isinstance(left, list):
+        return (isinstance(right, list) and len(left) == len(right)
+                and all(same_value(a, b) for a, b in zip(left, right)))
+    return left == right
 
 
 def compare(cases_path, observations_path):
@@ -56,10 +73,7 @@ def compare(cases_path, observations_path):
         missing = sorted(expected.keys() - observed.keys())
         mismatches = {}
         for field in sorted(expected.keys() & observed.keys()):
-            # JSON comparison preserves the distinction between a boolean and a number.
-            left = json.dumps(expected[field], sort_keys=True, allow_nan=False)
-            right = json.dumps(observed[field], sort_keys=True, allow_nan=False)
-            if left != right:
+            if not same_value(expected[field], observed[field]):
                 mismatches[field] = {"expected": expected[field], "observed": observed[field]}
         status = "pass"
         if mismatches:
@@ -82,6 +96,21 @@ def compare(cases_path, observations_path):
     }
 
 
+def report_json(value, level=0):
+    """Serialize the report while keeping exact decimals as JSON numbers."""
+    indent = "  " * (level + 1)
+    if isinstance(value, Decimal):
+        return str(value)
+    if isinstance(value, dict) and value:
+        entries = (json.dumps(key) + ": " + report_json(item, level + 1)
+                   for key, item in value.items())
+        return "{\n" + indent + (",\n" + indent).join(entries) + "\n" + indent[:-2] + "}"
+    if isinstance(value, list) and value:
+        entries = (report_json(item, level + 1) for item in value)
+        return "[\n" + indent + (",\n" + indent).join(entries) + "\n" + indent[:-2] + "]"
+    return json.dumps(value, ensure_ascii=True, allow_nan=False)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("cases", type=Path)
@@ -89,10 +118,11 @@ def main():
     arguments = parser.parse_args()
     try:
         report = compare(arguments.cases, arguments.observations)
+        output = report_json(report)
     except (OSError, ValueError, RecursionError) as error:
         print(str(error), file=sys.stderr)
         return 2
-    print(json.dumps(report, ensure_ascii=True, indent=2))
+    print(output)
     return report["exit_code"]
 
 

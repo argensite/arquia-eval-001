@@ -151,6 +151,30 @@ class TemporalRevocationTests(unittest.TestCase):
         results=[run_case(case,factory=TrustedProjectExample) for case in self.fixture['cases']]
         self.assertTrue(all(r['passed'] for r in results),[(r['id'],r['violations'],r['error']) for r in results])
 
+        for scope, revocation_epoch, replace_first, expected_finish in (
+            ("write", 4, False, True),
+            ("read", 2, False, True),
+            ("write", 3, True, False),
+        ):
+            grant = {"op": "grant", "epoch": 1, "grant": "g", "scope": scope,
+                     "allowed": ["A"], "finish_after_revoke": True}
+            events = [grant, {"op": "dispatch", "operation": "A", "turn": "T", "scope": scope}]
+            if replace_first:
+                events.append({**grant, "epoch": 2})
+            events.extend([{"op": "revoke", "epoch": revocation_epoch, "grant": "g"},
+                           {"op": "effect_boundary", "operation": "A"}])
+            case = {
+                "id": "custom-finish", "policy": "preauthorized_finish", "events": events,
+                "expect": {"committed_effects": ["A"] if expected_finish else []},
+            }
+            check_suite({**self.fixture, "cases": [case]})
+            for factory in (None, TrustedProjectExample):
+                with self.subTest(scope=scope, epoch=revocation_epoch, factory=factory):
+                    result = run_case(case, factory=factory)
+                    self.assertTrue(result["passed"], result)
+                    self.assertIs(result["effect_boundary_ledger"][0]["preauthorized_finish_exception"],
+                                  expected_finish)
+
     def test_fixture_does_not_claim_to_be_dropin_community_case(self):
         self.assertEqual(self.fixture['schema'],'arquia.adapter-revocation-candidate/1')
         self.assertEqual(self.fixture['baseline']['current_community_suite_cases_reviewed'],34)
