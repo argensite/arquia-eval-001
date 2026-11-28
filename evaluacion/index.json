@@ -540,7 +540,8 @@
       "sections": "§§2–9, 11–13, appendices A–B, D, F",
       "results": [
         "seed-010-project",
-        "observations-example"
+        "observations-example",
+        "brennan-four-step-procedure-reported-20261128"
       ],
       "open_question": "Causal inclusion, absent parties, collusion, and valid continuity need comparable experiments."
     },
@@ -550,7 +551,8 @@
       "sections": "§§4, 7, 9–11, 13–16, appendices C–G",
       "results": [
         "seed-101-project",
-        "observations-example"
+        "observations-example",
+        "brennan-four-step-procedure-reported-20261128"
       ],
       "open_question": "Measure avoidable sacrifice, recursion, dominance, stopping and resource effects."
     },
@@ -560,7 +562,8 @@
       "sections": "§§12–22, appendices E–J, JSON protocol",
       "results": [
         "eval-024-project",
-        "seed-101-project"
+        "seed-101-project",
+        "brennan-four-step-procedure-reported-20261128"
       ],
       "open_question": "Matched experiments across four agent conditions remain open."
     },
@@ -1117,6 +1120,46 @@
         "https://raw.githubusercontent.com/argensite/arquia-eval-001/open-evaluation-2026-11-26/evaluacion/resultados/observaciones.json"
       ],
       "scope": "Handwritten sample data; compares expected and observed JSON values."
+    },
+    {
+      "id": "brennan-four-step-procedure-reported-20261128",
+      "types": [
+        "external_reported_run"
+      ],
+      "date": "2026-11-28",
+      "relationship": "AER-1 author and disclosed prior pilot collaborator",
+      "source_commit": "f7b357448e1abe93f5a024671cf0f2e997f2f606",
+      "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19968144",
+      "artifacts": [
+        "https://gist.github.com/zambodotdev/b03511c8e06e30e6b136d56bb36441f4/19fe1efaa27c960127c0e3a0c7f2a4b236de11dc"
+      ],
+      "reported_outcomes": {
+        "arquia": {
+          "pass": 7,
+          "exit_code": 0,
+          "internal_candidate_count": 50
+        },
+        "baseline": {
+          "pass": 2,
+          "exit_code": 1,
+          "internal_candidate_count": 27
+        },
+        "trivial_case_same_outcome": {
+          "arquia_internal_candidate_count": 6,
+          "baseline_internal_candidate_count": 3
+        }
+      },
+      "project_artifact_checks": {
+        "declared_sha256_matches": 7,
+        "comparator_jsons_checked": 2,
+        "harness_rerun": false
+      },
+      "missing": [
+        "Independent evidence of criteria timing",
+        "Matched model tests and deployed architecture trials",
+        "Replication against stronger baselines and measured runtime"
+      ],
+      "scope": "Deterministic procedure-level comparison on seven self-authored cases. Counts are internal accounting; step 3 increments the count without a second selection call at that stage. Pressure responses are fixed by arm. Not full independent validation."
     }
   ],
   "verifiable_external_reproductions": 2
