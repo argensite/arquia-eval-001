@@ -1,0 +1,32 @@
+{
+  "schema": "arquia.static-site-plan/1",
+  "state": "prepared_not_published",
+  "destination": "https://arquia.live/ARQUIA/",
+  "remote_write_attempts": 0,
+  "preconditions": [
+    "Existing authentic ChatGPT/Qwen publication review for these exact hashes",
+    "Guide change present on default GitHub branch",
+    "Compare-and-swap every current remote page against before_sha256; stop on mismatch",
+    "Preserve backups and all frozen release assets; verify public bytes after authorized publication"
+  ],
+  "files": [
+    {
+      "path": "eval-001/index.html",
+      "before_sha256": "5b89c79838bbb02b4f850c0f3e8fecf9b7c0a0b36ebb2b1fefc43db04dae47ac",
+      "after_sha256": "a5f0df7365b98ce81f9239c580a45c2bf8e17668db7c34872e218fe7afacd87b",
+      "bytes": 16707
+    },
+    {
+      "path": "eval-001/en/index.html",
+      "before_sha256": "90df586b444290d90a7c0989a645fa40e3cad0ade8d6d4eeb485f3f54934e83f",
+      "after_sha256": "c415a38835b8a8add84e70c1e8bb17a426b71fca54635b260ec14cfb6d3618fb",
+      "bytes": 16062
+    },
+    {
+      "path": "semilla/index.html",
+      "before_sha256": "4b68bb4b7f6ffe5555334131b875b382c3c3e99187293de66f274f198841788e",
+      "after_sha256": "5b60b096227bbd41778e87aae2871c1c92fa6e216a22e5f86fe25781ff61d6a0",
+      "bytes": 12341
+    }
+  ]
+}

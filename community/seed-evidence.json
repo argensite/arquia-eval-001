@@ -1,0 +1,30 @@
+{
+  "schema": "arquia.seed-evidence/1",
+  "initiative": "ARQUIA-SEED-001",
+  "seed_version": "0.1.0-experimental",
+  "seed_sha256": "27b2ddab9d23ffcafb05c976fe2c679da287773d4a1ef694343399aa7591a14b",
+  "report_destination": "https://github.com/argensite/arquia-eval-001/issues/3",
+  "levels_are_tracking_categories_not_scores": true,
+  "levels": {
+    "0": "observed_access_or_download",
+    "1": "documented_conceptual_analysis",
+    "2": "declared_test_execution",
+    "3": "reproducible_execution_with_verifiable_artifacts",
+    "4": "documented_independent_implementation",
+    "5": "demonstrated_repeat_use_or_operational_integration"
+  },
+  "entries": [],
+  "independent_technical_adoption": null,
+  "coverage": "No participant SEED-001 report recorded here yet. Historical EVAL-001 claims remain in evidence-index.json. Absence of a report does not prove absence of use.",
+  "missing_metrics_are_unknown": true,
+  "entry_fields_when_available": [
+    "declared_evaluator", "declared_project_relationship", "observed_utc",
+    "version", "sha256", "platform_model_system", "operator",
+    "effective_permissions", "commands", "stdout", "stderr", "exit_codes",
+    "failures", "behavioral_differences", "comparison_baseline",
+    "acceptance_rejection_abandonment_reasons", "evaluator_controlled_url",
+    "claims", "verified_claims", "verification_provenance", "unknowns",
+    "problem_solved", "change_against_previous_mechanism", "repeat_use_evidence",
+    "keep_modify_discard_or_experimental", "outcome"
+  ]
+}

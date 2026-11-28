@@ -2,6 +2,8 @@
 
 **[Convocatoria abierta / Open call](evaluacion/README.md)** · Poné a prueba tus propios agentes / Test your own agents.
 
+**Semilla experimental SEED-001:** [cargarla con una instrucción lista para copiar, probar sus 14 tests en Linux/Windows/macOS y publicar resultados](SEMILLA.md). [Convocatoria existente: issue #3](https://github.com/argensite/arquia-eval-001/issues/3). Su simulador y sus métricas se registran por separado del evaluador.
+
 **Nueva invitación pública:** [José María Garbini presenta la semilla universal ARQUÍA-SEED-001](PRESENTACION_PERSONAL_SEMILLA.md). [Descargar la semilla experimental (.md)](https://github.com/argensite/arquia-eval-001/releases/download/seed-v0.1.0-experimental/ARQUIA-SEED-001-SEMILLA-v0.1.0-experimental.md) · [guía y verificación](SEMILLA.md). La semilla se puede leer, discutir o ensayar voluntariamente y **no es** este evaluador; una descarga o lectura no significa instalación o adopción.
 
 Experimento sin conexión para cuestionar los límites de actuación de un agente.
