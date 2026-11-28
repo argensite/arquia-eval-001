@@ -1,23 +1,15 @@
 """Compare evaluator-defined expectations with local JSON observations."""
 
 import argparse
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from hashlib import sha256
 import json
-import math
 from pathlib import Path
 import sys
 
 
 def reject_constant(value):
     raise ValueError(f"non-finite JSON number: {value}")
-
-
-def finite_float(value):
-    number = float(value)
-    if not math.isfinite(number):
-        reject_constant(value)
-    return number
 
 
 def unique_object(pairs):
@@ -31,8 +23,11 @@ def unique_object(pairs):
 
 def read_rows(path, key):
     source = path.read_bytes()
-    document = json.loads(source, parse_constant=reject_constant, parse_float=finite_float,
-                          object_pairs_hook=unique_object)
+    try:
+        document = json.loads(source, parse_constant=reject_constant, parse_float=Decimal,
+                              object_pairs_hook=unique_object)
+    except InvalidOperation as error:
+        raise ValueError("JSON number outside the supported decimal range") from error
     if not isinstance(document, dict) or not isinstance(document.get(key), list):
         raise ValueError(f"{key} must be an array")
     indexed = {}
@@ -53,11 +48,6 @@ def same_value(left, right):
     if isinstance(left, list):
         return (isinstance(right, list) and len(left) == len(right)
                 and all(same_value(a, b) for a, b in zip(left, right)))
-    if isinstance(left, (int, float)) and isinstance(right, (int, float)):
-        # Compare the decimal values that the report emits as JSON numbers.
-        left_number = Decimal(str(left)) if isinstance(left, float) else Decimal(left)
-        right_number = Decimal(str(right)) if isinstance(right, float) else Decimal(right)
-        return left_number == right_number
     return left == right
 
 
@@ -106,6 +96,21 @@ def compare(cases_path, observations_path):
     }
 
 
+def report_json(value, level=0):
+    """Serialize the report while keeping exact decimals as JSON numbers."""
+    indent = "  " * (level + 1)
+    if isinstance(value, Decimal):
+        return str(value)
+    if isinstance(value, dict) and value:
+        entries = (json.dumps(key) + ": " + report_json(item, level + 1)
+                   for key, item in value.items())
+        return "{\n" + indent + (",\n" + indent).join(entries) + "\n" + indent[:-2] + "}"
+    if isinstance(value, list) and value:
+        entries = (report_json(item, level + 1) for item in value)
+        return "[\n" + indent + (",\n" + indent).join(entries) + "\n" + indent[:-2] + "]"
+    return json.dumps(value, ensure_ascii=True, allow_nan=False)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("cases", type=Path)
@@ -113,10 +118,11 @@ def main():
     arguments = parser.parse_args()
     try:
         report = compare(arguments.cases, arguments.observations)
+        output = report_json(report)
     except (OSError, ValueError, RecursionError) as error:
         print(str(error), file=sys.stderr)
         return 2
-    print(json.dumps(report, ensure_ascii=True, indent=2))
+    print(output)
     return report["exit_code"]
 
 

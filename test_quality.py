@@ -1,5 +1,6 @@
 """Regression tests for offline checks and their reported verdicts."""
 import json
+from decimal import Decimal
 import os
 from pathlib import Path
 import subprocess
@@ -7,7 +8,7 @@ import sys
 import tempfile
 import unittest
 
-from evaluacion.compare import compare
+from evaluacion.compare import compare, report_json
 
 class StrictSelectionTests(unittest.TestCase):
     def test_selected_skip_is_a_real_failure(self):
@@ -43,5 +44,25 @@ class ObservationComparisonTests(unittest.TestCase):
                     observations.write_text(json.dumps({"observations": [row]}), encoding="utf-8")
                     self.assertEqual(compare(cases, observations)["exit_code"], exit_code)
 
+    def test_comparison_and_report_preserve_decimal_precision(self):
+        case = {"id": "precision", "rule": "r", "scenario": "s", "failure_criterion": "f",
+                "expected": {"large": 9007199254740992, "zero": 0, "same": 9007199254740993}}
+        with tempfile.TemporaryDirectory() as folder:
+            cases = Path(folder) / "cases.json"
+            observations = Path(folder) / "observations.json"
+            cases.write_text(json.dumps({"cases": [case]}), encoding="utf-8")
+            observations.write_text(
+                '{"observations":[{"id":"precision","observed":'
+                '{"large":9007199254740993.0,"zero":1e-400,"same":9007199254740993.0}}]}',
+                encoding="utf-8",
+            )
+            report = json.loads(report_json(compare(cases, observations)), parse_float=Decimal)
+            self.assertEqual(report["exit_code"], 1)
+            row = report["results"][0]
+            self.assertEqual(row["mismatches"], {
+                "large": {"expected": 9007199254740992, "observed": Decimal("9007199254740993.0")},
+                "zero": {"expected": 0, "observed": Decimal("1e-400")},
+            })
+            self.assertEqual(row["observed"]["same"], Decimal("9007199254740993.0"))
 
 if __name__=='__main__':unittest.main()
