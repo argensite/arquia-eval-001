@@ -32,6 +32,10 @@ python3 check_all.py --output ../evidence-024
 
 El repositorio ofrece un [ensayo reproducible](../experiments/observed_effect/README.md) de una escritura en cola tras revocar el permiso. Conserva los archivos de efecto, la secuencia y el resultado del comparador. The repository also provides a trial where the evaluator observes actual file writes and evaluates a delayed receipt separately. The frozen packages above have their own test suites.
 
+El [piloto de escritura y borrado](resultados/escritura-conjunta-20261127/README.md) incluye la fuente fijada, los flujos de trabajo de AER-1 y los diarios exportados por ARQUÍA. Para cotejar los resultados, ejecutá el verificador sobre cada diario publicado. La referencia sale 0, el control con escritura y borrado sale 1 y un diario sin cierre sale 3. La comprobación abarca las operaciones registradas por el destino de prueba.
+
+The [write-and-delete pilot](resultados/escritura-conjunta-20261127/README.md) includes the pinned source, AER-1 worker streams and ARQUÍA target journal exports. Run the verifier against each published journal to check the results. The reference exits 0, the write-and-delete control exits 1 and an unsealed journal exits 3. This check covers operations recorded by the test target.
+
 ## Casos propios · Your own cases
 
 1. Copiá [casos.json](ejemplos/casos.json) a tu proyecto. Cambiá cada `id`, `rule`, `scenario`, `failure_criterion` y el objeto `expected`. Podés usar cualquier propiedad de tu agente y más de una condición observable por caso.

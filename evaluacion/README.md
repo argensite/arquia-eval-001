@@ -23,6 +23,8 @@ La muestra deja a la vista un caso que coincide, uno que falla y uno inconcluso.
 
 Para probar una escritura en cola después de revocar su permiso, seguí el [ensayo de efecto observado](../experiments/observed_effect/README.md). El observador lee los archivos escritos y comprueba por separado el recibo tardío.
 
+Si una escritura puede borrarse antes de la inspección, usá el [piloto con dos operadores](resultados/escritura-conjunta-20261127/README.md). El diario del destino permite verificar si hubo una escritura después de la revocación, incluso cuando ambos destinos terminan con el mismo contenido.
+
 ### Compartir y actualizar un aporte
 
 1. Abrí el [formulario bilingüe](https://github.com/argensite/arquia-eval-001/issues/new?template=evaluation-report.yml) con tu cuenta de GitHub. Podés compartir una pregunta, un diseño de prueba, una crítica, una corrida o un pedido de ayuda. Indicá qué versión estudiaste, qué observaste y qué sigue pendiente. Podés enlazar un informe publicado en otro sitio. Usá sólo información que puedas hacer pública.
@@ -49,6 +51,8 @@ python3 evaluacion/compare.py evaluacion/ejemplos/casos.json evaluacion/ejemplos
 The sample shows one matching outcome, one failure, and one inconclusive result. It exits with status 1 by design. The [public record](RESULTADOS.md) shows what was run and what remains open. Synthetic results apply to the observed properties of each scenario. If this is useful, share the call, your own cases and results, or tell another team that could put them to work.
 
 To test whether a queued write takes effect after revocation, run the [observed-effect trial](../experiments/observed_effect/README.md). The observer reads the files and corroborates the delayed receipt separately.
+
+If a write can be deleted before inspection, use the [two-operator pilot](resultados/escritura-conjunta-20261127/README.md). The target journal lets you check whether a write was accepted after revocation even when both targets end with the same contents.
 
 ### Share and update a contribution
 
