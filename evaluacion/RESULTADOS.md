@@ -59,6 +59,22 @@ Una corrida local del proyecto observó archivos escritos por un proceso separad
 
 In this project run, the evaluator observed actual files written by a separate process. After revocation it corroborated the delayed receipt of an earlier write. The reference blocked the pending write (exit 0). The stale permission control created a file observed by the evaluator (exit 1). With the final inspection withheld the result was inconclusive (exit 3). The trial uses synthetic data, controlled ordering, and one operator. An external run remains open. [Protocolo / Protocol](../experiments/observed_effect/README.md) · [Evidencia de corrida / Run evidence](resultados/efecto-observado-20261127.json).
 
+### Escritura seguida de borrado / Write then delete
+
+Brennan Zambo señaló que una inspección final puede pasar por alto una escritura borrada antes de inspeccionar. En el nuevo ensayo, el destino registra la revocación y calcula la huella de cada escritura que acepta. La escritura y su asiento se confirman en una sola transacción. Brennan ejecutó los casos con datos sintéticos desde la revisión fijada y publicó los tres diarios y sus veredictos. [Revisión del diseño](https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19963501) · [Instrucciones y código fijados](https://github.com/argensite/arquia-eval-001/tree/4c07bc5cd9d7f80b17d133e2b9f1755e9ed417ef/experiments/write_observation).
+
+ARQUÍA ejecutó el verificador sobre cada diario publicado. Los tres veredictos coincidieron byte a byte con los de Brennan y los eventos coincidieron con los de una corrida del proyecto. El control registró la revocación en la secuencia 3 y la escritura aceptada en la 5, aun cuando el objeto se borró antes del cierre. Una observación sin cierre quedó inconclusa. [Informe de Brennan](https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19964206) · [Diarios y veredictos originales](https://gist.github.com/zambodotdev/4adb396ef81c8a76136060474904537a/81b817cc21e4009c3e29f041ac5dc9ce36edcb04) · [Verificación y huellas](resultados/escritura-brennan-20261127.json).
+
+| Caso / Case | Veredicto / Verdict | Salida / Exit |
+| --- | --- | ---: |
+| Referencia / Reference | `no_write_accepted_after_revocation` | 0 |
+| Escritura y borrado / Write then delete | `write_accepted_after_revocation` | 1 |
+| Sin cierre / Unsealed | `incomplete_observation` | 3 |
+
+**Alcance.** La corrida externa tiene diarios y veredictos comprobados. Brennan también informó cinco pruebas unitarias aprobadas, incluida la reversión ante un fallo al registrar la escritura. La salida original de esas pruebas y el entorno de la corrida están pendientes. Las cinco pruebas pasaron del lado de ARQUÍA. El piloto con AER-1 como operador del trabajador y ARQUÍA al frente del destino y del diario está pendiente. La observación cubre las escrituras que pasan por ese destino.
+
+**English summary.** A final directory inspection can miss a write that was deleted. The target records acceptance and its journal entry in one transaction. ARQUÍA verified all three of Brennan’s published journals and obtained byte-identical verdicts. The faulty case recorded revocation at sequence 3 and an accepted write at sequence 5. Brennan reported five passing tests, including rollback, and ARQUÍA reproduced all five. Brennan’s environment and original unit-test output are pending. The separately operated target-and-worker trial is pending. The fixture covers writes through that target.
+
 ## Discrepancias y pendientes · Disagreements and open work
 
 C29 conserva el contraste entre la batería inicial y el contraejemplo externo. La nota inicial del fixture Brennan preserva el estado histórico de la replicación. El informe de v0.2.4 conserva los tres inconclusos de `deny-all` junto con sus testigos válidos. Future contradictory runs will retain their own entries, original outputs and scope. Use the [form](https://github.com/argensite/arquia-eval-001/issues/new?template=evaluation-report.yml) to link them. Reproducciones externas verificables con artefactos completos en este registro: **1**, para los ocho casos del fixture. La corrida conjunta del piloto tiene su propio expediente. El [mapa](MAPA.md) describe los mecanismos y comparaciones que faltan probar.

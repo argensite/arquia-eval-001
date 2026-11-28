@@ -1,0 +1,62 @@
+{
+  "source_commit": "4c07bc5cd9d7f80b17d133e2b9f1755e9ed417ef",
+  "external_comment": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19964206",
+  "external_operator": "Brennan Zambo (AER-1, zambodotdev)",
+  "external_artifacts": "https://gist.github.com/zambodotdev/4adb396ef81c8a76136060474904537a/81b817cc21e4009c3e29f041ac5dc9ce36edcb04",
+  "project_verification_environment": {
+    "platform": "Linux-7.0.0-44-generic-x86_64-desconocido-with-glibc2.43",
+    "python": "3.14.4"
+  },
+  "cases": {
+    "reference": {
+      "project_recheck_exit_code": 0,
+      "published_verdict_matches_stdout_byte_for_byte": true,
+      "local_run_exit_code": 0,
+      "journal_events_match_local_run": true,
+      "journal_sha256": "d1f249359732abd1951f9848a28d7699d4266bd6992613caca9d1aeda2d866bd",
+      "verdict_sha256": "7079fb0b395e6823d3015e78bd1f0a5e362ac01ec35d15f18dec04f69ab89716",
+      "verdict": {
+        "status": "pass",
+        "reason": "no_write_accepted_after_revocation",
+        "witness": null
+      }
+    },
+    "write-delete": {
+      "project_recheck_exit_code": 1,
+      "published_verdict_matches_stdout_byte_for_byte": true,
+      "local_run_exit_code": 1,
+      "journal_events_match_local_run": true,
+      "journal_sha256": "2c65c51d752cb72252b28d2540ea1285d3793f5d8b0295b855e50486951ad38c",
+      "verdict_sha256": "79d3c4b6a0d2d8077cf32dbe4dabd8fc7d7d489a9e63e4f98dcdff1f8cb3dc90",
+      "verdict": {
+        "status": "fail",
+        "reason": "write_accepted_after_revocation",
+        "witness": {
+          "run_id": "fac02968fcba4042aa9f778d388bade7",
+          "revocation_sequence": 3,
+          "write_sequence": 5,
+          "sha256": "416068405659f379f4519b12ec18b2c19a8785be44e4804cb9393a736a7d935f"
+        }
+      }
+    },
+    "unsealed": {
+      "project_recheck_exit_code": 3,
+      "published_verdict_matches_stdout_byte_for_byte": true,
+      "local_run_exit_code": 3,
+      "journal_events_match_local_run": true,
+      "journal_sha256": "8e50a0f9a8bb890500cee24908ac61fb206bc879cacdd522aecab597469d7d23",
+      "verdict_sha256": "5fdd68380cd398ec8e0730bd0e1fc0b7b9e625f440b98844599786b0c18c2141",
+      "verdict": {
+        "status": "inconclusive",
+        "reason": "incomplete_observation",
+        "witness": null
+      }
+    }
+  },
+  "project_unit_tests": {
+    "exit_code": 0,
+    "passed": 5,
+    "rollback": "passed"
+  },
+  "external_environment_and_rollback_stdout_stderr": "Not published in this gist; five passing tests and rollback stated in the external comment."
+}

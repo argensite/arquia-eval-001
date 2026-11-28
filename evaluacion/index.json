@@ -985,6 +985,37 @@
       "external_evaluation": "pending"
     },
     {
+      "id": "brennan-write-observation-20261127",
+      "types": [
+        "external_design",
+        "external_reported_run"
+      ],
+      "date": "2026-11-27",
+      "relationship": "AER-1 author, fixture design contributor and external operator",
+      "source_commit": "4c07bc5cd9d7f80b17d133e2b9f1755e9ed417ef",
+      "source_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19964206",
+      "design_review_url": "https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19963501",
+      "instructions_url": "https://github.com/argensite/arquia-eval-001/tree/4c07bc5cd9d7f80b17d133e2b9f1755e9ed417ef/experiments/write_observation",
+      "artifacts": [
+        "https://gist.github.com/zambodotdev/4adb396ef81c8a76136060474904537a/81b817cc21e4009c3e29f041ac5dc9ce36edcb04",
+        "https://raw.githubusercontent.com/argensite/arquia-eval-001/main/evaluacion/resultados/escritura-brennan-20261127.json"
+      ],
+      "project_artifact_checks": {
+        "reference_exit_code": 0,
+        "write_delete_exit_code": 1,
+        "unsealed_exit_code": 3,
+        "byte_identical_verdicts": 3
+      },
+      "reported_unit_tests": {
+        "passed": 5,
+        "rollback": "passed"
+      },
+      "missing": [
+        "External run environment and original unit-test output"
+      ],
+      "scope": "Synthetic single-operator run with three independently published journals and verdicts, all checked by the project. AER-1 and ARQUÍA have yet to run the worker and target as separate operators on this fixture."
+    },
+    {
       "id": "awesome-auditable-ai-reported",
       "types": [
         "external_reported_run"
