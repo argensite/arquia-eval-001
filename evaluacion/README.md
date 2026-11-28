@@ -25,6 +25,8 @@ Para probar una escritura en cola después de revocar su permiso, seguí el [ens
 
 Si una escritura puede borrarse antes de la inspección, usá el [piloto con dos operadores](resultados/escritura-conjunta-20261127/README.md). El diario del destino permite verificar si hubo una escritura después de la revocación, incluso cuando ambos destinos terminan con el mismo contenido.
 
+Para la [próxima evaluación con agentes](RESULTADOS.md#evaluación-con-agentes--evaluation-with-agents), un equipo independiente diseñará los casos y fijará los criterios. Los grupos de investigación que quieran aportar sus propios voluntarios pueden [postularse en el hilo público](https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19969123).
+
 ### Compartir y actualizar un aporte
 
 1. Abrí el [formulario bilingüe](https://github.com/argensite/arquia-eval-001/issues/new?template=evaluation-report.yml) con tu cuenta de GitHub. Podés compartir una pregunta, un diseño de prueba, una crítica, una corrida o un pedido de ayuda. Indicá qué versión estudiaste, qué observaste y qué sigue pendiente. Podés enlazar un informe publicado en otro sitio. Usá sólo información que puedas hacer pública.
@@ -53,6 +55,8 @@ The sample shows one matching outcome, one failure, and one inconclusive result.
 To test whether a queued write takes effect after revocation, run the [observed-effect trial](../experiments/observed_effect/README.md). The observer reads the files and corroborates the delayed receipt separately.
 
 If a write can be deleted before inspection, use the [two-operator pilot](resultados/escritura-conjunta-20261127/README.md). The target journal lets you check whether a write was accepted after revocation even when both targets end with the same contents.
+
+For the [next evaluation with agents](RESULTADOS.md#evaluación-con-agentes--evaluation-with-agents), an independent team will design the cases and set the scoring criteria. Research groups interested in nominating their own volunteers can [respond in the public thread](https://github.com/a2aproject/A2A/discussions/2434#discussioncomment-19969123).
 
 ### Share and update a contribution
 
