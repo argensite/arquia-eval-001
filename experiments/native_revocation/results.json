@@ -1,0 +1,366 @@
+{
+  "cases": [
+    {
+      "case": "granted",
+      "expected": {
+        "before_resume": {
+          "effects": [],
+          "policy_reads": []
+        },
+        "decision": "granted",
+        "effects": [
+          "record_change"
+        ],
+        "interrupts": [
+          {
+            "operation": "record_change"
+          }
+        ],
+        "policy_reads": [
+          [
+            "record_change",
+            "granted"
+          ]
+        ]
+      },
+      "framework": "langgraph",
+      "observed": {
+        "before_resume": {
+          "effects": [],
+          "policy_reads": []
+        },
+        "decision": "granted",
+        "effects": [
+          "record_change"
+        ],
+        "interrupts": [
+          {
+            "operation": "record_change"
+          }
+        ],
+        "policy_reads": [
+          [
+            "record_change",
+            "granted"
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "case": "revoked",
+      "expected": {
+        "before_resume": {
+          "effects": [],
+          "policy_reads": []
+        },
+        "decision": "revoked",
+        "effects": [],
+        "interrupts": [
+          {
+            "operation": "record_change"
+          }
+        ],
+        "policy_reads": [
+          [
+            "record_change",
+            "revoked"
+          ]
+        ]
+      },
+      "framework": "langgraph",
+      "observed": {
+        "before_resume": {
+          "effects": [],
+          "policy_reads": []
+        },
+        "decision": "revoked",
+        "effects": [],
+        "interrupts": [
+          {
+            "operation": "record_change"
+          }
+        ],
+        "policy_reads": [
+          [
+            "record_change",
+            "revoked"
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "case": "unavailable",
+      "expected": {
+        "before_resume": {
+          "effects": [],
+          "policy_reads": []
+        },
+        "decision": "unavailable",
+        "effects": [],
+        "interrupts": [
+          {
+            "operation": "record_change"
+          }
+        ],
+        "policy_reads": [
+          [
+            "record_change",
+            "unavailable"
+          ]
+        ]
+      },
+      "framework": "langgraph",
+      "observed": {
+        "before_resume": {
+          "effects": [],
+          "policy_reads": []
+        },
+        "decision": "unavailable",
+        "effects": [],
+        "interrupts": [
+          {
+            "operation": "record_change"
+          }
+        ],
+        "policy_reads": [
+          [
+            "record_change",
+            "unavailable"
+          ]
+        ]
+      },
+      "passed": true
+    },
+    {
+      "case": "not_approved",
+      "expected": {
+        "before_resume": {
+          "effects": [],
+          "policy_reads": []
+        },
+        "decision": "not_approved",
+        "effects": [],
+        "interrupts": [
+          {
+            "operation": "record_change"
+          }
+        ],
+        "policy_reads": []
+      },
+      "framework": "langgraph",
+      "observed": {
+        "before_resume": {
+          "effects": [],
+          "policy_reads": []
+        },
+        "decision": "not_approved",
+        "effects": [],
+        "interrupts": [
+          {
+            "operation": "record_change"
+          }
+        ],
+        "policy_reads": []
+      },
+      "passed": true
+    },
+    {
+      "case": "granted",
+      "expected": {
+        "effects": [
+          "record_start",
+          "record_finish"
+        ],
+        "effects_before_policy_change": [
+          "record_start"
+        ],
+        "policy_reads": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "granted"
+          ]
+        ],
+        "tool_replies": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "granted"
+          ]
+        ],
+        "tool_reply_invocations": 1
+      },
+      "framework": "google-adk",
+      "observed": {
+        "effects": [
+          "record_start",
+          "record_finish"
+        ],
+        "effects_before_policy_change": [
+          "record_start"
+        ],
+        "policy_reads": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "granted"
+          ]
+        ],
+        "tool_replies": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "granted"
+          ]
+        ],
+        "tool_reply_invocations": 1
+      },
+      "passed": true
+    },
+    {
+      "case": "revoked",
+      "expected": {
+        "effects": [
+          "record_start"
+        ],
+        "effects_before_policy_change": [
+          "record_start"
+        ],
+        "policy_reads": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "revoked"
+          ]
+        ],
+        "tool_replies": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "revoked"
+          ]
+        ],
+        "tool_reply_invocations": 1
+      },
+      "framework": "google-adk",
+      "observed": {
+        "effects": [
+          "record_start"
+        ],
+        "effects_before_policy_change": [
+          "record_start"
+        ],
+        "policy_reads": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "revoked"
+          ]
+        ],
+        "tool_replies": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "revoked"
+          ]
+        ],
+        "tool_reply_invocations": 1
+      },
+      "passed": true
+    },
+    {
+      "case": "unavailable",
+      "expected": {
+        "effects": [
+          "record_start"
+        ],
+        "effects_before_policy_change": [
+          "record_start"
+        ],
+        "policy_reads": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "unavailable"
+          ]
+        ],
+        "tool_replies": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "unavailable"
+          ]
+        ],
+        "tool_reply_invocations": 1
+      },
+      "framework": "google-adk",
+      "observed": {
+        "effects": [
+          "record_start"
+        ],
+        "effects_before_policy_change": [
+          "record_start"
+        ],
+        "policy_reads": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "unavailable"
+          ]
+        ],
+        "tool_replies": [
+          [
+            "record_start",
+            "granted"
+          ],
+          [
+            "record_finish",
+            "unavailable"
+          ]
+        ],
+        "tool_reply_invocations": 1
+      },
+      "passed": true
+    }
+  ],
+  "python": "3.12.13",
+  "sdk_versions": {
+    "google-adk": "2.15.1",
+    "langgraph": "1.2.24"
+  }
+}
